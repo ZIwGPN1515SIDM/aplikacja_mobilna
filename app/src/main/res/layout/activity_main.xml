@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,8 +12,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.magda.systeminformacyjny.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        app:srcCompat="@drawable/logo" />
+
+    <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/register_button"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_below="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="74dp"
+        android:textSize="15dp"
+        facebook:com_facebook_login_text="Zarejestruj się przez Facebooka" />
+
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/zarejestrowany"
+        android:textSize="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_alignBaseline="@+id/login_hyperlink"
+        android:layout_alignBottom="@+id/login_hyperlink"
+        android:layout_alignStart="@+id/register_button" />
+
+    <TextView
+        android:id="@+id/login_hyperlink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zaloguj"
+        android:textColor="#0000FF"
+        android:textSize="16dp"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/register_button"
+        android:layout_alignEnd="@+id/register_button"
+        android:layout_marginEnd="21dp" />
 </RelativeLayout>
