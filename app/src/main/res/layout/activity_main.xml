@@ -46,11 +46,13 @@
         android:id="@+id/login_hyperlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/zaloguj"
-        android:textColor="#0000FF"
-        android:textSize="16dp"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/register_button"
         android:layout_alignEnd="@+id/register_button"
-        android:layout_marginEnd="21dp" />
+        android:layout_below="@+id/register_button"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="21dp"
+        android:clickable="true"
+        android:text="@string/zaloguj"
+        android:textColor="@color/text_color"
+        android:textColorHighlight="#C0C0C0"
+        android:textSize="16dp" />
 </RelativeLayout>
