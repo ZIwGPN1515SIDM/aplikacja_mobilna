@@ -14,45 +14,45 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/logoSize"
+        android:layout_height="@dimen/logoSize"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
+        android:layout_centerVertical="true"
         app:srcCompat="@drawable/logo" />
 
     <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
         android:id="@+id/register_button"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/facebookButtonWidth"
         android:layout_height="match_parent"
         android:layout_alignStart="@+id/imageView"
         android:layout_below="@+id/imageView"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="74dp"
-        android:textSize="15dp"
-        facebook:com_facebook_login_text="Zarejestruj się przez Facebooka" />
+        android:layout_marginTop="@dimen/facebookButtonTopMargin"
+        android:layout_marginBottom="@dimen/facebookButtonBottomMargin"
+        android:textSize="@dimen/facebookButtonTextSize"
+        facebook:com_facebook_login_text="@string/facebookButtonText" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/zarejestrowanyTextViewWidth"
         android:layout_height="wrap_content"
+        android:layout_below="@id/register_button"
+        android:layout_alignLeft="@id/register_button"
         android:text="@string/zarejestrowany"
-        android:textSize="16dp"
-        android:layout_marginStart="15dp"
-        android:layout_alignBaseline="@+id/login_hyperlink"
-        android:layout_alignBottom="@+id/login_hyperlink"
-        android:layout_alignStart="@+id/register_button" />
+        android:textSize="@dimen/zarejestrowanyTextSize"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/login_hyperlink"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/loginButtonWidth"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/register_button"
-        android:layout_below="@+id/register_button"
-        android:layout_marginEnd="21dp"
-        android:layout_marginTop="21dp"
+        android:layout_below="@id/register_button"
+        android:layout_toRightOf="@id/textView2"
         android:clickable="true"
         android:text="@string/zaloguj"
         android:textColor="@color/text_color"
         android:textColorHighlight="#C0C0C0"
-        android:textSize="16dp" />
+        android:textSize="@dimen/zalogujTextSize"
+        android:textAlignment="center"/>
+
 </RelativeLayout>

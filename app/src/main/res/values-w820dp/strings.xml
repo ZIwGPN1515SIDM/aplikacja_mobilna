@@ -2,4 +2,5 @@
 <resources>
     <string name="zarejestrowany">Zarejestrowany?</string>
     <string name="zaloguj">Zaloguj się</string>
+    <string name="facebookButtonText">Zarejestruj się przez Facebooka</string>
 </resources>
