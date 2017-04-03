@@ -1,8 +1,8 @@
 <resources>
 
     <string name="fb_login_protocol_scheme">fb1837278109867446</string>
-    <string name="zarejestrowany">Zarejestrowany?</string>
-    <string name="zaloguj">Zaloguj się</string>
+    <string name="registered">Zarejestrowany?</string>
+    <string name="login">Zaloguj się</string>
     <string name="facebookButtonText">Zarejestruj się przez Facebooka</string>
     <string name="app_name">Where to go</string>
     <string name="facebook_app_id">1916989488513352</string>
