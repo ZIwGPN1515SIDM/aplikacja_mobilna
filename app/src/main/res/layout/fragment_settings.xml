@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/fragment_settings_section_margin"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_settings_section_margin"
+            android:layout_gravity="top">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.85"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/fragment_settings_item_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/fragment_settings_section_text_size"
+                    android:textStyle="bold"
+                    android:text="@string/fragment_settings_newsletter_title"
+                    android:layout_marginBottom="@dimen/fragment_settings_item_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/fragment_settings_item_text_size"
+                    android:text="@string/fragment_settings_newsletter_info"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:theme="@style/switch_style"
+                app:theme="@style/switch_style"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_settings_item_margin"
+            android:text="@string/fragment_settings_map_style_title"
+            android:textSize="@dimen/fragment_settings_section_text_size"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_settings_section_margin"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/standardMap"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="@dimen/fragment_settings_map_info_margin"
+                    android:src="@drawable/standard_map"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_settings_map_standard"
+                    android:textSize="@dimen/fragment_settings_item_text_size" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/retroMap"
+                    android:layout_width="80dp"
+                    android:clickable="true"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/fragment_settings_map_info_margin"
+                    android:src="@drawable/retro_map"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_settings_map_retro"
+                    android:textSize="@dimen/fragment_settings_item_text_size" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/darkMap"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/fragment_settings_map_info_margin"
+                    android:src="@drawable/dark_map"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_settings_map_dark"
+                    android:textSize="@dimen/fragment_settings_item_text_size" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_settings_item_margin"
+            android:text="@string/fragment_settings_color_title"
+            android:textSize="@dimen/fragment_settings_section_text_size"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/colorsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_settings_section_margin"
+            android:entries="@array/color_array"
+            android:prompt="@string/fragment_settings_colors_prompt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_settings_item_margin"
+            android:text="@string/fragment_settings_measure_title"
+            android:textSize="@dimen/fragment_settings_section_text_size"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/measuresSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/measure_array"
+            android:prompt="@string/fragment_settings_measure_prompt" />
+
+    </LinearLayout>
+
+</layout>

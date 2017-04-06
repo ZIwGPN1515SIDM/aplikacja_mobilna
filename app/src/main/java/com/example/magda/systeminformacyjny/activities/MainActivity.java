@@ -2,6 +2,7 @@ package com.example.magda.systeminformacyjny.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.databinding.ObservableField;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,11 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private FacebookUser user;
     private ActivityMainViewModel viewModel;
     private Fragment currentFragment;
+    public String title;
 
-    private static final String TOOLBAR_TITLE = "Strona główna";
     private static final String FRAGMENT_TAG = "mainFragment";
     public static final String USER_TAG = "userFacebook";
     private static final String SELECTED_DRAWER_ID = "selectedDrawerId";
+    private static final String TOOLBAR_TITLE = "toolbarTitle";
+    private static final String HOME_TITLE = "Strona główna";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,14 +46,15 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             user = savedInstanceState.getParcelable(USER_TAG);
             viewModel.setSelectedDrawerId(savedInstanceState.getLong(SELECTED_DRAWER_ID));
+            title = savedInstanceState.getString(TOOLBAR_TITLE);
         } else {
             user = getIntent().getParcelableExtra(USER_TAG);
             viewModel.setSelectedDrawerId(DrawerCreator.HOME_PAGE);
+            title = HOME_TITLE;
         }
-
-        binding.setTitle(TOOLBAR_TITLE);
         toolbar = binding.toolbarLayout.toolbar;
         toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         replaceFragment(viewModel.createFragment(viewModel.getSelectedDrawerId()));
         drawer = DrawerCreator.createDrawer(this, toolbar, viewModel, user);
@@ -68,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putParcelable(USER_TAG, user);
         outState.putLong(SELECTED_DRAWER_ID, viewModel.getSelectedDrawerId());
+        outState.putString(TOOLBAR_TITLE, title);
     }
 
     public void replaceFragment(Fragment fragment) {
@@ -77,5 +83,9 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    public void setToolbarTitle(String title) {
+        this.title = title;
+        toolbar.setTitle(title);
+    }
 
 }
