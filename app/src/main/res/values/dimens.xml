@@ -13,4 +13,9 @@
     <dimen name="loginTextSize">16sp</dimen>
     <dimen name="activityHorizontalMargin">0dp</dimen>
     <dimen name="activityVerticalMargin">0dp</dimen>
+    <dimen name="fragment_settings_section_margin">16dp</dimen>
+    <dimen name="fragment_settings_item_margin">8dp</dimen>
+    <dimen name="fragment_settings_map_info_margin">4dp</dimen>
+    <dimen name="fragment_settings_section_text_size">14sp</dimen>
+    <dimen name="fragment_settings_item_text_size">12sp</dimen>
 </resources>

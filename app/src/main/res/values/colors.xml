@@ -6,4 +6,29 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
+
+
+
+    <!-- Material DEFAULT colors -->
+    <color name="material_drawer_primary">#125688</color>
+    <color name="material_drawer_primary_dark">#125688</color>
+    <color name="material_drawer_primary_light">#c8e8ff</color>
+    <color name="material_drawer_accent">#c8e8ff</color>
+
+    <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
+    <!-- MaterialDrawer DEFAULT colors -->
+    <color name="material_drawer_background">#F9F9F9</color>
+    <!-- Material DEFAULT text / items colors -->
+    <color name="material_drawer_primary_text">#757575</color>
+    <color name="material_drawer_primary_icon">#8A000000</color>
+    <color name="material_drawer_secondary_text">#38000000</color>
+    <color name="material_drawer_hint_text">#42000000</color>
+    <color name="material_drawer_divider">#38000000</color>
+
+    <!-- Material DEFAULT drawer colors -->
+    <color name="material_drawer_selected">#F9F9F9</color>
+    <color name="material_drawer_selected_text">#125688</color>
+    <color name="material_drawer_header_selection_text">#FFF</color>
+
+
 </resources>
