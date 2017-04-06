@@ -11,5 +11,6 @@
     <dimen name="facebookButtonTextSize">15sp</dimen>
     <dimen name="registeredTextSize">16sp</dimen>
     <dimen name="loginTextSize">16sp</dimen>
-
+    <dimen name="activityHorizontalMargin">0dp</dimen>
+    <dimen name="activityVerticalMargin">0dp</dimen>
 </resources>

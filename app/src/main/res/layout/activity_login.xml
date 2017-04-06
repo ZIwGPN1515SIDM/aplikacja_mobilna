@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activityMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:paddingBottom="@dimen/activityVerticalPadding"
+        android:paddingLeft="@dimen/activityHorizontalPadding"
+        android:paddingRight="@dimen/activityHorizontalPadding"
+        android:paddingTop="@dimen/activityVerticalPadding"
+        tools:context="com.example.magda.systeminformacyjny.activities.LoginActivity">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/logoView"
+            android:layout_width="@dimen/logoSize"
+            android:layout_height="@dimen/logoSize"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/logo" />
+
+        <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/loginButton"
+            android:layout_width="@dimen/facebookButtonWidth"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/logoView"
+            android:layout_below="@+id/logoView"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/facebookButtonBottomMargin"
+            android:layout_marginTop="@dimen/facebookButtonTopMargin"
+            android:textSize="@dimen/facebookButtonTextSize"
+            facebook:com_facebook_login_text="@string/facebookButtonText" />
+
+    </RelativeLayout>
+
+</layout>
+
