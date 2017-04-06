@@ -6,6 +6,7 @@ import android.view.View;
 import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.fragments.MainPageFragment;
+import com.example.magda.systeminformacyjny.fragments.SettingsPageFragment;
 import com.example.magda.systeminformacyjny.utils.DrawerCreator;
 import com.facebook.login.LoginManager;
 import com.mikepenz.materialdrawer.Drawer;
@@ -33,6 +34,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
 
     private void drawerSelectedAction(long drawerId) {
         if(drawerId == DrawerCreator.HOME_PAGE) {
+            viewCallback.setToolbarTitle(DrawerCreator.HOME_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.CREATE_ROUTE_PAGE) {
 
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
@@ -44,7 +47,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         }else if(drawerId == DrawerCreator.VISITED_ROUTES_PAGE) {
 
         }else if(drawerId == DrawerCreator.SETTINGS_PAGE) {
-
+            viewCallback.setToolbarTitle(DrawerCreator.SETTINGS_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.ABOUT_US_PAGE) {
 
         }else {
@@ -69,7 +73,7 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         }else if(drawerId == DrawerCreator.VISITED_ROUTES_PAGE) {
 
         }else if(drawerId == DrawerCreator.SETTINGS_PAGE) {
-
+            return SettingsPageFragment.getInstance();
         }else if(drawerId == DrawerCreator.ABOUT_US_PAGE) {
 
         }

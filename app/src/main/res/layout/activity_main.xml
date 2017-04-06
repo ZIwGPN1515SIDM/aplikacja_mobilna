@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
-
-    <data>
-        <variable
-            name="title"
-            type="String" />
-    </data>
+<layout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
@@ -15,7 +9,6 @@
         android:fitsSystemWindows="true">
 
         <include android:id="@+id/toolbarLayout"
-            bind:title="@{title}"
             layout="@layout/toolbar_layout"/>
 
         <FrameLayout

@@ -59,6 +59,7 @@ dependencies {
         transitive = true
     }
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.kontaktio:sdk:3.3.0'
 
     testCompile 'junit:junit:4.12'
 }

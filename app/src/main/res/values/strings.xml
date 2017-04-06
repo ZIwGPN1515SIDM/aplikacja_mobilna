@@ -1,9 +1,33 @@
 <resources>
 
+    <!-- other -->
     <string name="fb_login_protocol_scheme">fb1837278109867446</string>
     <string name="facebookButtonText">Zaloguj się</string>
     <string name="app_name">Where to go</string>
     <string name="facebook_app_id">1916989488513352</string>
     <string name="google_maps_key">AIzaSyDzRlpwG_TS5FUES20wAFGIzcU0uEkEX54</string>
+
+    <!-- settings -->
+    <string name="fragment_settings_colors_prompt">Kolor trasy</string>
+    <string name="fragment_settings_measure_prompt">Jednostki odległości</string>
+    <string name="fragment_settings_newsletter_title">Newsletter</string>
+    <string name="fragment_settings_newsletter_info">Chcesz być na bieżąco z nowościami dotyczacymi
+        aplikacji WhereToGo?</string>
+    <string name="fragment_settings_map_style_title">Styl mapy</string>
+    <string name="fragment_settings_map_standard">Standardowa</string>
+    <string name="fragment_settings_map_retro">Retro</string>
+    <string name="fragment_settings_map_dark">Ciemna</string>
+    <string name="fragment_settings_color_title">Kolor trasy</string>
+    <string name="fragment_settings_measure_title">Jednostki odległości</string>
+    <string-array name="color_array">
+        <item>czerwony</item>
+        <item>zielony</item>
+        <item>niebieski</item>
+    </string-array>
+    <string-array name="measure_array">
+        <item>metr</item>
+        <item>stopa</item>
+    </string-array>
+
 
 </resources>

@@ -34,15 +34,15 @@ public class DrawerCreator {
     public static final long ABOUT_US_PAGE = 7;
     public static final long LOG_OUT_PAGE = 8;
 
-    private static final String HOME_TITLE = "Strona głowna";
-    private static final String CREATE_ROUTE_TITLE = "Tworzenie trasy";
-    private static final String PLACES_BASE_TITLE = "Baza miejsc";
-    private static final String NEAR_PLACES_TITLE = "Najbliższe miejsca";
-    private static final String VISITED_PLACES_TITLE = "Odwiedzone miejsca";
-    private static final String VISITED_ROUTES_TITILE = "Odwiedzone trasy";
-    private static final String SETTINGS_TITLE = "Ustwienia";
-    private static final String ABOUT_US_TITLE = "O nas";
-    private static final String LOG_OUT_TITLE = "Wyloguj";
+    public static final String HOME_TITLE = "Strona głowna";
+    public static final String CREATE_ROUTE_TITLE = "Tworzenie trasy";
+    public static final String PLACES_BASE_TITLE = "Baza miejsc";
+    public static final String NEAR_PLACES_TITLE = "Najbliższe miejsca";
+    public static final String VISITED_PLACES_TITLE = "Odwiedzone miejsca";
+    public static final String VISITED_ROUTES_TITILE = "Odwiedzone trasy";
+    public static final String SETTINGS_TITLE = "Ustwienia";
+    public static final String ABOUT_US_TITLE = "O nas";
+    public static final String LOG_OUT_TITLE = "Wyloguj";
 
 
     public static Drawer createDrawer(AppCompatActivity activity, Toolbar toolbar,
