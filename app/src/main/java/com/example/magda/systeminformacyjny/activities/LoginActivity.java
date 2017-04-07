@@ -24,10 +24,13 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
 import static com.example.magda.systeminformacyjny.activities.MainActivity.USER_TAG;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
@@ -41,6 +44,10 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         loginButton = binding.loginButton;
         initFacebookLogin();
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync((OnMapReadyCallback) this);
     }
 
     private void initFacebookLogin() {
@@ -117,5 +124,10 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra(USER_TAG, user);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
     }
 }
