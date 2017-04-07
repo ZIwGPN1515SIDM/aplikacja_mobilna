@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.activities.MainActivity;
+import com.example.magda.systeminformacyjny.fragments.AboutUsFragment;
 import com.example.magda.systeminformacyjny.fragments.MainPageFragment;
 import com.example.magda.systeminformacyjny.fragments.SettingsPageFragment;
 import com.example.magda.systeminformacyjny.utils.DrawerCreator;
@@ -50,7 +51,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
             viewCallback.setToolbarTitle(DrawerCreator.SETTINGS_TITLE);
             viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.ABOUT_US_PAGE) {
-
+            viewCallback.setToolbarTitle(DrawerCreator.ABOUT_US_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else {
             LoginManager.getInstance().logOut();
             Intent intent = new Intent(viewCallback, LoginActivity.class);
@@ -75,7 +77,7 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         }else if(drawerId == DrawerCreator.SETTINGS_PAGE) {
             return SettingsPageFragment.getInstance();
         }else if(drawerId == DrawerCreator.ABOUT_US_PAGE) {
-
+            return AboutUsFragment.getInstance();
         }
         return null;
     }

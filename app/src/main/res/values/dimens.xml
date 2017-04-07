@@ -1,7 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activityHorizontalPadding">0dp</dimen>
-    <dimen name="activityVerticalPadding">0dp</dimen>
     <dimen name="logoSize">250dp</dimen>
     <dimen name="facebookButtonWidth">250dp</dimen>
     <dimen name="facebookButtonTopMargin">10dp</dimen>
@@ -11,8 +9,9 @@
     <dimen name="facebookButtonTextSize">15sp</dimen>
     <dimen name="registeredTextSize">16sp</dimen>
     <dimen name="loginTextSize">16sp</dimen>
-    <dimen name="activityHorizontalMargin">0dp</dimen>
-    <dimen name="activityVerticalMargin">0dp</dimen>
+
+    <dimen name="activity_login_menu_top_margin">120dp</dimen>
+
     <dimen name="fragment_settings_section_margin">16dp</dimen>
     <dimen name="fragment_settings_item_margin">8dp</dimen>
     <dimen name="fragment_settings_map_info_margin">4dp</dimen>
