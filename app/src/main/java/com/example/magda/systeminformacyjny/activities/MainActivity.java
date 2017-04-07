@@ -16,6 +16,9 @@ import com.example.magda.systeminformacyjny.databinding.ActivityMainBinding;
 import com.example.magda.systeminformacyjny.models.FacebookUser;
 import com.example.magda.systeminformacyjny.utils.DrawerCreator;
 import com.example.magda.systeminformacyjny.view_models.ActivityMainViewModel;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.mikepenz.materialdrawer.Drawer;
 
 /**
