@@ -48,23 +48,32 @@ public class DrawerCreator {
     public static Drawer createDrawer(AppCompatActivity activity, Toolbar toolbar,
                                       Drawer.OnDrawerItemClickListener listener, FacebookUser user) {
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withName(HOME_TITLE)
-                .withIdentifier(HOME_PAGE);
+                .withIdentifier(HOME_PAGE).withIcon(R.mipmap.drawer_main_grey)
+                .withSelectedIcon(R.mipmap.drawer_main_blue);
         PrimaryDrawerItem createRouteItem = new PrimaryDrawerItem().withName(CREATE_ROUTE_TITLE)
-                .withIdentifier(CREATE_ROUTE_PAGE);
+                .withIdentifier(CREATE_ROUTE_PAGE).withIcon(R.mipmap.drawer_create_route_grey)
+                .withSelectedIcon(R.mipmap.drawer_create_route_blue);
         PrimaryDrawerItem placesBaseItem = new PrimaryDrawerItem().withName(PLACES_BASE_TITLE)
-                .withIdentifier(PLACES_BASE_PAGE);
+                .withIdentifier(PLACES_BASE_PAGE).withIcon(R.mipmap.drawer_places_base_grey)
+                .withSelectedIcon(R.mipmap.drawer_places_base_blue);
         PrimaryDrawerItem nearPlacesItem = new PrimaryDrawerItem().withName(NEAR_PLACES_TITLE)
-                .withIdentifier(NEAR_PLACES_PAGE);
+                .withIdentifier(NEAR_PLACES_PAGE).withIcon(R.mipmap.drawer_nearby_places_grey)
+                .withSelectedIcon(R.mipmap.drawer_nearby_places_blue);
         PrimaryDrawerItem visitedPlacesItem = new PrimaryDrawerItem().withName(VISITED_PLACES_TITLE)
-                .withIdentifier(VISITED_PLACES_PAGE);
+                .withIdentifier(VISITED_PLACES_PAGE).withIcon(R.mipmap.drawer_visited_places_grey)
+                .withSelectedIcon(R.mipmap.drawer_visited_places_blue);
         PrimaryDrawerItem visitedRoutesItem = new PrimaryDrawerItem().withName(VISITED_ROUTES_TITILE)
-                .withIdentifier(VISITED_ROUTES_PAGE);
+                .withIdentifier(VISITED_ROUTES_PAGE).withIcon(R.mipmap.drawer_visited_routes_grey)
+                .withSelectedIcon(R.mipmap.drawer_visited_routes_blue);
         PrimaryDrawerItem settingsItem = new PrimaryDrawerItem().withName(SETTINGS_TITLE)
-                .withIdentifier(SETTINGS_PAGE);
+                .withIdentifier(SETTINGS_PAGE).withIcon(R.mipmap.drawer_settings_grey)
+                .withSelectedIcon(R.mipmap.drawer_settings_blue);
         PrimaryDrawerItem aboutUsItem = new PrimaryDrawerItem().withName(ABOUT_US_TITLE)
-                .withIdentifier(ABOUT_US_PAGE);
+                .withIdentifier(ABOUT_US_PAGE).withIcon(R.mipmap.drawer_about_us_grey)
+                .withSelectedIcon(R.mipmap.drawer_about_us_blue);
         PrimaryDrawerItem logOutItem = new PrimaryDrawerItem().withName(LOG_OUT_TITLE)
-                .withIdentifier(LOG_OUT_PAGE);
+                .withIdentifier(LOG_OUT_PAGE).withIcon(R.mipmap.drawer_logout_grey)
+                .withSelectedIcon(R.mipmap.drawer_logout_blue);
 
         AccountHeader header = new AccountHeaderBuilder().withActivity(activity)
                 .addProfiles(new ProfileDrawerItem().withName(user.getName())

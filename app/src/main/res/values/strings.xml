@@ -29,5 +29,13 @@
         <item>stopa</item>
     </string-array>
 
-
+    <!-- about us -->
+    <string name="fragment_about_us_info">Aplikacja pomoże Ci zorganizować każdą trasę
+    w sposób łatwy, szybki i intuicyjny. Twój podręczny przewodnik, zawsze pod reką.
+    Szukaj miejsc w pobliżu (także wewnątrz budynków), poznaj opinie oraz oceny
+    innych i stwórz swoją trasę. Już wiesz <Data><![CDATA[ <b>Where To Go</b> ]]> </Data> </string>
+    <string name="fragment_about_us_facebook">Lubisz zwiedzać z nami?</string>
+    <string name="fragment_about_us_mail">Może masz uwagi do działania aplikacji,
+    podziel się tym z nami...</string>
+    <string name="fragment_about_us_final_text">A teraz w drogę...</string>
 </resources>

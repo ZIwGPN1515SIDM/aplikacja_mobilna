@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#125688</color>
+    <color name="colorPrimary">#0071C2</color>
     <color name="colorPrimaryDark">#125688</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorPrimary">#91B6FF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
@@ -10,9 +10,9 @@
 
 
     <!-- Material DEFAULT colors -->
-    <color name="material_drawer_primary">#125688</color>
+    <color name="material_drawer_primary">#0071C2</color>
     <color name="material_drawer_primary_dark">#125688</color>
-    <color name="material_drawer_primary_light">#c8e8ff</color>
+    <color name="material_drawer_primary_light">#91B6FF</color>
     <color name="material_drawer_accent">#c8e8ff</color>
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
@@ -27,7 +27,7 @@
 
     <!-- Material DEFAULT drawer colors -->
     <color name="material_drawer_selected">#F9F9F9</color>
-    <color name="material_drawer_selected_text">#125688</color>
+    <color name="material_drawer_selected_text">#0071C2</color>
     <color name="material_drawer_header_selection_text">#FFF</color>
 
 
