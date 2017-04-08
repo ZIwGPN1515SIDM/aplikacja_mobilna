@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingTop="@dimen/fragment_rating_place_padding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fragment_rating_place_rate_text_size"
+        android:text="4,3"
+        android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"/>
+    
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.1"
+        android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"
+        android:backgroundTint="@color/md_grey_500"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:numStars="5"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fragment_rating_place_opinions_counter_text_size"
+        android:layout_marginBottom="@dimen/fragment_rating_place_opinions_counter_margin"
+        android:text="Liczba opinii 230."/>
+
+    <LinearLayout
+        android:id="@+id/addOpinionLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/fragment_rating_place_add_opinion_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/rate_star"
+            android:layout_marginRight="@dimen/fragment_rating_place_add_opinion_between_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fragment_rating_place_add_opinion_text_size"
+            android:textStyle="bold|italic"
+            android:text="@string/fragment_rating_place_add_opinion"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

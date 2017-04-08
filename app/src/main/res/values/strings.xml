@@ -6,13 +6,16 @@
     <string name="app_name">Where to go</string>
     <string name="facebook_app_id">1916989488513352</string>
     <string name="google_maps_key">AIzaSyDzRlpwG_TS5FUES20wAFGIzcU0uEkEX54</string>
+    <string name="e_mail">pchwaleba@gmail.com</string>
+    <string name="e_mail_title">Wyślij e-mail</string>
+    <string name="facebook_url">https://www.facebook.com/</string>
 
     <!-- settings -->
     <string name="fragment_settings_colors_prompt">Kolor trasy</string>
     <string name="fragment_settings_measure_prompt">Jednostki odległości</string>
     <string name="fragment_settings_newsletter_title">Newsletter</string>
     <string name="fragment_settings_newsletter_info">Chcesz być na bieżąco z nowościami dotyczacymi
-        aplikacji WhereToGo?</string>
+        aplikacji Where to go?</string>
     <string name="fragment_settings_map_style_title">Styl mapy</string>
     <string name="fragment_settings_map_standard">Standardowa</string>
     <string name="fragment_settings_map_retro">Retro</string>
@@ -38,4 +41,8 @@
     <string name="fragment_about_us_mail">Może masz uwagi do działania aplikacji,
     podziel się tym z nami...</string>
     <string name="fragment_about_us_final_text">A teraz w drogę...</string>
+
+
+    <!-- place  -->
+    <string name="fragment_rating_place_add_opinion">Oceń i dodaj opinię...</string>
 </resources>

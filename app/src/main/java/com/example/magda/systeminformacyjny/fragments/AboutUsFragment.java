@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentAboutUsBinding;
+import com.example.magda.systeminformacyjny.view_models.FragmentAboutUsViewModel;
 
 /**
  * Created by piotrek on 08.04.17.
  */
 
 public class AboutUsFragment extends Fragment{
-
 
     public static AboutUsFragment getInstance() {
         return new AboutUsFragment();
@@ -26,7 +26,7 @@ public class AboutUsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentAboutUsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about_us, null, false);
-
+        binding.setViewModel(new FragmentAboutUsViewModel());
         return binding.getRoot();
     }
 }

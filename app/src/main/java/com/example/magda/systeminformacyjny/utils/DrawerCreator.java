@@ -1,13 +1,16 @@
 package com.example.magda.systeminformacyjny.utils;
 
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.databinding.DrawerHeaderBinding;
 import com.example.magda.systeminformacyjny.models.FacebookUser;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -75,17 +78,16 @@ public class DrawerCreator {
                 .withIdentifier(LOG_OUT_PAGE).withIcon(R.mipmap.drawer_logout_grey)
                 .withSelectedIcon(R.mipmap.drawer_logout_blue);
 
-        AccountHeader header = new AccountHeaderBuilder().withActivity(activity)
-                .addProfiles(new ProfileDrawerItem().withName(user.getName())
-                        .withIcon(Uri.parse(user.getImageProfileUrl())))
-                .withHeaderBackground(R.color.colorPrimary)
-                .build();
-
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        DrawerHeaderBinding binding = DataBindingUtil.inflate(inflater, R.layout.drawer_header, null,
+                false);
+        binding.setImageUrl(user.getImageProfileUrl());
+        binding.setUserName(user.getName());
         Drawer drawer = new DrawerBuilder()
                 .withActivity(activity)
                 .withToolbar(toolbar)
                 .withHasStableIds(true)
-                .withAccountHeader(header)
+                .withHeader(binding.getRoot())
                 .addDrawerItems(homeItem, createRouteItem, placesBaseItem, nearPlacesItem, visitedPlacesItem,
                         visitedRoutesItem, new DividerDrawerItem(), settingsItem, aboutUsItem, new DividerDrawerItem(), logOutItem)
                 .withOnDrawerItemClickListener(listener).build();

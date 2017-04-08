@@ -17,4 +17,47 @@
     <dimen name="fragment_settings_map_info_margin">4dp</dimen>
     <dimen name="fragment_settings_section_text_size">14sp</dimen>
     <dimen name="fragment_settings_item_text_size">12sp</dimen>
+
+    <dimen name="fragment_about_us_main_padding">16dp</dimen>
+    <dimen name="fragment_about_us_main_margin">16dp</dimen>
+    <dimen name="fragment_about_us_margin_between">8dp</dimen>
+    <dimen name="fragment_about_us_last_text_margin_bottom">32dp</dimen>
+    <dimen name="fragment_about_us_section_margin_bottom">64dp</dimen>
+    <dimen name="fragment_about_us_facebook_button_margin">48dp</dimen>
+    <dimen name="fragment_about_us_mail_button_margin">24dp</dimen>
+    <dimen name="fragment_about_us_final_text_size">24sp</dimen>
+    <dimen name="fragment_about_us_text_size">12sp</dimen>
+
+    <dimen name="fragment_main_page_fab_margin">16dp</dimen>
+
+    <dimen name="drawer_header_size">64dp</dimen>
+    <dimen name="drawer_header_margin_between_images">48dp</dimen>
+    <dimen name="drawer_header_logo_margin">48dp</dimen>
+    <dimen name="drawer_header_name_margin">8dp</dimen>
+    <dimen name="drawer_header_text_size">12sp</dimen>
+    <dimen name="drawer_header_padding_top">48dp</dimen>
+    <dimen name="drawer_header_padding_bottom">12dp</dimen>
+    <dimen name="drawer_header_padding">16dp</dimen>
+
+    <dimen name="activity_location_margin_between_buttons">24dp</dimen>
+    <dimen name="activity_location_buttons_margin_right">16dp</dimen>
+
+
+    <dimen name="fragment_rating_place_padding">16dp</dimen>
+    <dimen name="fragment_rating_place_small_margin">8dp</dimen>
+    <dimen name="fragment_rating_place_rate_text_size">48sp</dimen>
+    <dimen name="fragment_rating_place_opinions_counter_text_size">16sp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_text_size">14sp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_between_margin">4dp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_margin">16dp</dimen>
+    <dimen name="fragment_rating_place_opinions_counter_margin">24dp</dimen>
+
+    <dimen name="fragment_info_place_title_text_size">32sp</dimen>
+    <dimen name="fragment_info_place_category_text_size">24sp</dimen>
+    <dimen name="fragment_info_place_padding_16dp">16dp</dimen>
+    <dimen name="fragment_info_place_padding_8dp">8dp</dimen>
+    <dimen name="fragmnet_info_place_description_text_size">16sp</dimen>
+    <dimen name="fragment_info_place_margin_between_textViews">4dp</dimen>
+
+
 </resources>
