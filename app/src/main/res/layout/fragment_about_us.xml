@@ -1,50 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.magda.systeminformacyjny.view_models.FragmentAboutUsViewModel"/>
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/fragment_about_us_main_padding">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="@dimen/fragment_about_us_section_margin_bottom"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="@dimen/fragment_about_us_margin_between"
                 android:src="@mipmap/about_us_wtg_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:text="@{@string/fragment_about_us_info}"
-                android:textSize="12sp" />
+                android:textSize="@dimen/fragment_about_us_text_size" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="@dimen/fragment_about_us_section_margin_bottom"
             android:gravity="center_vertical|left"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="48dp"
+                android:layout_marginRight="@dimen/fragment_about_us_facebook_button_margin"
                 android:text="@string/fragment_about_us_facebook"
-                android:textSize="12sp" />
+                android:textSize="@dimen/fragment_about_us_text_size" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/facebook" />
+                android:src="@mipmap/facebook"
+                android:onClick="@{v->viewModel.showFacebook(v, context)}"/>
         </LinearLayout>
 
 
@@ -58,14 +65,15 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="24dp"
-                android:src="@mipmap/write_to_us" />
+                android:layout_marginRight="@dimen/fragment_about_us_mail_button_margin"
+                android:src="@mipmap/write_to_us"
+                android:onClick="@{v->viewModel.sendEmail(v, context)}"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_about_us_mail"
-                android:textSize="12sp" />
+                android:textSize="@dimen/fragment_about_us_text_size" />
 
         </LinearLayout>
 
@@ -78,10 +86,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="@dimen/fragment_about_us_last_text_margin_bottom"
             android:text="@string/fragment_about_us_final_text"
             android:textColor="@color/primary"
-            android:textSize="24sp" />
+            android:textSize="@dimen/fragment_about_us_final_text_size" />
 
     </LinearLayout>
 

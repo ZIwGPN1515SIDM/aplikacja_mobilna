@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="userName"
+            type="String"/>
+
+        <variable
+            name="imageUrl"
+            type="String"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLight"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/drawer_header_padding"
+        android:paddingLeft="@dimen/drawer_header_padding"
+        android:paddingTop="@dimen/drawer_header_padding_top"
+        android:paddingBottom="@dimen/drawer_header_padding_bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/drawer_header_name_margin">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="@dimen/drawer_header_size"
+                android:layout_height="@dimen/drawer_header_size"
+                app:image="@{imageUrl}" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="@dimen/drawer_header_margin_between_images"
+                android:layout_marginRight="@dimen/drawer_header_logo_margin"
+                android:src="@mipmap/drawer_text" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="@{userName}"
+            android:textStyle="bold"
+            android:textSize="@dimen/drawer_header_text_size" />
+
+    </LinearLayout>
+
+</layout>
