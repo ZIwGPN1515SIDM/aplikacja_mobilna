@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="savedOpinion"
+            type="String"/>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="@dimen/add_opinion_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/add_opinion_text_size"
+            android:text="@string/add_opinion_rating_bar_title"
+            android:layout_marginBottom="@dimen/add_opinion_margin_bottom"/>
+
+        <RatingBar
+            android:layout_marginBottom="@dimen/add_opinion_margin_bottom"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            style="@style/ratingBarAddOpinion"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/opinionTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorWhite"
+            android:hint="@string/add_opinion_hint"
+            android:textColorHint="@color/colorWhite"
+            app:error="@string/add_opinion_error_info"
+            app:errorTextAppearance="@style/add_opinion_appearance">
+
+            <EditText
+                android:id="@+id/opinion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorWhite"
+                android:fadeScrollbars="false"
+                android:inputType="textMultiLine|textCapSentences"
+                android:maxLines="5"
+                android:text="@{savedOpinion}"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/add_opinion_text_size" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom|right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/add_opinion_button_text_size"
+                android:text="@string/add_opinion_denied"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginRight="@dimen/add_opinion_margin_between_buttons"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/add_opinion_button_text_size"
+                android:text="@string/add_opinion_send"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -20,7 +20,7 @@
         android:stepSize="0.1"
         android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"
         android:backgroundTint="@color/md_grey_500"
-        style="?android:attr/ratingBarStyleIndicator"
+        style="@style/ratingBar"
         android:numStars="5"/>
     
     <TextView
