@@ -9,6 +9,14 @@
     <dimen name="facebookButtonTextSize">15sp</dimen>
     <dimen name="registeredTextSize">16sp</dimen>
     <dimen name="loginTextSize">16sp</dimen>
+    <dimen name="empty_info_size">48dp</dimen>
+    <dimen name="progress_bar_margin_right">8dp</dimen>
+    <dimen name="item_top_margin">8dp</dimen>
+    <dimen name="something_wrong_margin_bottom">8dp</dimen>
+    <dimen name="something_wrong_info_text_size">24sp</dimen>
+    <dimen name="something_wrong_button_text_size">16sp</dimen>
+    <dimen name="something_wrong_button_width">100dp</dimen>
+    <dimen name="something_wrong_button_height">28dp</dimen>
 
     <dimen name="activity_login_menu_top_margin">120dp</dimen>
 
@@ -59,5 +67,12 @@
     <dimen name="fragmnet_info_place_description_text_size">16sp</dimen>
     <dimen name="fragment_info_place_margin_between_textViews">4dp</dimen>
 
+
+    <!-- add opinion -->
+    <dimen name="add_opinion_text_size">16sp</dimen>
+    <dimen name="add_opinion_padding">16dp</dimen>
+    <dimen name="add_opinion_button_text_size">20sp</dimen>
+    <dimen name="add_opinion_margin_bottom">8dp</dimen>
+    <dimen name="add_opinion_margin_between_buttons">48dp</dimen>
 
 </resources>

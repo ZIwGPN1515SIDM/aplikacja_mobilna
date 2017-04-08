@@ -9,6 +9,9 @@
     <string name="e_mail">pchwaleba@gmail.com</string>
     <string name="e_mail_title">Wyślij e-mail</string>
     <string name="facebook_url">https://www.facebook.com/</string>
+    <string name="download_info">Pobieranie treści...</string>
+    <string name="empty_info">Jeszcze nic tu nie ma...</string>
+
 
     <!-- settings -->
     <string name="fragment_settings_colors_prompt">Kolor trasy</string>
@@ -45,4 +48,15 @@
 
     <!-- place  -->
     <string name="fragment_rating_place_add_opinion">Oceń i dodaj opinię...</string>
+    <string name="refresh_button">Restart</string>
+    <string name="something_wrong_info">Coś poszło nie tak...</string>
+
+
+    <!-- add opinion -->
+    <string name="add_opinion_error_info">Nie można dodać pustej opinii</string>
+    <string name="add_opinion_hint">Dodaj opinię</string>
+    <string name="add_opinion_rating_bar_title">Oceń miejsce</string>
+    <string name="add_opinion_denied">Anuluj</string>
+    <string name="add_opinion_send">Wyślij</string>
+
 </resources>

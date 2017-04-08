@@ -11,6 +11,24 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlActivated">@color/colorWhite</item>
+        <item name="colorControlHighlight">@color/colorWhite</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
+    </style>
+
+    <style name="ratingBar" parent="@android:style/Widget.RatingBar">
+        <item name="colorControlActivated">@color/md_grey_500</item>
+        <item name="colorControlHighlight">@color/md_grey_500</item>
+        <item name="colorControlNormal">@color/md_grey_500</item>
+    </style>
+
+
+    <style name="ratingBarAddOpinion" parent="@android:style/Widget.RatingBar">
+        <item name="colorControlActivated">@color/colorYellow</item>
+        <item name="colorControlHighlight">@color/colorWhite</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="android:minHeight">30dip</item>
+        <item name="android:maxHeight">38dip</item>
     </style>
 
 
@@ -28,5 +46,10 @@
         <!-- Inactive track color(30% transparency) -->
         <item name="android:colorForeground">@color/md_grey_500</item>
     </style>
+
+    <style name="add_opinion_appearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
 
 </resources>

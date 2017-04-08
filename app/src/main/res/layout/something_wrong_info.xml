@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter.IErrorViewModel" />
+    </data>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/something_wrong_margin_bottom"
+            android:text="@string/something_wrong_info"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/something_wrong_info_text_size" />
+
+        <Button
+            android:layout_width="@dimen/something_wrong_button_width"
+            android:layout_height="@dimen/something_wrong_button_height"
+            android:background="@drawable/rounded_buttons"
+            android:text="@string/refresh_button"
+            android:textAllCaps="false"
+            android:onClick="@{()->viewModel.refreshAfterDownloadError()}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/something_wrong_button_text_size" />
+
+    </LinearLayout>
+
+</layout>
