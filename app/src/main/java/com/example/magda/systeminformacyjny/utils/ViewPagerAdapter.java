@@ -5,6 +5,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
+import com.example.magda.systeminformacyjny.fragments.EventsPlaceFragment;
+import com.example.magda.systeminformacyjny.fragments.InfoPlaceFragment;
+import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
+import com.example.magda.systeminformacyjny.fragments.RatingPlaceFragment;
+
 import java.util.HashMap;
 
 /**
@@ -31,13 +36,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
         Fragment fragment;
         switch(position) {
             case 0:
-                //TODO
+                InfoPlaceFragment infoPlaceFragment = InfoPlaceFragment.getInstance();
                 break;
             case  1:
-                //TODO
+                RatingPlaceFragment ratingPlaceFragment = RatingPlaceFragment.getInstance();
                 break;
             case 2:
-                //TODO
+                EventsPlaceFragment eventsPlaceFragment = EventsPlaceFragment.getInstance();
                 break;
             default:
                 throw new IllegalArgumentException("Too much fragments inside viewPager for top posts");
