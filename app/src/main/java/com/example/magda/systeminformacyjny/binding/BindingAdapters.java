@@ -28,6 +28,11 @@ public class BindingAdapters {
         }
     }
 
+    @BindingAdapter("android:src")
+    public static void setImageResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
+    }
+
     @BindingAdapter("app:image")
     public static void setImage(ImageView image, String url) {
         Picasso.with(image.getContext()).load(Uri.parse(url)).placeholder(R.mipmap.ic_launcher_app)

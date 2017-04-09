@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 
+import com.example.magda.systeminformacyjny.view_models.FragmentSettingsViewModel;
+
+import static com.example.magda.systeminformacyjny.utils.Constants.METER;
+import static com.example.magda.systeminformacyjny.utils.Constants.STANDARD_MAP;
+
 /**
  * Created by piotrek on 06.04.17.
  */
@@ -35,7 +40,7 @@ public class PreferencesManager {
 
     public static int measureType(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        return preferences.getInt(MEASURE_TYPE_PREF, 0);
+        return preferences.getInt(MEASURE_TYPE_PREF, METER);
     }
 
 
@@ -44,8 +49,13 @@ public class PreferencesManager {
                 .apply();
     }
 
+    public static void setMeasureType(Context context, int measure) {
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putInt(MEASURE_TYPE_PREF, measure)
+                .apply();
+    }
+
     public static void setMapMode(Context context, int mapMode) {
-        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putInt(NEWSLETTER_PREF, mapMode)
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putInt(MAP_MODE_PREF, mapMode)
                 .apply();
     }
 

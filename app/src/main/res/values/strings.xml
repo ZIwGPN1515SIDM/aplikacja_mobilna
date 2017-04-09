@@ -27,13 +27,13 @@
     <string name="fragment_settings_color_title">Kolor trasy</string>
     <string name="fragment_settings_measure_title">Jednostki odległości</string>
     <string-array name="color_array">
-        <item>czerwony</item>
-        <item>zielony</item>
-        <item>niebieski</item>
+        <item>Czerwony</item>
+        <item>Zielony</item>
+        <item>Niebieski</item>
     </string-array>
     <string-array name="measure_array">
-        <item>metr</item>
-        <item>stopa</item>
+        <item>Kilometry/Metry</item>
+        <item>Mile/Stopy</item>
     </string-array>
 
     <!-- about us -->
