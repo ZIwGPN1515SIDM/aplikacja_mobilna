@@ -3,6 +3,7 @@ package com.example.magda.systeminformacyjny.binding;
 import android.databinding.BindingAdapter;
 import android.media.Image;
 import android.net.Uri;
+import android.support.design.widget.TextInputLayout;
 import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
@@ -31,5 +32,16 @@ public class BindingAdapters {
     public static void setImage(ImageView image, String url) {
         Picasso.with(image.getContext()).load(Uri.parse(url)).placeholder(R.mipmap.ic_launcher_app)
                 .into(image);
+    }
+
+    @BindingAdapter("app:errorResponse")
+    public static void setError(TextInputLayout textInputLayout, String error) {
+        if (error != null) {
+            textInputLayout.setErrorEnabled(true);
+            textInputLayout.setError(error);
+        } else {
+            textInputLayout.setError(error);
+            textInputLayout.setErrorEnabled(false);
+        }
     }
 }

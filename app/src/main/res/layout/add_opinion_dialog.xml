@@ -39,7 +39,7 @@
             android:backgroundTint="@color/colorWhite"
             android:hint="@string/add_opinion_hint"
             android:textColorHint="@color/colorWhite"
-            app:error="@string/add_opinion_error_info"
+            app:errorResponse="@{@string/add_opinion_error_info}"
             app:errorTextAppearance="@style/add_opinion_appearance">
 
             <EditText
