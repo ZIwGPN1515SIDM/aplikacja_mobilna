@@ -1,72 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/view_holder_layout_margin">
+    android:background="@color/colorWhite"
+    android:elevation="12dp">
 
-    <ImageView
-        android:id="@+id/ViewHolderIcon"
-        android:layout_width="@dimen/view_holder_logo_size"
-        android:layout_height="@dimen/view_holder_logo_size"
-        android:layout_marginRight="@dimen/view_holder_logo_margin_right"
-        android:src="@mipmap/ic_launcher_app"
-        android:scaleType="fitXY" />
-
-    <TextView
-        android:id="@+id/LocationName"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ViewHolderIcon"
-        android:text="Renoma"
-        android:textSize="@dimen/view_holder_location_name_size"/>
+        android:layout_margin="@dimen/view_holder_layout_margin">
 
-    <TextView
-        android:id="@+id/LocationDescriptionShort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ViewHolderIcon"
-        android:layout_below="@+id/LocationName"
-        android:text="Centrum handlowe"
-        android:textSize="@dimen/view_holder_description_shosr_size"
-        android:textStyle="italic"/>
+        <ImageView
+            android:id="@+id/ViewHolderIcon"
+            android:layout_width="@dimen/view_holder_logo_size"
+            android:layout_height="@dimen/view_holder_logo_size"
+            android:layout_marginRight="@dimen/view_holder_logo_margin_right"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_app" />
 
-    <RatingBar
-        android:id="@+id/LocationRating"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:progressBackgroundTint="@color/md_yellow_800"
-        android:progressTint="@color/md_yellow_800"
-        android:secondaryProgressTint="@color/md_yellow_800"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/LocationDescriptionShort"
-        android:layout_toRightOf="@+id/ViewHolderIcon"
-        android:clickable="false"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:rating="3.5"
-        android:stepSize="0.1"
-        android:visibility="visible" />
+        <TextView
+            android:id="@+id/LocationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ViewHolderIcon"
+            android:text="Renoma"
+            android:textSize="@dimen/view_holder_location_name_size" />
 
-    <TextView
-        android:id="@+id/LocationDescriptionLong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ViewHolderIcon"
-        android:layout_below="@+id/LocationRating"
-        android:text="Dom towarowy Wertheim został zbudowany w 1930 przez berlińską firmę handlową rodziny Wertheim w miejscu kwartału kamienic miejskich, w tym hotelu Residenz."/>
+        <TextView
+            android:id="@+id/LocationDescriptionShort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LocationName"
+            android:layout_toRightOf="@+id/ViewHolderIcon"
+            android:text="Centrum handlowe"
+            android:textSize="@dimen/view_holder_description_shosr_size"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/LocationDistance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ViewHolderIcon"
-        android:layout_below="@+id/LocationDescriptionLong"
-        android:layout_marginTop="@dimen/view_holder_location_distance_margin_top"
-        android:text="Odległość: 2,0km"
-        android:textStyle="bold"/>
+        <RatingBar
+            android:id="@+id/LocationRating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LocationDescriptionShort"
+            android:layout_toRightOf="@+id/ViewHolderIcon"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressBackgroundTint="@color/md_yellow_800"
+            android:progressTint="@color/md_yellow_800"
+            android:rating="3.5"
+            android:secondaryProgressTint="@color/md_yellow_800"
+            android:stepSize="0.1"
+            android:visibility="visible" />
 
+        <TextView
+            android:id="@+id/LocationDescriptionLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LocationRating"
+            android:layout_toRightOf="@+id/ViewHolderIcon"
+            android:text="Dom towarowy Wertheim został zbudowany w 1930 przez berlińską firmę handlową rodziny Wertheim w miejscu kwartału kamienic miejskich, w tym hotelu Residenz." />
 
+        <TextView
+            android:id="@+id/LocationDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LocationDescriptionLong"
+            android:layout_marginTop="@dimen/view_holder_location_distance_margin_top"
+            android:layout_toRightOf="@+id/ViewHolderIcon"
+            android:text="Odległość: 2,0km"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</android.support.v7.widget.CardView>

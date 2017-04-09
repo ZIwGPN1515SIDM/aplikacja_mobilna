@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.multidex.MultiDex;
 import android.widget.ImageView;
 
+import com.kontakt.sdk.android.common.KontaktSDK;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.squareup.picasso.Picasso;
@@ -19,7 +20,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        KontaktSDK.initialize(this);
         //MultiDex.install(this);
 
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
