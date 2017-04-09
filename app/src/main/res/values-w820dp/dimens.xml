@@ -12,4 +12,10 @@
     <dimen name="facebookButtonTextSize">15sp</dimen>
     <dimen name="zarejestrowanyTextSize">16sp</dimen>
     <dimen name="zalogujTextSize">16sp</dimen>
+    <dimen name="view_holder_layout_margin">10dp</dimen>
+    <dimen name="view_holder_logo_size">150dp</dimen>
+    <dimen name="view_holder_logo_margin_right">10dp</dimen>
+    <dimen name="view_holder_location_name_size">20sp</dimen>
+    <dimen name="view_holder_description_shosr_size">10sp</dimen>
+    <dimen name="view_holder_location_distance_margin_top">10dp</dimen>
 </resources>
