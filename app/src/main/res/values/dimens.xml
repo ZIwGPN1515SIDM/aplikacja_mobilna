@@ -1,5 +1,84 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="logoSize">250dp</dimen>
+    <dimen name="facebookButtonWidth">250dp</dimen>
+    <dimen name="facebookButtonTopMargin">10dp</dimen>
+    <dimen name="facebookButtonBottomMargin">10dp</dimen>
+    <dimen name="registeredTextViewWidth">125dp</dimen>
+    <dimen name="loginButtonWidth">125dp</dimen>
+    <dimen name="facebookButtonTextSize">15sp</dimen>
+    <dimen name="registeredTextSize">16sp</dimen>
+    <dimen name="loginTextSize">16sp</dimen>
+    <dimen name="empty_info_size">48dp</dimen>
+    <dimen name="progress_bar_margin_right">8dp</dimen>
+    <dimen name="item_top_margin">8dp</dimen>
+    <dimen name="something_wrong_margin_bottom">8dp</dimen>
+    <dimen name="something_wrong_info_text_size">24sp</dimen>
+    <dimen name="something_wrong_button_text_size">16sp</dimen>
+    <dimen name="something_wrong_button_width">100dp</dimen>
+    <dimen name="something_wrong_button_height">28dp</dimen>
+
+    <dimen name="activity_login_menu_top_margin">120dp</dimen>
+
+    <dimen name="fragment_settings_section_margin">16dp</dimen>
+    <dimen name="fragment_settings_item_margin">8dp</dimen>
+    <dimen name="fragment_settings_map_info_margin">4dp</dimen>
+    <dimen name="fragment_settings_section_text_size">14sp</dimen>
+    <dimen name="fragment_settings_item_text_size">12sp</dimen>
+
+    <dimen name="fragment_about_us_main_padding">16dp</dimen>
+    <dimen name="fragment_about_us_main_margin">16dp</dimen>
+    <dimen name="fragment_about_us_margin_between">8dp</dimen>
+    <dimen name="fragment_about_us_last_text_margin_bottom">32dp</dimen>
+    <dimen name="fragment_about_us_section_margin_bottom">64dp</dimen>
+    <dimen name="fragment_about_us_facebook_button_margin">48dp</dimen>
+    <dimen name="fragment_about_us_mail_button_margin">24dp</dimen>
+    <dimen name="fragment_about_us_final_text_size">24sp</dimen>
+    <dimen name="fragment_about_us_text_size">12sp</dimen>
+
+    <dimen name="fragment_main_page_fab_margin">16dp</dimen>
+
+    <dimen name="drawer_header_size">64dp</dimen>
+    <dimen name="drawer_header_margin_between_images">48dp</dimen>
+    <dimen name="drawer_header_logo_margin">48dp</dimen>
+    <dimen name="drawer_header_name_margin">8dp</dimen>
+    <dimen name="drawer_header_text_size">12sp</dimen>
+    <dimen name="drawer_header_padding_top">48dp</dimen>
+    <dimen name="drawer_header_padding_bottom">12dp</dimen>
+    <dimen name="drawer_header_padding">16dp</dimen>
+
+    <dimen name="activity_location_margin_between_buttons">24dp</dimen>
+    <dimen name="activity_location_buttons_margin_right">16dp</dimen>
+
+
+    <dimen name="fragment_rating_place_padding">16dp</dimen>
+    <dimen name="fragment_rating_place_small_margin">8dp</dimen>
+    <dimen name="fragment_rating_place_rate_text_size">48sp</dimen>
+    <dimen name="fragment_rating_place_opinions_counter_text_size">16sp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_text_size">14sp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_between_margin">4dp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_margin">16dp</dimen>
+    <dimen name="fragment_rating_place_opinions_counter_margin">24dp</dimen>
+
+    <dimen name="fragment_info_place_title_text_size">32sp</dimen>
+    <dimen name="fragment_info_place_category_text_size">24sp</dimen>
+    <dimen name="fragment_info_place_padding_16dp">16dp</dimen>
+    <dimen name="fragment_info_place_padding_8dp">8dp</dimen>
+    <dimen name="fragmnet_info_place_description_text_size">16sp</dimen>
+    <dimen name="fragment_info_place_margin_between_textViews">4dp</dimen>
+
+
+    <!-- add opinion -->
+    <dimen name="add_opinion_text_size">16sp</dimen>
+    <dimen name="add_opinion_padding">16dp</dimen>
+    <dimen name="add_opinion_button_text_size">20sp</dimen>
+    <dimen name="add_opinion_margin_bottom">8dp</dimen>
+    <dimen name="add_opinion_margin_between_buttons">48dp</dimen>
+    <dimen name="view_holder_layout_margin">10dp</dimen>
+    <dimen name="view_holder_logo_size">150dp</dimen>
+    <dimen name="view_holder_logo_margin_right">10dp</dimen>
+    <dimen name="view_holder_location_name_size">20sp</dimen>
+    <dimen name="view_holder_description_shosr_size">10sp</dimen>
+    <dimen name="view_holder_location_distance_margin_top">10dp</dimen>
+
 </resources>

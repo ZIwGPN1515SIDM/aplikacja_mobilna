@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activityMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.magda.systeminformacyjny.activities.LoginActivity">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_login_menu_top_margin"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/logoView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/start_view_icon" />
+
+            <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/loginButton"
+                android:layout_width="@dimen/facebookButtonWidth"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/facebookButtonBottomMargin"
+                android:layout_marginTop="@dimen/facebookButtonTopMargin"
+                android:textSize="@dimen/facebookButtonTextSize"
+                facebook:com_facebook_login_text="@string/facebookButtonText" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
+
