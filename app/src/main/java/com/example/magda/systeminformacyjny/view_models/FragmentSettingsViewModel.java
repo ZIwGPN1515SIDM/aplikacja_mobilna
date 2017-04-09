@@ -41,7 +41,7 @@ public class FragmentSettingsViewModel {
     }
 
     public void sendNewsletter() {
-        //TO DO
+        //TODO
     }
 
     public void onChooseMapMode(View view) {
