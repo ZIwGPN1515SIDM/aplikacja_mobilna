@@ -16,9 +16,15 @@ import android.widget.Toast;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
+import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.MapStyleOptions;
+
+import static com.example.magda.systeminformacyjny.utils.Constants.DARK_MAP;
+import static com.example.magda.systeminformacyjny.utils.Constants.RETRO_MAP;
+import static com.example.magda.systeminformacyjny.utils.Constants.STANDARD_MAP;
 
 
 /**
@@ -29,9 +35,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
     private boolean shouldRepeatPermission;
-
     private static final int REQUEST_LOCATION_PERMISSION_CODE = 123;
-
 
     public static MainPageFragment getInstance() {
         return new MainPageFragment();
@@ -65,7 +69,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
         new AlertDialog.Builder(getContext())
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Anuluj", null)
                 .create()
                 .show();
     }
@@ -74,6 +78,26 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
     private void setUpGoogleMaps() {
         this.googleMap.setMyLocationEnabled(true);
         this.googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        this.googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(
+                getContext(), getMapStyle()));
+    }
+
+    private int getMapStyle() {
+        int mapMode;
+        switch (PreferencesManager.mapMode(getContext())) {
+            case STANDARD_MAP:
+                mapMode=  R.raw.sandard_map;
+            break;
+            case RETRO_MAP:
+                mapMode =  R.raw.retro_map;
+            break;
+            case DARK_MAP:
+                mapMode =  R.raw.dark_map;
+            break;
+            default:
+                mapMode =  R.raw.sandard_map;
+        }
+        return mapMode;
     }
 
     @Override
@@ -86,7 +110,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
                 } else {
                     // Permission Denied
                     if (!shouldRepeatPermission) {
-                        Toast.makeText(getContext(), "Location denied", Toast.LENGTH_SHORT)
+                        Toast.makeText(getContext(), "Odmowa lokalizacji!!", Toast.LENGTH_SHORT)
                                 .show();
                         //TO DO SHOW ERROR AND CLOSE APPLICATION :)
                     } else {
@@ -101,7 +125,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
 
     private void requestForPermissions() {
         if (!shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-            showMessageOKCancel("You need to allow access to Location",
+            showMessageOKCancel("Musisz dać dostęp do lokalizacji!",
                     (dialog, which) -> requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                             REQUEST_LOCATION_PERMISSION_CODE));
             return;

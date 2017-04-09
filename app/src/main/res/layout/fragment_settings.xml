@@ -2,6 +2,12 @@
 
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.magda.systeminformacyjny.view_models.FragmentSettingsViewModel"/>
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -73,7 +79,9 @@
                     android:layout_height="50dp"
                     android:clickable="true"
                     android:layout_marginBottom="@dimen/fragment_settings_map_info_margin"
-                    android:src="@drawable/standard_map"/>
+                    android:background="@null"
+                    android:onClick="@{v->viewModel.onChooseMapMode(v)}"
+                    android:src="@{viewModel.standardMapImage}"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,7 +108,9 @@
                     android:clickable="true"
                     android:layout_height="50dp"
                     android:layout_marginBottom="@dimen/fragment_settings_map_info_margin"
-                    android:src="@drawable/retro_map"/>
+                    android:background="@null"
+                    android:onClick="@{v->viewModel.onChooseMapMode(v)}"
+                    android:src="@{viewModel.retroMapImage}"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +136,9 @@
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="@dimen/fragment_settings_map_info_margin"
-                    android:src="@drawable/dark_map"
+                    android:background="@null"
+                    android:onClick="@{v->viewModel.onChooseMapMode(v)}"
+                    android:src="@{viewModel.darkMapImage}"
                     android:clickable="true"/>
 
                 <TextView
@@ -152,7 +164,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fragment_settings_section_margin"
-            android:entries="@array/color_array"
             android:prompt="@string/fragment_settings_colors_prompt" />
 
         <TextView
@@ -167,7 +178,6 @@
             android:id="@+id/measuresSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/measure_array"
             android:prompt="@string/fragment_settings_measure_prompt" />
 
     </LinearLayout>
