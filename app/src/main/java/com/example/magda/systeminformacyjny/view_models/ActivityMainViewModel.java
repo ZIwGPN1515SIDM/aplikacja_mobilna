@@ -7,6 +7,7 @@ import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.fragments.AboutUsFragment;
 import com.example.magda.systeminformacyjny.fragments.MainPageFragment;
+import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
 import com.example.magda.systeminformacyjny.fragments.SettingsPageFragment;
 import com.example.magda.systeminformacyjny.utils.DrawerCreator;
 import com.facebook.login.LoginManager;
@@ -42,7 +43,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
 
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
-
+            viewCallback.setToolbarTitle(DrawerCreator.NEAR_PLACES_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.VISITED_PLACES_PAGE) {
 
         }else if(drawerId == DrawerCreator.VISITED_ROUTES_PAGE) {
@@ -69,7 +71,7 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
 
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
-
+            return NearPlacesFragment.getInstance();
         }else if(drawerId == DrawerCreator.VISITED_PLACES_PAGE) {
 
         }else if(drawerId == DrawerCreator.VISITED_ROUTES_PAGE) {
