@@ -3,6 +3,8 @@ package com.example.magda.systeminformacyjny.view_models;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.example.magda.systeminformacyjny.activities.LocationActivity;
 import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.fragments.AboutUsFragment;
