@@ -6,6 +6,7 @@ import android.view.View;
 import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.fragments.AboutUsFragment;
+import com.example.magda.systeminformacyjny.fragments.CreateRouteFragment;
 import com.example.magda.systeminformacyjny.fragments.MainPageFragment;
 import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
 import com.example.magda.systeminformacyjny.fragments.SettingsPageFragment;
@@ -39,7 +40,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
             viewCallback.setToolbarTitle(DrawerCreator.HOME_TITLE);
             viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.CREATE_ROUTE_PAGE) {
-
+            viewCallback.setToolbarTitle(DrawerCreator.CREATE_ROUTE_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
 
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
@@ -67,7 +69,7 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         if(drawerId == DrawerCreator.HOME_PAGE) {
             return MainPageFragment.getInstance();
         }else if(drawerId == DrawerCreator.CREATE_ROUTE_PAGE) {
-
+            return CreateRouteFragment.getInstance();
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
 
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
