@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentNearPlacesBinding;
-import com.example.magda.systeminformacyjny.view_models.NearPlacesFragmentViewModel;
+import com.example.magda.systeminformacyjny.view_models.FragmentNearPlacesViewModel;
 
 /**
  * Created by piotrek on 09.04.17.
@@ -18,7 +18,7 @@ import com.example.magda.systeminformacyjny.view_models.NearPlacesFragmentViewMo
 
 public class NearPlacesFragment extends Fragment{
 
-    private NearPlacesFragmentViewModel viewModel;
+    private FragmentNearPlacesViewModel viewModel;
 
     public static NearPlacesFragment getInstance() {
         return new NearPlacesFragment();
@@ -29,7 +29,7 @@ public class NearPlacesFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentNearPlacesBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_near_places, null, false);
-        viewModel = new NearPlacesFragmentViewModel(this);
+        viewModel = new FragmentNearPlacesViewModel(this);
         return binding.getRoot();
     }
 
