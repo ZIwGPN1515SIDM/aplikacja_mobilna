@@ -25,12 +25,12 @@ import java.util.concurrent.TimeUnit;
  * Created by piotrek on 09.04.17.
  */
 
-public class NearPlacesFragmentViewModel {
+public class FragmentNearPlacesViewModel {
 
     private NearPlacesFragment viewCallback;
     private ProximityManager proximityManager;
 
-    public NearPlacesFragmentViewModel(NearPlacesFragment viewCallback) {
+    public FragmentNearPlacesViewModel(NearPlacesFragment viewCallback) {
         this.viewCallback = viewCallback;
         setUpProximityManager();
     }

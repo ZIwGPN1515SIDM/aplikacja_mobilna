@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 
-import com.example.magda.systeminformacyjny.view_models.FragmentSettingsViewModel;
-
-import static com.example.magda.systeminformacyjny.utils.Constants.METER;
-import static com.example.magda.systeminformacyjny.utils.Constants.STANDARD_MAP;
+import static com.example.magda.systeminformacyjny.utils.Constants.METER_KILOMETER;
 
 /**
  * Created by piotrek on 06.04.17.
@@ -40,7 +37,7 @@ public class PreferencesManager {
 
     public static int measureType(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        return preferences.getInt(MEASURE_TYPE_PREF, METER);
+        return preferences.getInt(MEASURE_TYPE_PREF, METER_KILOMETER);
     }
 
 
