@@ -1,13 +1,14 @@
 package com.example.magda.systeminformacyjny.utils;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
-import com.example.magda.systeminformacyjny.models.MainPlace;
-
+import com.example.magda.systeminformacyjny.databinding.CategoryViewHolderBinding;
+import com.example.magda.systeminformacyjny.models.Category;
 import java.util.ArrayList;
 
+import static com.example.magda.systeminformacyjny.models.Category.COLOR_LIGHT_PRIMARY_TYPE;
+import static com.example.magda.systeminformacyjny.models.Category.COLOR_PRIMARY_TYPE;
 import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
@@ -15,11 +16,11 @@ import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_P
  * Created by piotrek on 10.04.17.
  */
 
-public class RecyclerViewMainPlacesAdapter extends AbstractRecyclerViewEndlessAdapter<MainPlace>{
+public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAdapter<Category> {
 
-    private IErrorViewModel viewModel;
+    IErrorViewModel viewModel;
 
-    public RecyclerViewMainPlacesAdapter(RecyclerView recyclerView, ArrayList<MainPlace> dataSet,
+    public RecyclerViewCategoriesAdapter(RecyclerView recyclerView, ArrayList<Category> dataSet,
                                          boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
                                          IErrorViewModel viewModel) {
         super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
@@ -48,18 +49,30 @@ public class RecyclerViewMainPlacesAdapter extends AbstractRecyclerViewEndlessAd
 
     @Override
     public RecyclerView.ViewHolder onCreateBasicItemViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        CategoryViewHolderBinding binding = CategoryViewHolderBinding.inflate(inflater, parent, false);
+        return new BasicView(binding);
     }
 
     @Override
     public void onBindBasicItemView(RecyclerView.ViewHolder genericHolder, int position) {
-
+        BasicView basicView = (BasicView) genericHolder;
+        Category category = getDataSet().get(position);
+        basicView.bind(category, position % 2 == 0 ? COLOR_PRIMARY_TYPE : COLOR_LIGHT_PRIMARY_TYPE);
     }
 
-    public class BasicViewHolder extends RecyclerView.ViewHolder {
+    public class BasicView extends RecyclerView.ViewHolder {
+        private final CategoryViewHolderBinding binding;
 
-        public BasicViewHolder(View itemView) {
-            super(itemView);
+        public BasicView(CategoryViewHolderBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        public void bind(Category category, int colorType) {
+            binding.setCategory(category);
+            binding.setColorType(colorType);
         }
     }
+
 }
