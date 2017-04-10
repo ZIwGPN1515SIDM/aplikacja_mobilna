@@ -21,7 +21,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         KontaktSDK.initialize(this);
-        //MultiDex.install(this);
+        MultiDex.install(this);
 
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
