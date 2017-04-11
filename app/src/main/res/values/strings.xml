@@ -7,8 +7,8 @@
     <string name="facebook_app_id">1916989488513352</string>
     <string name="kontakt_io_api_key">USQmjRPWnCroBvsAIQkPLEarrfFrpiXB</string>
     <string name="google_maps_key">AIzaSyDzRlpwG_TS5FUES20wAFGIzcU0uEkEX54</string>
+    <string name="server_api_key">be503ed4e9249384e58aad5d34ba46acbad352350b19050b7410ea1049dbef77</string>
     <string name="e_mail">pchwaleba@gmail.com</string>
-    <string name="e_mail_title">Wyślij e-mail</string>
     <string name="facebook_url">https://www.facebook.com/</string>
     <string name="download_info">Pobieranie treści...</string>
     <string name="empty_info">Jeszcze nic tu nie ma...</string>
@@ -57,5 +57,10 @@
     <string name="add_opinion_rating_bar_title">Oceń miejsce</string>
     <string name="add_opinion_denied">Anuluj</string>
     <string name="add_opinion_send">Wyślij</string>
+
+    <!-- fragment create route -->
+    <string name="fragment_create_route_hint">Nazwa trasy</string>
+    <string name="fragment_crate_route_add_place">+ Dodaj miejsce</string>
+    <string name="fragment_create_route_button">Gotowe</string>
 
 </resources>
