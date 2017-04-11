@@ -36,19 +36,33 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
         Fragment fragment;
         switch(position) {
             case 0:
-                InfoPlaceFragment infoPlaceFragment = InfoPlaceFragment.getInstance();
+                fragment = InfoPlaceFragment.getInstance();
                 break;
             case  1:
-                RatingPlaceFragment ratingPlaceFragment = RatingPlaceFragment.getInstance();
+                fragment = RatingPlaceFragment.getInstance();
                 break;
             case 2:
-                EventsPlaceFragment eventsPlaceFragment = EventsPlaceFragment.getInstance();
+                fragment = EventsPlaceFragment.getInstance();
                 break;
             default:
                 throw new IllegalArgumentException("Too much fragments inside viewPager for top posts");
         }
-        fragments.put(position, null);
-        return null;
+        fragments.put(position, fragment);
+        return fragment;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position){
+        switch(position){
+            case 0:
+                return "Info";
+            case 1:
+                return "Rating";
+            case 2:
+                return "Events";
+            default:
+                return "?";
+        }
     }
 
     @Override

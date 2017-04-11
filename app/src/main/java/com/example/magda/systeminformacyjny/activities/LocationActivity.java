@@ -32,6 +32,7 @@ public class LocationActivity extends FragmentActivity{
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES);
         viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     public void onBackPressed() {
@@ -39,23 +40,6 @@ public class LocationActivity extends FragmentActivity{
             super.onBackPressed();
         } else {
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
-        }
-    }
-
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return new ActivityLocationFragment();
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
         }
     }
 

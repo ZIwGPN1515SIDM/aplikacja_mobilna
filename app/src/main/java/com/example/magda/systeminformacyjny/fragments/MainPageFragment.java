@@ -1,6 +1,7 @@
 package com.example.magda.systeminformacyjny.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.activities.LocationActivity;
+import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,7 +41,6 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap googleMap;
     private boolean shouldRepeatPermission;
     private static final int REQUEST_LOCATION_PERMISSION_CODE = 123;
-    private FloatingActionButton floatingActionButton;
 
     public static MainPageFragment getInstance() {
         return new MainPageFragment();
@@ -53,11 +54,15 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        binding.floatingButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getContext(), LocationActivity.class);
+                startActivity(intent);
+            }
+        });
         return binding.getRoot();
-
-
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

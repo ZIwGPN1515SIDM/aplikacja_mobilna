@@ -19,7 +19,8 @@ public class InfoPlaceFragment extends Fragment {
 
     public static InfoPlaceFragment getInstance() {return new InfoPlaceFragment();}
 
-    public View onCreate (LayoutInflater inflater, @Nullable
+    @Override
+    public View onCreateView (LayoutInflater inflater, @Nullable
     ViewGroup container, @Nullable
     Bundle savedInstanceState) {
         FragmentInfoPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_info_place, null, false);

@@ -19,7 +19,8 @@ public class EventsPlaceFragment extends Fragment {
 
     public static EventsPlaceFragment getInstance() {return new EventsPlaceFragment();}
 
-    public View onCreate (LayoutInflater inflater, @Nullable
+    @Override
+    public View onCreateView (LayoutInflater inflater, @Nullable
             ViewGroup container, @Nullable
                                   Bundle savedInstanceState) {
         FragmentEventsPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events_place, null, false);

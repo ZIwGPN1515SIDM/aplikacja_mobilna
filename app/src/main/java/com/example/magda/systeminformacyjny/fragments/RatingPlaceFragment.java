@@ -20,7 +20,8 @@ public class RatingPlaceFragment extends Fragment {
 
     public static RatingPlaceFragment getInstance() {return new RatingPlaceFragment();}
 
-    public View onCreate (LayoutInflater inflater, @Nullable
+    @Override
+    public View onCreateView (LayoutInflater inflater, @Nullable
             ViewGroup container, @Nullable
                                   Bundle savedInstanceState) {
         FragmentRatingPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_rating_place, null, false);
