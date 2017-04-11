@@ -1,0 +1,34 @@
+package com.example.magda.systeminformacyjny.network.items;
+
+import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.network.WhereToGoService;
+
+import java.util.List;
+
+import io.reactivex.MaybeSource;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+
+/**
+ * Created by piotrek on 11.04.17.
+ */
+
+public class ItemsApiService {
+
+    private WhereToGoService whereToGoService;
+
+    public ItemsApiService(Retrofit retrofit) {
+        this.whereToGoService = retrofit.create(WhereToGoService.class);
+    }
+
+    public MaybeSource<List<Category>> downloadCategories(String apiKey) {
+       return  whereToGoService.downloadCategories(apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(response -> response.getCategories())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+}

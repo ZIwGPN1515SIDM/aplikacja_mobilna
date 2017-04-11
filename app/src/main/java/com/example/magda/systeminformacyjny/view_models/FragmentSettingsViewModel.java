@@ -31,13 +31,11 @@ public class FragmentSettingsViewModel {
 
 
     public FragmentSettingsViewModel(Context context) {
-        //TO DO
         this.context = context;
         int[] tmp = getMapView(context);
         standardMapImage = new ObservableField<>(tmp[0]);
         retroMapImage = new ObservableField<>(tmp[1]);
         darkMapImage = new ObservableField<>(tmp[2]);
-
     }
 
     public void sendNewsletter() {
@@ -45,7 +43,6 @@ public class FragmentSettingsViewModel {
     }
 
     public void onChooseMapMode(View view) {
-        Log.d("JESTEM", "click");
         switch (view.getId()) {
             case R.id.standardMap:
                 standardMapImage.set(R.mipmap.standard_map_chosen);

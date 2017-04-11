@@ -81,4 +81,34 @@
     <dimen name="view_holder_description_shosr_size">10sp</dimen>
     <dimen name="view_holder_location_distance_margin_top">10dp</dimen>
 
+
+    <!-- dialogs -->
+    <dimen name="dialog_elevation">6dp</dimen>
+    <dimen name="dialog_padding_16dp">16dp</dimen>
+    <dimen name="dialog_title_margin_bottom">16dp</dimen>
+    <dimen name="dialog_image_margin_right">20dp</dimen>
+    <dimen name="dialog_title_size">20sp</dimen>
+    <dimen name="dialog_info_margin_bottom">12dp</dimen>
+    <dimen name="dialog_info_size">14sp</dimen>
+    <dimen name="dialog_check_box_margin_bottom">20dp</dimen>
+    <dimen name="dialog_check_box_size">12sp</dimen>
+    <dimen name="dialog_margin_between_buttons">20dp</dimen>
+    <dimen name="dialog_button_size">16sp</dimen>
+
+
+    <!-- category item -->
+    <dimen name="category_view_holder_padding">8dp</dimen>
+    <dimen name="category_view_holder_margin_top">8dp</dimen>
+    <dimen name="category_view_holder_text_size">24sp</dimen>
+
+    <!-- fragment create route -->
+    <dimen name="fragment_create_route_padding">16dp</dimen>
+    <dimen name="fragment_create_route_margin_bottom">16dp</dimen>
+    <dimen name="fragment_create_route_add_text_size">24sp</dimen>
+    <dimen name="fragment_create_route_button_height">40dp</dimen>
+    <dimen name="fragment_create_route_route_name_width">200dp</dimen>
+    <dimen name="fragment_create_route_route_name_margin_bottom">8dp</dimen>
+    <dimen name="fragment_create_route_route_name_text_size">14sp</dimen>
+
+
 </resources>
