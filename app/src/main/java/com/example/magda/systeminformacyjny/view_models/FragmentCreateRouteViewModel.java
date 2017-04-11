@@ -3,9 +3,8 @@ package com.example.magda.systeminformacyjny.view_models;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.magda.systeminformacyjny.activities.CategoryActivity;
+import com.example.magda.systeminformacyjny.activities.CategoriesActivity;
 import com.example.magda.systeminformacyjny.fragments.CreateRouteFragment;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
@@ -29,7 +28,7 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
     }
 
     public void addPlace(View v) {
-        Intent intent = new Intent(viewCallback.getContext(), CategoryActivity.class);
+        Intent intent = new Intent(viewCallback.getContext(), CategoriesActivity.class);
         viewCallback.startActivity(intent);
     }
 
