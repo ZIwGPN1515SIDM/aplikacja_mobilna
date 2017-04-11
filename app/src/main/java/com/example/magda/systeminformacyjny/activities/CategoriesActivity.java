@@ -16,6 +16,8 @@ import com.example.magda.systeminformacyjny.base.BaseActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.databinding.ItemsLayoutBinding;
 import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.network.ErrorResponse;
+import com.example.magda.systeminformacyjny.network.SuccessResponse;
 import com.example.magda.systeminformacyjny.utils.RecyclerViewCategoriesAdapter;
 import com.example.magda.systeminformacyjny.view_models.ActivityCategoriesViewModel;
 
@@ -23,13 +25,16 @@ import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
+import static com.example.magda.systeminformacyjny.network.ErrorResponse.DOWNLOAD_ERROR;
+import static com.example.magda.systeminformacyjny.network.SuccessResponse.DOWNLOAD_SUCCESS;
+import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
 /**
  * Created by piotrek on 10.04.17.
  */
 
-public class CategoryActivity extends BaseActivity{
+public class CategoriesActivity extends BaseActivity{
 
     private RecyclerView recyclerView;
     private ArrayList<Category> categories;
@@ -38,6 +43,7 @@ public class CategoryActivity extends BaseActivity{
 
     private static final String CATEGORIES_TAG = "categories";
     private static final String TITLE = "Kategorie";
+    private static final String ERROR_MESSAGE = "Bład pobierania danych";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,6 +99,31 @@ public class CategoryActivity extends BaseActivity{
     @Override
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccess(SuccessResponse successResponse) {
+        switch(successResponse.getSuccessType()) {
+            case DOWNLOAD_SUCCESS:
+                recyclerViewAdapter.notifyDataSetChanged();
+                break;
+            default:
+                throw new IllegalArgumentException("Wrong success type " + successResponse.getSuccessType());
+        }
+    }
+
+    @Override
+    public void onError(ErrorResponse errorResponse) {
+        switch (errorResponse.getErrorType()) {
+            case DOWNLOAD_ERROR:
+                categories.clear();
+                categories.add(new Category(ERROR_INFO_VIEW_HOLDER));
+                recyclerViewAdapter.notifyDataSetChanged();
+                showToast(ERROR_MESSAGE);
+                break;
+            default:
+                throw new IllegalArgumentException("Wrong error type " + errorResponse.getErrorType());
+        }
     }
 
     @Override
