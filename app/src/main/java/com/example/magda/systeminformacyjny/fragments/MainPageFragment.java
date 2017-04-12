@@ -54,12 +54,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        binding.floatingButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent(getContext(), LocationActivity.class);
-                startActivity(intent);
-            }
-        });
+        binding.floatingButton.setOnClickListener((view) -> { startActivity(new Intent(getContext(), LocationActivity.class)); } );
         return binding.getRoot();
     }
 

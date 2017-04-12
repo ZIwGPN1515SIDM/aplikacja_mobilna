@@ -24,6 +24,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
     public static final int FRAGMENT_INFO_POSITION = 0;
     public static final int FRAGMENT_RATING_POSITION= 1;
     public static final int FRAGMENT_EVENTS_POSITION = 2;
+    public static final String FRAGMENT_INFO_TITLE = "Informacja";
+    public static final String FRAGMENT_RATING_TITLE = "Ocena";
+    public static final String FRAGMENT_EVENTS_TITLE = "Wydarzenia";
+    public static final String TOO_MUCH_FRAGMENTS_ERROR_MESSAGE = "Wydarzenia";
 
     public ViewPagerAdapter(FragmentManager fm, int numberOfPages) {
         super(fm);
@@ -35,17 +39,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
     public Fragment getItem(int position) {
         Fragment fragment;
         switch(position) {
-            case 0:
+            case FRAGMENT_INFO_POSITION:
                 fragment = InfoPlaceFragment.getInstance();
                 break;
-            case  1:
+            case  FRAGMENT_RATING_POSITION:
                 fragment = RatingPlaceFragment.getInstance();
                 break;
-            case 2:
+            case FRAGMENT_EVENTS_POSITION:
                 fragment = EventsPlaceFragment.getInstance();
                 break;
             default:
-                throw new IllegalArgumentException("Too much fragments inside viewPager for top posts");
+                throw new IllegalArgumentException(TOO_MUCH_FRAGMENTS_ERROR_MESSAGE);
         }
         fragments.put(position, fragment);
         return fragment;
@@ -55,13 +59,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
     public CharSequence getPageTitle(int position){
         switch(position){
             case 0:
-                return "Info";
+                return FRAGMENT_INFO_TITLE;
             case 1:
-                return "Rating";
+                return FRAGMENT_RATING_TITLE;
             case 2:
-                return "Events";
+                return FRAGMENT_EVENTS_TITLE;
             default:
-                return "?";
+                throw new IllegalArgumentException(TOO_MUCH_FRAGMENTS_ERROR_MESSAGE);
         }
     }
 
