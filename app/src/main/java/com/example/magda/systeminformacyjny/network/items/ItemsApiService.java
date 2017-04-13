@@ -1,6 +1,7 @@
 package com.example.magda.systeminformacyjny.network.items;
 
 import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
 
 import java.util.List;
@@ -28,6 +29,15 @@ public class ItemsApiService {
        return  whereToGoService.downloadCategories(apiKey)
                 .subscribeOn(Schedulers.io())
                 .map(response -> response.getCategories())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<List<MainPlace>> downloadMainPlacesFromCategory(Long categoryId, String type,
+                                                                       String apiKey) {
+        return whereToGoService.downloadMainPlacesFromCategory(categoryId,type, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(respone -> respone.getMainPlaces())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

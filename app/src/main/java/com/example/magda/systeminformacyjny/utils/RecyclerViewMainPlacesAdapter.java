@@ -1,9 +1,11 @@
 package com.example.magda.systeminformacyjny.utils;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.magda.systeminformacyjny.databinding.LocationViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 
 import java.util.ArrayList;
@@ -48,18 +50,26 @@ public class RecyclerViewMainPlacesAdapter extends AbstractRecyclerViewEndlessAd
 
     @Override
     public RecyclerView.ViewHolder onCreateBasicItemViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        LocationViewHolderBinding binding = LocationViewHolderBinding.inflate(inflater, parent, false);
+        return new BasicViewHolder(binding);
     }
 
     @Override
     public void onBindBasicItemView(RecyclerView.ViewHolder genericHolder, int position) {
-
+        MainPlace mainPlace = getDataSet().get(position);
+        BasicViewHolder basicViewHolder = (BasicViewHolder) genericHolder;
+        basicViewHolder.bind(mainPlace);
     }
 
     public class BasicViewHolder extends RecyclerView.ViewHolder {
-
-        public BasicViewHolder(View itemView) {
-            super(itemView);
+        private final LocationViewHolderBinding binding;
+        public BasicViewHolder(LocationViewHolderBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+        public void bind(MainPlace mainPlace) {
+            binding.setMainPlace(mainPlace);
         }
     }
 }

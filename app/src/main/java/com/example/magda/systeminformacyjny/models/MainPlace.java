@@ -33,7 +33,7 @@ public class MainPlace implements Serializable{
 
     @SerializedName("SUM_SCORE")
     @Expose
-    private Double sumScore;
+    private Float sumScore;
 
     @SerializedName("COMMENTS_COUNT")
     @Expose
@@ -47,8 +47,21 @@ public class MainPlace implements Serializable{
     @Expose
     private String namespace;
 
+    @SerializedName("LATITUDE")
+    @Expose
+    private Double latitude;
+
+    @SerializedName("LONGITUDE")
+    @Expose
+    private Double longitude;
+
+    @SerializedName("NAME")
+    @Expose
+    private String name;
+
     public MainPlace(Long id, String description, Object advert, String eventContent, String addedOn,
-                     Double sumScore, Long commentsCount, String googlePlaceId, String namespace) {
+                     Float sumScore, Long commentsCount, String googlePlaceId, String namespace,
+                     Double latitude, Double longitude, String name) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -58,6 +71,25 @@ public class MainPlace implements Serializable{
         this.commentsCount = commentsCount;
         this.googlePlaceId = googlePlaceId;
         this.namespace = namespace;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.name = name;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public MainPlace(Long id) {
@@ -113,11 +145,11 @@ public class MainPlace implements Serializable{
         this.addedOn = addedOn;
     }
 
-    public Double getSumScore() {
+    public Float getSumScore() {
         return sumScore;
     }
 
-    public void setSumScore(Double sumScore) {
+    public void setSumScore(Float sumScore) {
         this.sumScore = sumScore;
     }
 
@@ -163,4 +195,11 @@ public class MainPlace implements Serializable{
         return result;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
