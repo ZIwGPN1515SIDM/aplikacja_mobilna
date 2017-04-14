@@ -1,12 +1,18 @@
 package com.example.magda.systeminformacyjny.utils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.example.magda.systeminformacyjny.activities.MainPlacesListActivity;
 import com.example.magda.systeminformacyjny.databinding.CategoryViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.Category;
 import java.util.ArrayList;
 
+import static com.example.magda.systeminformacyjny.activities.MainPlacesListActivity.CATEGORY_ID;
+import static com.example.magda.systeminformacyjny.activities.MainPlacesListActivity.TITLE;
 import static com.example.magda.systeminformacyjny.models.Category.COLOR_LIGHT_PRIMARY_TYPE;
 import static com.example.magda.systeminformacyjny.models.Category.COLOR_PRIMARY_TYPE;
 import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
@@ -18,13 +24,15 @@ import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_P
 
 public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAdapter<Category> {
 
-    IErrorViewModel viewModel;
+    private IErrorViewModel viewModel;
+    private Context context;
 
     public RecyclerViewCategoriesAdapter(RecyclerView recyclerView, ArrayList<Category> dataSet,
                                          boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
-                                         IErrorViewModel viewModel) {
+                                         IErrorViewModel viewModel, Context context) {
         super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
         this.viewModel = viewModel;
+        this.context = context;
     }
 
     @Override
@@ -59,6 +67,12 @@ public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAd
         BasicView basicView = (BasicView) genericHolder;
         Category category = getDataSet().get(position);
         basicView.bind(category, position % 2 == 0 ? COLOR_PRIMARY_TYPE : COLOR_LIGHT_PRIMARY_TYPE);
+        basicView.itemView.setOnClickListener(v->{
+            Intent intent = new Intent(context, MainPlacesListActivity.class);
+            intent.putExtra(TITLE, category.getName());
+            intent.putExtra(CATEGORY_ID, category.getId());
+            context.startActivity(intent); //TODO potem zmiana na startActivityForResult
+        });
     }
 
     public class BasicView extends RecyclerView.ViewHolder {

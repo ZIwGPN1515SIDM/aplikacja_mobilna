@@ -1,5 +1,6 @@
 package com.example.magda.systeminformacyjny.network;
 
+import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
 
 import io.reactivex.Observable;
@@ -16,5 +17,10 @@ public interface WhereToGoService {
 
     @GET("category")
     Observable<CategoryResponse> downloadCategories(@Query("api_key") String apiKey);
+
+    @GET("place/category")
+    Observable<MainPlacesFromCategoryResponse> downloadMainPlacesFromCategory(@Query("category") Long categoryId,
+                                                                              @Query("type") String type,
+                                                                              @Query("api_key") String apiKey);
 
 }

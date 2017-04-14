@@ -1,6 +1,7 @@
 package com.example.magda.systeminformacyjny.network;
 
 import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.items.ItemsApiService;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class DataRequestManager {
 
     private static DataRequestManager instance;
     private Retrofit retrofit;
-    private WhereToGoServer whwreToGoServer;
+    private WhereToGoServer whereToGoServer;
     private ItemsApiService itemsApiService;
 
     public static synchronized DataRequestManager getInstance() {
@@ -27,8 +28,8 @@ public class DataRequestManager {
     }
 
     private DataRequestManager() {
-        whwreToGoServer = WhereToGoServer.getInstance();
-        retrofit = whwreToGoServer.getRetrofit();
+        whereToGoServer = WhereToGoServer.getInstance();
+        retrofit = whereToGoServer.getRetrofit();
         itemsApiService = new ItemsApiService(retrofit);
     }
 
@@ -36,5 +37,9 @@ public class DataRequestManager {
         return itemsApiService.downloadCategories(apiKey);
     }
 
+    public MaybeSource<List<MainPlace>> downloadMainPLacesFromCategory(Long categoryId, String type,
+                                                                       String apiKey) {
+        return itemsApiService.downloadMainPlacesFromCategory(categoryId, type, apiKey);
+    }
 
 }
