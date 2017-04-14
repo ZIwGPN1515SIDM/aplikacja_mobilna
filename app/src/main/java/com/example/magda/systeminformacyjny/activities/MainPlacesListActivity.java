@@ -7,11 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
-
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.base.BaseActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
@@ -19,13 +17,9 @@ import com.example.magda.systeminformacyjny.databinding.ItemsLayoutBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
-import com.example.magda.systeminformacyjny.utils.Constants;
-import com.example.magda.systeminformacyjny.utils.RecyclerViewCategoriesAdapter;
 import com.example.magda.systeminformacyjny.utils.RecyclerViewMainPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.ActivityMainPlacesListViewModel;
-
 import java.util.ArrayList;
-
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 import static com.example.magda.systeminformacyjny.network.ErrorResponse.DOWNLOAD_ERROR;
