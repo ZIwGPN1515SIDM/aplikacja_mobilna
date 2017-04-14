@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -12,16 +15,17 @@
         android:textSize="@dimen/fragment_rating_place_rate_text_size"
         android:text="4,3"
         android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"/>
-    
+
     <RatingBar
         android:id="@+id/ratingBar"
+        style="@style/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:stepSize="0.1"
         android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"
         android:backgroundTint="@color/md_grey_500"
-        style="@style/ratingBar"
-        android:numStars="5"/>
+        android:clickable="false"
+        android:numStars="5"
+        android:stepSize="0.1" />
     
     <TextView
         android:layout_width="wrap_content"
@@ -59,3 +63,5 @@
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
+
+</layout>

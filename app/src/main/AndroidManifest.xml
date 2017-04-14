@@ -66,6 +66,9 @@
             android:name="kontakt.io.API_KEY"
             android:value="@string/kontakt_io_api_key" />
 
+        <activity
+            android:name=".activities.LocationActivity"/>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

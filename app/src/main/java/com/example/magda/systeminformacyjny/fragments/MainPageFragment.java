@@ -1,11 +1,14 @@
 package com.example.magda.systeminformacyjny.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.activities.LocationActivity;
+import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.google.android.gms.maps.GoogleMap;
@@ -49,9 +54,10 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        binding.floatingButton.setOnClickListener((view) -> { startActivity(new Intent(getContext(), LocationActivity.class)); } );
         return binding.getRoot();
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
