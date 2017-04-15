@@ -62,5 +62,7 @@
     <string name="fragment_create_route_hint">Nazwa trasy</string>
     <string name="fragment_crate_route_add_place">+ Dodaj miejsce</string>
     <string name="fragment_create_route_button">Gotowe</string>
+    <string name="opinion_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tellus enim, condimentum vel eros at, egestas molestie magna.</string>
+    <string name="fragment_location_opinion_name">Jan Kowalski</string>
 
 </resources>

@@ -16,4 +16,7 @@
     <dimen name="view_holder_description_shosr_size">10sp</dimen>
     <dimen name="view_holder_location_distance_margin_top">10dp</dimen>
     <dimen name="LocationSettingsButtonSize">24dp</dimen>
+    <dimen name="fragment_location_opinion_margin">10dp</dimen>
+    <dimen name="fragment_location_opinion_name_size">20sp</dimen>
+    <dimen name="fragment_location_opinion_RatingBar_offset">40dp</dimen>
 </resources>
