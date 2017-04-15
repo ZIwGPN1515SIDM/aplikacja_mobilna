@@ -38,8 +38,8 @@
 
             <ImageButton
                 android:id="@+id/SettingsButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/LocationSettingsButtonSize"
+                android:layout_height="@dimen/LocationSettingsButtonSize"
                 android:src="@mipmap/report_delete_menu"
                 android:layout_alignParentRight="true"
                 android:background="@null"/>
