@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -32,8 +32,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/ViewHolderIcon"
+                android:layout_toLeftOf="@+id/SettingsButton"
                 android:text="@{mainPlace.name}"
                 android:textSize="@dimen/view_holder_location_name_size" />
+
+            <ImageButton
+                android:id="@+id/SettingsButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/report_delete_menu"
+                android:layout_alignParentRight="true"
+                android:background="@null"/>
 
             <TextView
                 android:id="@+id/LocationDescriptionShort"

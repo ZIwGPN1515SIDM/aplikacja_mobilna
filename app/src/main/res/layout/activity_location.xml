@@ -36,7 +36,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:src="@mipmap/add_button"/>
+                    android:src="@mipmap/add_button"
+                    android:layout_marginBottom="@dimen/activity_location_margin_between_buttons"/>
 
             </LinearLayout>
 
