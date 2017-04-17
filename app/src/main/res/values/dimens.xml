@@ -53,9 +53,9 @@
 
     <dimen name="fragment_rating_place_padding">16dp</dimen>
     <dimen name="fragment_rating_place_small_margin">8dp</dimen>
-    <dimen name="fragment_rating_place_rate_text_size">48sp</dimen>
-    <dimen name="fragment_rating_place_opinions_counter_text_size">16sp</dimen>
-    <dimen name="fragment_rating_place_add_opinion_text_size">14sp</dimen>
+    <dimen name="fragment_rating_place_rate_text_size">24sp</dimen>
+    <dimen name="fragment_rating_place_opinions_counter_text_size">12sp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_text_size">10sp</dimen>
     <dimen name="fragment_rating_place_add_opinion_between_margin">4dp</dimen>
     <dimen name="fragment_rating_place_add_opinion_margin">16dp</dimen>
     <dimen name="fragment_rating_place_opinions_counter_margin">24dp</dimen>

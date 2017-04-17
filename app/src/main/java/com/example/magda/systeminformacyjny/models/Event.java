@@ -3,35 +3,34 @@ package com.example.magda.systeminformacyjny.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
- * Created by piotrek on 10.04.17.
+ * Created by Wojciech on 17.04.2017.
  */
 
-public class Category implements Serializable{
+public class Event {
 
     @SerializedName("ID")
     @Expose
     private Long id;
 
-
     @SerializedName("NAME")
     @Expose
     private String name;
 
-    public static final int COLOR_LIGHT_PRIMARY_TYPE = 1;
-    public static final int COLOR_PRIMARY_TYPE = 0;
+    @SerializedName("EVENT_CONTENT")
+    @Expose
+    private String eventContent;
 
-    public Category(Long id, String name) {
+    @SerializedName("EVENT_END")
+    @Expose
+    private String eventEnd;
+
+    public Event(Long id, String name, String eventContent, String eventEnd) {
         this.id = id;
         this.name = name;
+        this.eventContent = eventContent;
+        this.eventEnd = eventEnd;
     }
-
-    public Category(long id) {
-        this.id = id;
-    }
-
 
     public Long getId() {
         return id;
@@ -49,14 +48,30 @@ public class Category implements Serializable{
         this.name = name;
     }
 
+    public String getEventContent() {
+        return eventContent;
+    }
+
+    public void setEventContent(String eventContent) {
+        this.eventContent = eventContent;
+    }
+
+    public String getEventEnd() {
+        return eventEnd;
+    }
+
+    public void setEventEnd(String eventEnd) {
+        this.eventEnd = eventEnd;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Category))
+        if (!(obj instanceof Event))
             return false;
-        Category other = (Category) obj;
+        Event other = (Event) obj;
         return id == null ? other.id == null : id.equals(other.id);
     }
 
@@ -66,4 +81,6 @@ public class Category implements Serializable{
         result = 37 * result + id.hashCode();
         return result;
     }
+
+
 }

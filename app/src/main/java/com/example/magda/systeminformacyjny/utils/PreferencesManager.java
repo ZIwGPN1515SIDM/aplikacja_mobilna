@@ -18,7 +18,11 @@ public class PreferencesManager {
     public static final String MAP_MODE_PREF = "mapMode";
     public static final String ROUTE_COLOR_PREF = "routeColor";
     public static final String MEASURE_TYPE_PREF = "measureType";
-    public static final String USER_ID = "userId";
+    public static final String USER_ID_PREF = "userId";
+    public static final String OUR_USER_ID_PREF = "ourUserId";
+    public static final String EMAIL_PREF = "email";
+    public static final String NAME_PREF = "name";
+    public static final String USER_PHOTO_PREF = "userPhoto";
 
     public static boolean isNewsletter(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
@@ -62,14 +66,52 @@ public class PreferencesManager {
     }
 
     public static void setUserId(Context context, String userID) {
-        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putString(USER_ID, userID)
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putString(USER_ID_PREF, userID)
                 .apply();
     }
 
     public static String getUserId(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        return preferences.getString(USER_ID, "null");
+        return preferences.getString(USER_ID_PREF, "null");
     }
 
+    public static Long getOurId(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+        return preferences.getLong(OUR_USER_ID_PREF, -1L);
+    }
+
+    public static void setOurId(Context context, Long id) {
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putLong(OUR_USER_ID_PREF, id)
+                .apply();
+    }
+
+    public static void setEmail(Context context, String email) {
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putString(EMAIL_PREF, email)
+                .apply();
+    }
+
+    public static String getEmail(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+        return preferences.getString(EMAIL_PREF, "null");
+    }
+
+    public static String getName(Context context) {
+        return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).getString(NAME_PREF, "null");
+    }
+
+    public static void setName(Context context, String name) {
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putString(NAME_PREF,
+                name).apply();
+    }
+
+    public static void setUserPhoto(Context context, String photoUrl) {
+        context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit().putString(USER_PHOTO_PREF,
+                photoUrl).apply();
+    }
+
+    public static String getUserPhoto(Context context) {
+        return context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).getString(USER_PHOTO_PREF,
+                "null");
+    }
 
 }
