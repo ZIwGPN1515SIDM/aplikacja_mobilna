@@ -24,13 +24,15 @@ public class UserApiService {
     public MaybeSource<LoginResponse.User> login(String apiKey, LoginRequest loginRequest) {
         return whereToGoService.login(apiKey, new DefaultResourceWrapper(loginRequest))
                 .subscribeOn(Schedulers.io())
-                .map(response -> response.getUserList().get(0))
+                .map(response -> response.getUser())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
 
     public MaybeSource<ResponseBody> sendNewsletter(String apiKey, NewsletterRequest newsletterRequest) {
-        return null;
-        //TODO dorobic wysylanie newsletter
+        return whereToGoService.sendNewsletter(apiKey, new DefaultResourceWrapper(newsletterRequest))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
     }
 }

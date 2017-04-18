@@ -3,9 +3,11 @@ package com.example.magda.systeminformacyjny.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.ActivityLoginBinding;
@@ -21,11 +23,13 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
 import org.json.JSONException;
@@ -35,6 +39,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import io.reactivex.MaybeObserver;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 
@@ -46,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
     private LoginButton loginButton;
     private ProgressDialog progressDialog;
     private DataRequestManager dataRequestManager;
+    private CompositeDisposable compositeDisposable;
 
     private static final String PROGRESS_DIALOG_TITLE = "Logowanie";
     private static final String PROGRESS_DIALOG_MESSAGE = "Trwa logowanie...";
@@ -55,18 +61,23 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
     private static final String FACEBOOK_LAST_NAME_TAG = "last_name";
     private static final String FACEBOOK_PIC_TAG = "profile_pic";
 
+    private static final String ERROR_INFO = "Błąd podczas logowania";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         loginButton = binding.loginButton;
+        compositeDisposable = new CompositeDisposable();
         initFacebookLogin();
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
         dataRequestManager = DataRequestManager.getInstance();
+
+        if(Profile.getCurrentProfile() != null)
+            startNewActivity();
     }
 
     private void initFacebookLogin() {
@@ -94,6 +105,8 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
                 progressDialog.setTitle(PROGRESS_DIALOG_TITLE);
                 progressDialog.setMessage(PROGRESS_DIALOG_MESSAGE);
                 progressDialog.setIndeterminate(true);
+                progressDialog.setIndeterminateDrawable(ContextCompat.getDrawable(LoginActivity.this,
+                        R.drawable.progress_bar_circle));
                 progressDialog.show();
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), (object, response) -> {
                     try {
@@ -105,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
                 });
 
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id, first_name, last_name, email,gender, birthday, location");
+                parameters.putString("fields", "id, first_name, last_name, email, gender, birthday, location");
                 request.setParameters(parameters);
                 request.executeAsync();
             }
@@ -121,6 +134,7 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         };
         //loginButton.setReadPermissions("user_friends");
+        loginButton.setReadPermissions("email");
         loginButton.registerCallback(callbackManager, callback);
     }
 
@@ -140,8 +154,7 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
     @Override
     protected void onResume() {
         super.onResume();
-        if(Profile.getCurrentProfile() != null)
-            startNewActivity();
+
     }
 
     @Override
@@ -167,6 +180,12 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.clear();
     }
 
     @Override
@@ -204,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
         dataRequestManager.login(apiKey, request).subscribe(new MaybeObserver<LoginResponse.User>() {
             @Override
             public void onSubscribe(Disposable d) {
-                //TODO aby usuwac jak jest w tle
+                compositeDisposable.add(d);
             }
 
             @Override
@@ -217,7 +236,8 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onError(Throwable e) {
                 e.printStackTrace();
-                Log.d("JESTEM", ((HttpException)e).response().raw().request().url().toString());
+                LoginManager.getInstance().logOut();
+                Toast.makeText(LoginActivity.this, ERROR_INFO, Toast.LENGTH_SHORT).show();
             }
 
             @Override
