@@ -72,7 +72,6 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
     }
 
     public void downloadRequest() {
-        Log.d("JESTEM", "download " + categoryId);
         dataRequestManagera.downloadMainPLacesFromCategory(categoryId, TYPE,
                 viewCallback.getString(R.string.server_api_key)).subscribe(new MaybeObserver<List<MainPlace>>() {
                     @Override
@@ -84,6 +83,8 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
                     public void onSuccess(List<MainPlace> value) {
                         mainPlaces.clear();
                         mainPlaces.addAll(value);
+                        if(mainPlaces.size() == 0)
+                            mainPlaces.add(null); //dodanie pustego widoku
                         successResponse = new SuccessResponse(DOWNLOAD_SUCCESS);
                         onSuccessResponse();
                     }
@@ -91,8 +92,6 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                       // Log.d("JESTEM", ((HttpException)e).response().errorBody().toString());
-                        Log.d("JESTEM", ((HttpException)e).response().raw().request().url().toString());
                         errorResponse = new ErrorResponse(DOWNLOAD_ERROR);
                         onErrorResponse();
                     }

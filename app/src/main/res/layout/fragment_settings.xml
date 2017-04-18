@@ -46,9 +46,11 @@
             </LinearLayout>
 
             <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switchCompact"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.15"
+                android:onCheckedChanged="@{viewModel::changeNewsletter}"
                 android:theme="@style/switch_style"
                 app:theme="@style/switch_style"/>
         </LinearLayout>

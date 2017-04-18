@@ -3,6 +3,7 @@ package com.example.magda.systeminformacyjny.network;
 import com.example.magda.systeminformacyjny.network.items.EventResponse;
 import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
+import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
 import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
 
@@ -32,7 +33,7 @@ public interface WhereToGoService {
 
     @POST("sidmapp/user")
     Observable<LoginResponse> login(@Query("api_key") String apiKey,
-                                    @Body DefaultResourceWrapper loginRequest);
+                                   @Body DefaultResourceWrapper loginRequest);
 
     @PATCH("sidmapp/user/modify")
     Observable<ResponseBody> sendNewsletter(@Query("api_key") String apiKey,

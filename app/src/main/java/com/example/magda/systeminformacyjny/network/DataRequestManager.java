@@ -6,6 +6,7 @@ import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.items.ItemsApiService;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
+import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
 import com.example.magda.systeminformacyjny.network.user.UserApiService;
 
 import java.util.List;
@@ -56,6 +57,10 @@ public class DataRequestManager {
 
     public MaybeSource<LoginResponse.User> login(String apiKey, LoginRequest loginRequest) {
         return userApiService.login(apiKey, loginRequest);
+    }
+
+    public MaybeSource<ResponseBody> sendNewsletter(String apiKey, NewsletterRequest request) {
+        return userApiService.sendNewsletter(apiKey, request);
     }
 
 }

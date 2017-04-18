@@ -13,18 +13,14 @@ public class LoginResponse {
 
     @SerializedName("user")
     @Expose
-    private List<User> userList;
+    private User user;
 
-    public LoginResponse(List<User> userList) {
-        this.userList = userList;
+    public User getUser() {
+        return user;
     }
 
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public static class User {
