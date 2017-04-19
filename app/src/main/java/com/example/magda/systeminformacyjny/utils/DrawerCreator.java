@@ -34,7 +34,7 @@ public class DrawerCreator {
     public static final String NEAR_PLACES_TITLE = "Najbliższe miejsca";
     public static final String VISITED_PLACES_TITLE = "Odwiedzone miejsca";
     public static final String VISITED_ROUTES_TITILE = "Odwiedzone trasy";
-    public static final String SETTINGS_TITLE = "Ustwienia";
+    public static final String SETTINGS_TITLE = "Ustawienia";
     public static final String ABOUT_US_TITLE = "O nas";
     public static final String LOG_OUT_TITLE = "Wyloguj";
 

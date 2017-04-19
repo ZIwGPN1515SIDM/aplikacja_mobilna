@@ -44,4 +44,6 @@ public interface WhereToGoService {
                                              @Query("namespace") String namespace,
                                              @Query("api_key") String apiKey);
 
+   // @GET("place/namespace")
+  //  Observable<>
 }

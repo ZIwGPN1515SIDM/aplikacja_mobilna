@@ -16,6 +16,7 @@ import android.view.View;
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.ActivityLocationBinding;
 import com.example.magda.systeminformacyjny.fragments.ActivityLocationFragment;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.ViewPagerAdapter;
 
 import static com.example.magda.systeminformacyjny.R.id.viewPager;
@@ -27,16 +28,22 @@ import static com.example.magda.systeminformacyjny.R.id.viewPager;
 public class LocationActivity extends AppCompatActivity{
 
     private static final int NUM_PAGES = 3;
-    ActivityLocationBinding activityLocationBinding;
+    private ActivityLocationBinding activityLocationBinding;
+    private MainPlace mainPlace;
+
+    public static final String MAIN_PLACE_TAG = "mainPlace";
 
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         activityLocationBinding = DataBindingUtil.setContentView(this, R.layout.activity_location);
+
+        mainPlace = savedInstance != null? (MainPlace) savedInstance.getSerializable(MAIN_PLACE_TAG)
+                : (MainPlace) getIntent().getExtras().getSerializable(MAIN_PLACE_TAG);
+
         activityLocationBinding.viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES));
         activityLocationBinding.tabLayout.setupWithViewPager(activityLocationBinding.viewPager);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -45,5 +52,11 @@ public class LocationActivity extends AppCompatActivity{
         } else {
             activityLocationBinding.viewPager.setCurrentItem(activityLocationBinding.viewPager.getCurrentItem() - 1);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(MAIN_PLACE_TAG, mainPlace);
     }
 }

@@ -1,13 +1,11 @@
 package com.example.magda.systeminformacyjny.view_models;
 
 import android.util.Log;
-
 import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
 import com.kontakt.sdk.android.ble.configuration.ActivityCheckConfiguration;
 import com.kontakt.sdk.android.ble.configuration.ForceScanConfiguration;
 import com.kontakt.sdk.android.ble.configuration.ScanMode;
 import com.kontakt.sdk.android.ble.configuration.ScanPeriod;
-import com.kontakt.sdk.android.ble.connection.OnServiceReadyListener;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 import com.kontakt.sdk.android.ble.manager.ProximityManagerFactory;
 import com.kontakt.sdk.android.ble.manager.listeners.EddystoneListener;
@@ -16,7 +14,6 @@ import com.kontakt.sdk.android.ble.rssi.RssiCalculators;
 import com.kontakt.sdk.android.ble.spec.EddystoneFrameType;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 import com.kontakt.sdk.android.common.profile.IEddystoneNamespace;
-
 import java.util.EnumSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -70,12 +67,7 @@ public class FragmentNearPlacesViewModel {
 
 
     private void startScanning() {
-        proximityManager.connect(new OnServiceReadyListener() {
-            @Override
-            public void onServiceReady() {
-                proximityManager.startScanning();
-            }
-        });
+        proximityManager.connect(() -> proximityManager.startScanning());
     }
 
     private EddystoneListener createEddystoneListener() {

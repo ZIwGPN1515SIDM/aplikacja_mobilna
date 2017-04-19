@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.multidex.MultiDex;
 import android.widget.ImageView;
 
+import com.facebook.FacebookSdk;
 import com.kontakt.sdk.android.common.KontaktSDK;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
