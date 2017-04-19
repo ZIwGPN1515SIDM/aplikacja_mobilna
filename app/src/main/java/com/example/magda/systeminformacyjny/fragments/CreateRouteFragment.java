@@ -74,7 +74,7 @@ public class CreateRouteFragment extends Fragment{
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new RecyclerViewMainPlacesAdapter(recyclerView, mainPlaces,
-                true, viewModel, viewModel);
+                true, viewModel, viewModel, null); //TODO interfejs
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);

@@ -2,6 +2,12 @@
 
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="mainLocation"
+            type="com.example.magda.systeminformacyjny.models.MainPlace"/>
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,6 +22,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:image="@{mainLocation.photos.get(0).URL}"
             android:scaleType="fitXY" />
 
             <LinearLayout
@@ -55,6 +62,7 @@
                 android:layout_gravity="center"
                 android:elevation="6dp"
                 app:tabGravity="fill"
+                android:background="@color/colorPrimaryLight"
                 app:tabIndicatorColor="@color/primary"
                 app:tabMaxWidth="0dp"
                 app:tabMode="fixed" />

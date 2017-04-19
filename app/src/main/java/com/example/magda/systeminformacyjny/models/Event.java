@@ -32,6 +32,10 @@ public class Event {
         this.eventEnd = eventEnd;
     }
 
+    public Event(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

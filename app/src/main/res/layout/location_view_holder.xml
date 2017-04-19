@@ -25,7 +25,7 @@
                 android:layout_height="@dimen/view_holder_logo_size"
                 android:layout_marginRight="@dimen/view_holder_logo_margin_right"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher_app" />
+                app:image="@{mainPlace.photos.get(0).URL}" />
 
             <TextView
                 android:id="@+id/locationName"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/locationName"
                 android:layout_toRightOf="@+id/viewHolderIcon"
-                android:text="Centrum handlowe"
+                android:text="@{mainPlace.categoryName}"
                 android:textSize="@dimen/view_holder_description_shosr_size"
                 android:textStyle="italic" />
 

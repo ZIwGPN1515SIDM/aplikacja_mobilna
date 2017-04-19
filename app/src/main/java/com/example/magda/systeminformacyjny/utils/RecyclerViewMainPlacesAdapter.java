@@ -1,15 +1,20 @@
 package com.example.magda.systeminformacyjny.utils;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.magda.systeminformacyjny.activities.LocationActivity;
+import com.example.magda.systeminformacyjny.activities.MainPlacesListActivity;
 import com.example.magda.systeminformacyjny.databinding.LocationViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 
 import java.util.ArrayList;
 
+import static com.example.magda.systeminformacyjny.activities.LocationActivity.MAIN_PLACE_TAG;
+import static com.example.magda.systeminformacyjny.activities.MainPlacesListActivity.LOCATION_ACTIVITY_CODE;
 import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
@@ -20,12 +25,14 @@ import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_P
 public class RecyclerViewMainPlacesAdapter extends AbstractRecyclerViewEndlessAdapter<MainPlace>{
 
     private IErrorViewModel viewModel;
+    private MainPlacesListActivity viewCallback;
 
     public RecyclerViewMainPlacesAdapter(RecyclerView recyclerView, ArrayList<MainPlace> dataSet,
                                          boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
-                                         IErrorViewModel viewModel) {
+                                         IErrorViewModel viewModel, MainPlacesListActivity viewCallback) {
         super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
         this.viewModel = viewModel;
+        this.viewCallback = viewCallback;
     }
 
     @Override
@@ -60,6 +67,11 @@ public class RecyclerViewMainPlacesAdapter extends AbstractRecyclerViewEndlessAd
         MainPlace mainPlace = getDataSet().get(position);
         BasicViewHolder basicViewHolder = (BasicViewHolder) genericHolder;
         basicViewHolder.bind(mainPlace);
+        basicViewHolder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(viewCallback, LocationActivity.class);
+            intent.putExtra(MAIN_PLACE_TAG, mainPlace);
+            viewCallback.startActivityForResult(intent, LOCATION_ACTIVITY_CODE);
+        });
     }
 
     public class BasicViewHolder extends RecyclerView.ViewHolder {

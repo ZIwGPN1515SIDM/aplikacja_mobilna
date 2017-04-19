@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="event"
+            type="com.example.magda.systeminformacyjny.models.Event"/>
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fragment_location_events_padding"
+        android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fragment_location_events_padding">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/fragment_location_events_margin"
+            android:text="@string/fragment_location_events_place"
+            android:textSize="@dimen/fragment_location_events_name_size" />
+
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginBottom="@dimen/fragment_location_events_margin"
+            android:text="@{event.name}"
+            android:textSize="@dimen/fragment_location_events_place_size"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/eventDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/place"
+            android:text="@{event.eventContent}"
+            android:textSize="@dimen/fragment_location_events_description_size" />
+
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:text='@{"Termin: " + event.eventEnd}'
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

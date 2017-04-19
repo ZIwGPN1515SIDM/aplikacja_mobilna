@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by piotrek on 10.04.17.
@@ -59,9 +60,14 @@ public class MainPlace implements Serializable{
     @Expose
     private String name;
 
+    @SerializedName("NAMESPACES_PHOTOS")
+    @Expose
+    private ArrayList<Photo> photos;
+
+    private String categoryName;
+
     public MainPlace(Long id, String description, Object advert, String eventContent, String addedOn,
-                     Float sumScore, Long commentsCount, String googlePlaceId, String namespace,
-                     Double latitude, Double longitude, String name) {
+                     Float sumScore, Long commentsCount, String googlePlaceId, String namespace, Double latitude, Double longitude, String name, ArrayList<Photo> photos) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -74,6 +80,7 @@ public class MainPlace implements Serializable{
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
+        this.photos = photos;
     }
 
     public Double getLatitude() {
@@ -201,5 +208,21 @@ public class MainPlace implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(ArrayList<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

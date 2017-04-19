@@ -40,6 +40,7 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
     private CompositeDisposable compositeDisposable;
     private Long categoryId;
     private DataRequestManager dataRequestManagera;
+    private String categoryName;
 
     private static final String TYPE = "namespace";
 
@@ -73,7 +74,7 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
 
     public void downloadRequest() {
         dataRequestManagera.downloadMainPLacesFromCategory(categoryId, TYPE,
-                viewCallback.getString(R.string.server_api_key)).subscribe(new MaybeObserver<List<MainPlace>>() {
+                viewCallback.getString(R.string.server_api_key), categoryName).subscribe(new MaybeObserver<List<MainPlace>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -140,5 +141,9 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
 
     public void setMainPlaces(ArrayList<MainPlace> mainPlaces) {
         this.mainPlaces = mainPlaces;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

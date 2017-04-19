@@ -3,11 +3,13 @@ package com.example.magda.systeminformacyjny.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by piotrek on 19.04.17.
  */
 
-public class Photo {
+public class Photo implements Serializable{
 
     @SerializedName("ID")
     @Expose
@@ -17,7 +19,7 @@ public class Photo {
     @Expose
     private String URL;
 
-    @SerializedName("PLACE_ID")
+    @SerializedName(value = "PLACE_ID", alternate = "NAMESPACE_ID")
     @Expose
     private Long placeId;
 

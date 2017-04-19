@@ -14,18 +14,18 @@ public class EventResponse {
 
     @SerializedName("namespace")
     @Expose
-    private List<Event> namespaceEvents;
+    private Event namespaceEvent;
 
     @SerializedName("places")
     @Expose
     private List<Event> placeEvents;
 
-    public List<Event> getNamespaceEvents() {
-        return namespaceEvents;
+    public Event getNamespaceEvent() {
+        return namespaceEvent;
     }
 
-    public void setNamespaceEvents(List<Event> namespaceEvents) {
-        this.namespaceEvents = namespaceEvents;
+    public void setNamespaceEvent(Event namespaceEvent) {
+        this.namespaceEvent = namespaceEvent;
     }
 
     public List<Event> getPlaceEvents() {

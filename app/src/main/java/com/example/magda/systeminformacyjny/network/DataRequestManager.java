@@ -47,8 +47,8 @@ public class DataRequestManager {
     }
 
     public MaybeSource<List<MainPlace>> downloadMainPLacesFromCategory(Long categoryId, String type,
-                                                                       String apiKey) {
-        return itemsApiService.downloadMainPlacesFromCategory(categoryId, type, apiKey);
+                                                                       String apiKey, final String categoryName) {
+        return itemsApiService.downloadMainPlacesFromCategory(categoryId, type, apiKey, categoryName);
     }
 
     public MaybeSource<List<Event>> downloadEvents(String type, String namespace, String apiKey) {
