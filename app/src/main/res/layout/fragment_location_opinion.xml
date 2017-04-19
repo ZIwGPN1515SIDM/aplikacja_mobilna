@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_location_opinion_name"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/fragment_location_opinion_margin"
+        android:textStyle="bold|italic"
+        android:textSize="@dimen/fragment_location_opinion_name_size"/>
+
+    <RatingBar
+        android:id="@+id/locationRating"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_location_opinion_margin"
+        android:layout_marginLeft="@dimen/fragment_location_opinion_RatingBar_offset"
+        android:clickable="false"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/md_yellow_800"
+        android:progressTint="@color/md_yellow_800"
+        android:rating="3.5"
+        android:secondaryProgressTint="@color/md_yellow_800"
+        android:stepSize="0.1"
+        android:visibility="visible"
+        android:layout_toRightOf="@+id/name" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="@dimen/LocationSettingsButtonSize"
+        android:layout_height="@dimen/LocationSettingsButtonSize"
+        android:src="@mipmap/report_delete_menu"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fragment_location_opinion_margin"
+        android:background="@null"/>
+
+    <TextView
+        android:id="@+id/opinionContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:text="@string/opinion_content"
+        android:layout_margin="@dimen/fragment_location_opinion_margin"/>
+
+
+</RelativeLayout>

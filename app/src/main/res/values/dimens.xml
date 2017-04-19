@@ -109,6 +109,15 @@
     <dimen name="fragment_create_route_route_name_width">200dp</dimen>
     <dimen name="fragment_create_route_route_name_margin_bottom">8dp</dimen>
     <dimen name="fragment_create_route_route_name_text_size">14sp</dimen>
+    <dimen name="location_settings_button_size">24dp</dimen>
+    <dimen name="fragment_location_opinion_margin">10dp</dimen>
+    <dimen name="fragment_location_opinion_name_size">20sp</dimen>
+    <dimen name="fragment_location_opinion_RatingBar_offset">40dp</dimen>
+    <dimen name="fragment_location_events_padding">10dp</dimen>
+    <dimen name="fragment_location_events_margin">10dp</dimen>
+    <dimen name="fragment_location_events_name_size">20sp</dimen>
+    <dimen name="fragment_location_events_place_size">17sp</dimen>
+    <dimen name="fragment_location_events_description_size">15sp</dimen>
 
 
 </resources>
