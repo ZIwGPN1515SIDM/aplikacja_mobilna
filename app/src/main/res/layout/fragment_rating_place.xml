@@ -22,8 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"
-        android:backgroundTint="@color/md_grey_500"
+        android:progressBackgroundTint="@color/md_yellow_300"
+        android:progressTint="@color/md_yellow_800"
+        android:secondaryProgressTint="@color/md_yellow_800"
         android:clickable="false"
+        android:isIndicator="false"
         android:numStars="5"
         android:stepSize="0.1" />
     

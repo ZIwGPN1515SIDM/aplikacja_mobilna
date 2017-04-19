@@ -3,13 +3,28 @@ package com.example.magda.systeminformacyjny.view_models;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.graphics.Color;
-import android.util.Log;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.base.Lifecycle;
+import com.example.magda.systeminformacyjny.fragments.SettingsPageFragment;
+import com.example.magda.systeminformacyjny.network.DataRequestManager;
+import com.example.magda.systeminformacyjny.network.ErrorResponse;
+import com.example.magda.systeminformacyjny.network.SuccessResponse;
+import com.example.magda.systeminformacyjny.network.user.LoginRequest;
+import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 
+import io.reactivex.MaybeObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import okhttp3.ResponseBody;
+
+import static com.example.magda.systeminformacyjny.network.ErrorResponse.SEND_NEWSLETTER_ERROR;
+import static com.example.magda.systeminformacyjny.network.SuccessResponse.SEND_NEWSLETTER_SUCCESS;
 import static com.example.magda.systeminformacyjny.utils.Constants.BLUE_COLOR;
 import static com.example.magda.systeminformacyjny.utils.Constants.DARK_MAP;
 import static com.example.magda.systeminformacyjny.utils.Constants.GREEN_COLOR;
@@ -21,25 +36,60 @@ import static com.example.magda.systeminformacyjny.utils.Constants.STANDARD_MAP;
  * Created by piotrek on 06.04.17.
  */
 
-public class FragmentSettingsViewModel {
-
+public class FragmentSettingsViewModel  implements Lifecycle.ViewModel{
 
     public ObservableField<Integer> standardMapImage;
     public ObservableField<Integer> retroMapImage;
     public ObservableField<Integer> darkMapImage;
-    private Context context;
+    private boolean sendNewsletterError;
+    private DataRequestManager dataRequestManager;
+    private CompositeDisposable compositeDisposable;
+    private SettingsPageFragment viewCallback;
+    private SuccessResponse successResponse;
+    private ErrorResponse errorResponse;
 
-
-    public FragmentSettingsViewModel(Context context) {
-        this.context = context;
-        int[] tmp = getMapView(context);
+    public FragmentSettingsViewModel(SettingsPageFragment viewCallback) {
+        this.viewCallback = viewCallback;
+        int[] tmp = getMapView(viewCallback.getContext());
         standardMapImage = new ObservableField<>(tmp[0]);
         retroMapImage = new ObservableField<>(tmp[1]);
         darkMapImage = new ObservableField<>(tmp[2]);
+        sendNewsletterError = false;
+        dataRequestManager = DataRequestManager.getInstance();
+        compositeDisposable = new CompositeDisposable();
+
     }
 
-    public void sendNewsletter() {
-        //TODO
+    public void changeNewsletter(CompoundButton buttonView, boolean isChecked) {
+        if(!sendNewsletterError) {
+            String apiKey = viewCallback.getString(R.string.server_api_key);
+            Long userId = PreferencesManager.getOurId(viewCallback.getContext());
+            NewsletterRequest request = new NewsletterRequest(userId, isChecked);
+            dataRequestManager.sendNewsletter(apiKey, request).subscribe(new MaybeObserver<ResponseBody>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+                    compositeDisposable.add(d);
+                }
+
+                @Override
+                public void onSuccess(ResponseBody value) {
+                    successResponse = new SuccessResponse(SEND_NEWSLETTER_SUCCESS);
+                    onSuccessResponse();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    e.printStackTrace();
+                    errorResponse = new ErrorResponse(SEND_NEWSLETTER_ERROR);
+                    onErrorResponse();
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
     }
 
     public void onChooseMapMode(View view) {
@@ -48,19 +98,19 @@ public class FragmentSettingsViewModel {
                 standardMapImage.set(R.mipmap.standard_map_chosen);
                 retroMapImage.set(R.mipmap.retro_map);
                 darkMapImage.set(R.mipmap.dark_map);
-                PreferencesManager.setMapMode(context, STANDARD_MAP);
+                PreferencesManager.setMapMode(viewCallback.getContext(), STANDARD_MAP);
                 break;
             case R.id.retroMap:
                 standardMapImage.set(R.mipmap.standard_map);
                 retroMapImage.set(R.mipmap.retro_map_chosen);
                 darkMapImage.set(R.mipmap.dark_map);
-                PreferencesManager.setMapMode(context, RETRO_MAP);
+                PreferencesManager.setMapMode(viewCallback.getContext(), RETRO_MAP);
                 break;
             case R.id.darkMap:
                 standardMapImage.set(R.mipmap.standard_map);
                 retroMapImage.set(R.mipmap.retro_map);
                 darkMapImage.set(R.mipmap.dark_map_chosen);
-                PreferencesManager.setMapMode(context, DARK_MAP);
+                PreferencesManager.setMapMode(viewCallback.getContext(), DARK_MAP);
                 break;
         }
     }
@@ -69,19 +119,19 @@ public class FragmentSettingsViewModel {
 
         switch (position) {
             case RED_COLOR:
-                PreferencesManager.setRouteColor(context, Color.RED);
+                PreferencesManager.setRouteColor(viewCallback.getContext(), Color.RED);
                 break;
             case GREEN_COLOR:
-                PreferencesManager.setRouteColor(context, Color.GREEN);
+                PreferencesManager.setRouteColor(viewCallback.getContext(), Color.GREEN);
                 break;
             case BLUE_COLOR:
-                PreferencesManager.setRouteColor(context, Color.BLUE);
+                PreferencesManager.setRouteColor(viewCallback.getContext(), Color.BLUE);
                 break;
         }
     }
 
     private void saveMeasure(int position) {
-        PreferencesManager.setMeasureType(context, position);
+        PreferencesManager.setMeasureType(viewCallback.getContext(), position);
     }
 
 
@@ -113,7 +163,6 @@ public class FragmentSettingsViewModel {
         };
     }
 
-
     private int[] getMapView(Context context) {
         int[] tmp = {R.mipmap.standard_map, R.mipmap.retro_map, R.mipmap.dark_map};
         switch (PreferencesManager.mapMode(context)) {
@@ -128,5 +177,49 @@ public class FragmentSettingsViewModel {
                 break;
         }
         return tmp;
+    }
+
+    @Override
+    public void onViewResumed() {
+        if(successResponse != null) {
+            onSuccessResponse();
+        }else if(errorResponse != null) {
+            onErrorResponse();
+        }
+    }
+
+    @Override
+    public void onViewAttached(@NonNull Lifecycle.View viewCallback) {
+        this.viewCallback = (SettingsPageFragment) viewCallback;
+    }
+
+    @Override
+    public void onViewDetached() {
+        this.viewCallback = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+    }
+
+    @Override
+    public void onErrorResponse() {
+        if(viewCallback != null) {
+            viewCallback.onError(errorResponse);
+            errorResponse = null;
+        }
+    }
+
+    @Override
+    public void onSuccessResponse() {
+        if(viewCallback != null) {
+            viewCallback.onSuccess(successResponse);
+            successResponse = null;
+        }
+    }
+
+    public void setSendNewsletterError(boolean sendNewsletterError) {
+        this.sendNewsletterError = sendNewsletterError;
     }
 }

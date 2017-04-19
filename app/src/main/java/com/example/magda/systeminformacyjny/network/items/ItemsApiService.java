@@ -1,9 +1,11 @@
 package com.example.magda.systeminformacyjny.network.items;
 
 import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.MaybeSource;
@@ -38,6 +40,19 @@ public class ItemsApiService {
         return whereToGoService.downloadMainPlacesFromCategory(categoryId,type, apiKey)
                 .subscribeOn(Schedulers.io())
                 .map(respone -> respone.getMainPlaces())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<List<Event>> downloadEvents(String type, String namespace, String apiKey) {
+        return whereToGoService.downloadEvents(type, namespace, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(response -> {
+                    List<Event> events = new ArrayList<>();
+                    events.addAll(response.getNamespaceEvents());
+                    events.addAll(response.getPlaceEvents());
+                    return events;
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

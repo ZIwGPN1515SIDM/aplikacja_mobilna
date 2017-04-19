@@ -41,12 +41,7 @@ public class BindingAdapters {
 
     @BindingAdapter("app:errorResponse")
     public static void setError(TextInputLayout textInputLayout, String error) {
-        if (error != null) {
-            textInputLayout.setErrorEnabled(true);
-            textInputLayout.setError(error);
-        } else {
-            textInputLayout.setError(error);
-            textInputLayout.setErrorEnabled(false);
-        }
+        textInputLayout.setErrorEnabled(error != null);
+        textInputLayout.setError(error);
     }
 }

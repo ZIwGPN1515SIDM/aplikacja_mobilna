@@ -1,25 +1,16 @@
 package com.example.magda.systeminformacyjny.utils;
 
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.DrawerHeaderBinding;
-import com.example.magda.systeminformacyjny.models.FacebookUser;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 /**
  * Created by piotrek on 05.04.17.
@@ -49,7 +40,7 @@ public class DrawerCreator {
 
 
     public static Drawer createDrawer(AppCompatActivity activity, Toolbar toolbar,
-                                      Drawer.OnDrawerItemClickListener listener, FacebookUser user) {
+                                      Drawer.OnDrawerItemClickListener listener) {
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withName(HOME_TITLE)
                 .withIdentifier(HOME_PAGE).withIcon(R.mipmap.drawer_main_grey)
                 .withSelectedIcon(R.mipmap.drawer_main_blue);
@@ -81,8 +72,8 @@ public class DrawerCreator {
         LayoutInflater inflater = LayoutInflater.from(activity);
         DrawerHeaderBinding binding = DataBindingUtil.inflate(inflater, R.layout.drawer_header, null,
                 false);
-        binding.setImageUrl(user.getImageProfileUrl());
-        binding.setUserName(user.getName());
+        binding.setImageUrl(PreferencesManager.getUserPhoto(activity));
+        binding.setUserName(PreferencesManager.getName(activity));
         Drawer drawer = new DrawerBuilder()
                 .withActivity(activity)
                 .withToolbar(toolbar)
