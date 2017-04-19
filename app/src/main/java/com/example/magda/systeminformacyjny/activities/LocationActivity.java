@@ -32,16 +32,17 @@ public class LocationActivity extends AppCompatActivity{
     private MainPlace mainPlace;
 
     public static final String MAIN_PLACE_TAG = "mainPlace";
+    public static final String CATEGORY_NAME = "categoryName";
 
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         activityLocationBinding = DataBindingUtil.setContentView(this, R.layout.activity_location);
-
-        mainPlace = savedInstance != null? (MainPlace) savedInstance.getSerializable(MAIN_PLACE_TAG)
-                : (MainPlace) getIntent().getExtras().getSerializable(MAIN_PLACE_TAG);
-
-        activityLocationBinding.viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES));
+        String categoryName = getIntent().getExtras().getString(CATEGORY_NAME);
+        mainPlace = (MainPlace) getIntent().getExtras().getSerializable(MAIN_PLACE_TAG);
+        activityLocationBinding.setMainLocation(mainPlace);
+        activityLocationBinding.viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES,
+                mainPlace.getNamespace(), mainPlace));
         activityLocationBinding.tabLayout.setupWithViewPager(activityLocationBinding.viewPager);
     }
 
@@ -57,6 +58,5 @@ public class LocationActivity extends AppCompatActivity{
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(MAIN_PLACE_TAG, mainPlace);
     }
 }

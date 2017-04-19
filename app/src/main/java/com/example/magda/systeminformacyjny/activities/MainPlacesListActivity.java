@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
+
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.base.BaseActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
@@ -19,7 +20,9 @@ import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
 import com.example.magda.systeminformacyjny.utils.RecyclerViewMainPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.ActivityMainPlacesListViewModel;
+
 import java.util.ArrayList;
+
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 import static com.example.magda.systeminformacyjny.network.ErrorResponse.DOWNLOAD_ERROR;
@@ -41,19 +44,15 @@ public class MainPlacesListActivity extends BaseActivity {
 
     public static final String TITLE = "categoryTitle";
     public static final String CATEGORY_ID = "categoryId";
+    public static final int LOCATION_ACTIVITY_CODE = 10000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ItemsLayoutBinding binding = DataBindingUtil.setContentView(this, R.layout.items_layout);
         viewModel = new ActivityMainPlacesListViewModel(this);
-        if(savedInstanceState != null) {
-            this.title = savedInstanceState.getString(TITLE);
-            this.categoryId = savedInstanceState.getLong(CATEGORY_ID);
-        }else {
-            this.title = getIntent().getStringExtra(TITLE);
-            this.categoryId = getIntent().getLongExtra(CATEGORY_ID, -1L);
-        }
+        this.title = getIntent().getStringExtra(TITLE);
+        this.categoryId = getIntent().getLongExtra(CATEGORY_ID, -1L);
         recyclerView = binding.recyclerView;
         mainPlaces = new ArrayList<>();
         Toolbar toolbar = binding.toolbarLayout.toolbar;
@@ -65,6 +64,7 @@ public class MainPlacesListActivity extends BaseActivity {
         setUpRecyclerView();
         viewModel.setCategoryId(categoryId);
         viewModel.setMainPlaces(mainPlaces);
+        viewModel.setCategoryName(title);
         viewModel.downloadMainPLaces();
     }
 
@@ -87,7 +87,7 @@ public class MainPlacesListActivity extends BaseActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new RecyclerViewMainPlacesAdapter(recyclerView, mainPlaces,
-                false, null, viewModel);
+                false, null, viewModel, this);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);
@@ -106,20 +106,20 @@ public class MainPlacesListActivity extends BaseActivity {
 
     @Override
     public void onSuccess(SuccessResponse successResponse) {
-        if(successResponse.getSuccessType() == DOWNLOAD_SUCCESS) {
+        if (successResponse.getSuccessType() == DOWNLOAD_SUCCESS) {
             notifyRecyclerViewAdapter();
-        }else {
+        } else {
             throw new IllegalArgumentException("Wrong success response code " + successResponse.getSuccessType());
         }
     }
 
     @Override
     public void onError(ErrorResponse errorResponse) {
-        if(errorResponse.getErrorType() == DOWNLOAD_ERROR) {
+        if (errorResponse.getErrorType() == DOWNLOAD_ERROR) {
             mainPlaces.clear();
             mainPlaces.add(new MainPlace(ERROR_INFO_VIEW_HOLDER));
             notifyRecyclerViewAdapter();
-        }else {
+        } else {
             throw new IllegalArgumentException("Wrong error response code " + errorResponse.getErrorType());
         }
     }

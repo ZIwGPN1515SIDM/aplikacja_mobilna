@@ -9,6 +9,7 @@ import com.example.magda.systeminformacyjny.fragments.EventsPlaceFragment;
 import com.example.magda.systeminformacyjny.fragments.InfoPlaceFragment;
 import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
 import com.example.magda.systeminformacyjny.fragments.RatingPlaceFragment;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 
 import java.util.HashMap;
 
@@ -20,6 +21,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
 
     private int numberOfPages;
     private HashMap<Integer, Fragment> fragments;
+    private String namespace;
+    private MainPlace mainPlace;
 
     public static final int FRAGMENT_INFO_POSITION = 0;
     public static final int FRAGMENT_RATING_POSITION= 1;
@@ -29,10 +32,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
     public static final String FRAGMENT_EVENTS_TITLE = "Wydarzenia";
     public static final String TOO_MUCH_FRAGMENTS_ERROR_MESSAGE = "Wydarzenia";
 
-    public ViewPagerAdapter(FragmentManager fm, int numberOfPages) {
+    public ViewPagerAdapter(FragmentManager fm, int numberOfPages, String namespace,
+                            MainPlace mainPlace) {
         super(fm);
         this.numberOfPages = numberOfPages;
         this.fragments = new HashMap<>();
+        this.namespace = namespace;
+        this.mainPlace = mainPlace;
     }
 
     @Override
@@ -40,13 +46,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
         Fragment fragment;
         switch(position) {
             case FRAGMENT_INFO_POSITION:
-                fragment = InfoPlaceFragment.getInstance();
+                fragment = InfoPlaceFragment.getInstance(mainPlace);
                 break;
             case  FRAGMENT_RATING_POSITION:
                 fragment = RatingPlaceFragment.getInstance();
                 break;
             case FRAGMENT_EVENTS_POSITION:
-                fragment = EventsPlaceFragment.getInstance();
+                fragment = EventsPlaceFragment.getInstance(namespace);
                 break;
             default:
                 throw new IllegalArgumentException(TOO_MUCH_FRAGMENTS_ERROR_MESSAGE);

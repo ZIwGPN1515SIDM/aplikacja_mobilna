@@ -28,7 +28,7 @@ public class ItemsApiService {
     }
 
     public MaybeSource<List<Category>> downloadCategories(String apiKey) {
-       return  whereToGoService.downloadCategories(apiKey)
+        return whereToGoService.downloadCategories(apiKey)
                 .subscribeOn(Schedulers.io())
                 .map(response -> response.getCategories())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -36,10 +36,16 @@ public class ItemsApiService {
     }
 
     public MaybeSource<List<MainPlace>> downloadMainPlacesFromCategory(Long categoryId, String type,
-                                                                       String apiKey) {
-        return whereToGoService.downloadMainPlacesFromCategory(categoryId,type, apiKey)
+                                                                       String apiKey, final String categoryName) {
+        return whereToGoService.downloadMainPlacesFromCategory(categoryId, type, apiKey)
                 .subscribeOn(Schedulers.io())
-                .map(respone -> respone.getMainPlaces())
+                .map(respone -> {
+                    List<MainPlace> tmp = respone.getMainPlaces();
+                    for (MainPlace m : tmp) {
+                        m.setCategoryName(categoryName);
+                    }
+                    return tmp;
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
@@ -49,7 +55,7 @@ public class ItemsApiService {
                 .subscribeOn(Schedulers.io())
                 .map(response -> {
                     List<Event> events = new ArrayList<>();
-                    events.addAll(response.getNamespaceEvents());
+                    events.add(response.getNamespaceEvent());
                     events.addAll(response.getPlaceEvents());
                     return events;
                 })

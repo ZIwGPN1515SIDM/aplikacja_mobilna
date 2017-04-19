@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentInfoPlaceBinding;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 
 /**
  * Created by JB on 2017-04-09.
@@ -17,13 +18,28 @@ import com.example.magda.systeminformacyjny.databinding.FragmentInfoPlaceBinding
 
 public class InfoPlaceFragment extends Fragment {
 
-    public static InfoPlaceFragment getInstance() {return new InfoPlaceFragment();}
+    private MainPlace mainPlace;
+    private static final String MAIN_PLACE_TAG = "mainPlace";
+
+    public static InfoPlaceFragment getInstance(MainPlace mainPlace) {
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MAIN_PLACE_TAG, mainPlace);
+        InfoPlaceFragment infoPlaceFragment = new InfoPlaceFragment();
+        infoPlaceFragment.setArguments(bundle);
+        return infoPlaceFragment;
+    }
 
     @Override
-    public View onCreateView (LayoutInflater inflater, @Nullable
-    ViewGroup container, @Nullable
-    Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainPlace = (MainPlace) getArguments().getSerializable(MAIN_PLACE_TAG);
+    }
+
+    @Override
+    public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentInfoPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_info_place, null, false);
+        binding.setMainLocation(mainPlace);
         return binding.getRoot();
     }
 
