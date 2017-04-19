@@ -113,6 +113,11 @@
     <dimen name="fragment_location_opinion_margin">10dp</dimen>
     <dimen name="fragment_location_opinion_name_size">20sp</dimen>
     <dimen name="fragment_location_opinion_RatingBar_offset">40dp</dimen>
+    <dimen name="fragment_location_events_padding">10dp</dimen>
+    <dimen name="fragment_location_events_margin">10dp</dimen>
+    <dimen name="fragment_location_events_name_size">20sp</dimen>
+    <dimen name="fragment_location_events_place_size">17sp</dimen>
+    <dimen name="fragment_location_events_description_size">15sp</dimen>
 
 
 </resources>

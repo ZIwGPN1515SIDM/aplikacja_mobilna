@@ -20,7 +20,7 @@
             android:layout_margin="@dimen/view_holder_layout_margin">
 
             <ImageView
-                android:id="@+id/ViewHolderIcon"
+                android:id="@+id/viewHolderIcon"
                 android:layout_width="@dimen/view_holder_logo_size"
                 android:layout_height="@dimen/view_holder_logo_size"
                 android:layout_marginRight="@dimen/view_holder_logo_margin_right"
@@ -28,16 +28,16 @@
                 android:src="@mipmap/ic_launcher_app" />
 
             <TextView
-                android:id="@+id/LocationName"
+                android:id="@+id/locationName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/ViewHolderIcon"
-                android:layout_toLeftOf="@+id/SettingsButton"
+                android:layout_toRightOf="@+id/viewHolderIcon"
+                android:layout_toLeftOf="@+id/settingsButton"
                 android:text="@{mainPlace.name}"
                 android:textSize="@dimen/view_holder_location_name_size" />
 
             <ImageButton
-                android:id="@+id/SettingsButton"
+                android:id="@+id/settingsButton"
                 android:layout_width="@dimen/location_settings_button_size"
                 android:layout_height="@dimen/location_settings_button_size"
                 android:src="@mipmap/report_delete_menu"
@@ -45,22 +45,22 @@
                 android:background="@null"/>
 
             <TextView
-                android:id="@+id/LocationDescriptionShort"
+                android:id="@+id/locationDescriptionShort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/LocationName"
-                android:layout_toRightOf="@+id/ViewHolderIcon"
+                android:layout_below="@+id/locationName"
+                android:layout_toRightOf="@+id/viewHolderIcon"
                 android:text="Centrum handlowe"
                 android:textSize="@dimen/view_holder_description_shosr_size"
                 android:textStyle="italic" />
 
             <RatingBar
-                android:id="@+id/LocationRating"
+                android:id="@+id/locationRating"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/LocationDescriptionShort"
-                android:layout_toRightOf="@+id/ViewHolderIcon"
+                android:layout_below="@+id/locationDescriptionShort"
+                android:layout_toRightOf="@+id/viewHolderIcon"
                 android:clickable="false"
                 android:isIndicator="true"
                 android:numStars="5"
@@ -72,21 +72,21 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/LocationDescriptionLong"
+                android:id="@+id/locationDescriptionLong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/LocationRating"
-                android:layout_toRightOf="@+id/ViewHolderIcon"
+                android:layout_below="@+id/locationRating"
+                android:layout_toRightOf="@+id/viewHolderIcon"
                 android:maxLength="280"
                 android:text="@{mainPlace.description}" />
 
             <TextView
-                android:id="@+id/LocationDistance"
+                android:id="@+id/locationDistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/LocationDescriptionLong"
+                android:layout_below="@+id/locationDescriptionLong"
                 android:layout_marginTop="@dimen/view_holder_location_distance_margin_top"
-                android:layout_toRightOf="@+id/ViewHolderIcon"
+                android:layout_toRightOf="@+id/viewHolderIcon"
                 android:text="Odległość: 2,0km"
                 android:textStyle="bold" />
         </RelativeLayout>

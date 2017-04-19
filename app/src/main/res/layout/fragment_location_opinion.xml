@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/Name"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fragment_location_opinion_name"
@@ -13,7 +13,7 @@
         android:textSize="@dimen/fragment_location_opinion_name_size"/>
 
     <RatingBar
-        android:id="@+id/LocationRating"
+        android:id="@+id/locationRating"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,10 +28,10 @@
         android:secondaryProgressTint="@color/md_yellow_800"
         android:stepSize="0.1"
         android:visibility="visible"
-        android:layout_toRightOf="@+id/Name" />
+        android:layout_toRightOf="@+id/name" />
 
     <ImageButton
-        android:id="@+id/SettingsButton"
+        android:id="@+id/settingsButton"
         android:layout_width="@dimen/LocationSettingsButtonSize"
         android:layout_height="@dimen/LocationSettingsButtonSize"
         android:src="@mipmap/report_delete_menu"
@@ -40,10 +40,10 @@
         android:background="@null"/>
 
     <TextView
-        android:id="@+id/OpinionContent"
+        android:id="@+id/opinionContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Name"
+        android:layout_below="@+id/name"
         android:text="@string/opinion_content"
         android:layout_margin="@dimen/fragment_location_opinion_margin"/>
 
