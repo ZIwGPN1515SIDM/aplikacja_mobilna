@@ -6,13 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.magda.systeminformacyjny.activities.MainPlacesListActivity;
+import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
 import com.example.magda.systeminformacyjny.databinding.CategoryViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.Category;
 import java.util.ArrayList;
 
-import static com.example.magda.systeminformacyjny.activities.MainPlacesListActivity.CATEGORY_ID;
-import static com.example.magda.systeminformacyjny.activities.MainPlacesListActivity.TITLE;
+import static com.example.magda.systeminformacyjny.activities.MainPlacesActivity.CATEGORY_ID;
+import static com.example.magda.systeminformacyjny.activities.MainPlacesActivity.TITLE;
 import static com.example.magda.systeminformacyjny.models.Category.COLOR_LIGHT_PRIMARY_TYPE;
 import static com.example.magda.systeminformacyjny.models.Category.COLOR_PRIMARY_TYPE;
 import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
@@ -68,7 +68,7 @@ public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAd
         Category category = getDataSet().get(position);
         basicView.bind(category, position % 2 == 0 ? COLOR_PRIMARY_TYPE : COLOR_LIGHT_PRIMARY_TYPE);
         basicView.itemView.setOnClickListener(v->{
-            Intent intent = new Intent(context, MainPlacesListActivity.class);
+            Intent intent = new Intent(context, MainPlacesActivity.class);
             intent.putExtra(TITLE, category.getName());
             intent.putExtra(CATEGORY_ID, category.getId());
             context.startActivity(intent); //TODO potem zmiana na startActivityForResult

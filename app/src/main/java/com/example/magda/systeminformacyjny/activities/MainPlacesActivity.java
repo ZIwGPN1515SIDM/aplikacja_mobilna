@@ -33,7 +33,7 @@ import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VI
  * Created by Wojciech on 13.04.2017.
  */
 
-public class MainPlacesListActivity extends BaseActivity {
+public class MainPlacesActivity extends BaseActivity {
 
     private ActivityMainPlacesListViewModel viewModel;
     private RecyclerView recyclerView;

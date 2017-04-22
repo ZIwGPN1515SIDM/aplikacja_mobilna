@@ -56,7 +56,7 @@
         <activity android:name=".activities.CategoriesActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".activities.MainPlacesListActivity"
+        <activity android:name=".activities.MainPlacesActivity"
             android:screenOrientation="portrait"/>
         <service
             android:name="com.kontakt.sdk.android.ble.service.ProximityService"
