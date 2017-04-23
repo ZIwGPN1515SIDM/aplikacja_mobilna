@@ -3,9 +3,16 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View"/>
+
         <variable
             name="place"
             type="com.example.magda.systeminformacyjny.models.IPlaceItem"/>
+
+        <variable
+            name="settingsVisible"
+            type="Boolean"/>
     </data>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,6 +52,7 @@
                 android:layout_height="@dimen/location_settings_button_size"
                 android:src="@mipmap/report_delete_menu"
                 android:layout_alignParentRight="true"
+                android:visibility="@{settingsVisible?View.VISIBLE: View.GONE}"
                 android:background="@null"/>
 
             <TextView

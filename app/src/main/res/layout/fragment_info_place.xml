@@ -3,50 +3,51 @@
 <layout>
 
     <data>
+
         <variable
-            name="mainLocation"
-            type="com.example.magda.systeminformacyjny.models.MainPlace"/>
+            name="place"
+            type="com.example.magda.systeminformacyjny.models.IPlaceItem" />
 
     </data>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/fragment_info_place_padding_16dp"
-        android:paddingRight="@dimen/fragment_info_place_padding_16dp"
-        android:paddingTop="@dimen/fragment_info_place_padding_8dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/placeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_info_place_margin_between_textViews"
-            android:text="@{mainLocation.name}"
-            android:textSize="@dimen/fragment_info_place_title_text_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/categoryName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_info_place_margin_between_textViews"
-            android:text="@{mainLocation.categoryName}"
-            android:textSize="@dimen/fragment_info_place_category_text_size"
-            android:textStyle="bold" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{mainLocation.description}"
-            android:textSize="@dimen/fragmnet_info_place_description_text_size"/>
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/fragment_info_place_padding_16dp"
+            android:paddingRight="@dimen/fragment_info_place_padding_16dp"
+            android:paddingTop="@dimen/fragment_info_place_padding_8dp">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/placeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_info_place_margin_between_textViews"
+                android:text="@{place.name}"
+                android:textSize="@dimen/fragment_info_place_title_text_size"
+                android:textStyle="bold" />
 
-</ScrollView>
+            <TextView
+                android:id="@+id/categoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_info_place_margin_between_textViews"
+                android:text="@{place.categoryName}"
+                android:textSize="@dimen/fragment_info_place_category_text_size"
+                android:textStyle="bold" />
 
-    </layout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{place.description}"
+                android:textSize="@dimen/fragmnet_info_place_description_text_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

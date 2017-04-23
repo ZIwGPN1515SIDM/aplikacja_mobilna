@@ -3,45 +3,44 @@ package com.example.magda.systeminformacyjny.activities;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.ActivityLocationBinding;
-import com.example.magda.systeminformacyjny.models.MainPlace;
-import com.example.magda.systeminformacyjny.utils.ViewPagerAdapter;
-import com.example.magda.systeminformacyjny.view_models.ActivityLocationViewModel;
+import com.example.magda.systeminformacyjny.models.Place;
+import com.example.magda.systeminformacyjny.utils.SubPlaceViewPager;
 
 /**
- * Created by JB on 2017-04-09.
+ * Created by piotrek on 23.04.17.
  */
 
-public class LocationActivity extends AppCompatActivity{
+public class SubLocationActivity extends AppCompatActivity{
 
-    private static final int NUM_PAGES = 3;
     private ActivityLocationBinding activityLocationBinding;
-    private MainPlace mainPlace;
     private Toolbar toolbar;
+    private static final int NUM_PAGES = 3;
+    private Place place;
 
-    public static final String MAIN_PLACE_TAG = "mainPlace";
+    public static final String PLACE_TAG = "place";
 
     @Override
-    protected void onCreate(Bundle savedInstance){
-        super.onCreate(savedInstance);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         activityLocationBinding = DataBindingUtil.setContentView(this, R.layout.activity_location);
-        mainPlace = (MainPlace) getIntent().getExtras().getSerializable(MAIN_PLACE_TAG);
-        activityLocationBinding.setViewModel(new ActivityLocationViewModel());
-        activityLocationBinding.setPlace(mainPlace);
-        activityLocationBinding.viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES,
-                mainPlace.getNamespace(), mainPlace));
-        activityLocationBinding.setShowButtons(true);
-        activityLocationBinding.tabLayout.setupWithViewPager(activityLocationBinding.viewPager);
+        place = (Place) getIntent().getExtras().getSerializable(PLACE_TAG);
         toolbar = activityLocationBinding.toolbarLayout.toolbar;
-        toolbar.setTitle(mainPlace.getName());
+        toolbar.setTitle(place.getName());
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        activityLocationBinding.viewPager.setAdapter(new SubPlaceViewPager(getSupportFragmentManager(), NUM_PAGES,
+                place));
+        activityLocationBinding.tabLayout.setupWithViewPager(activityLocationBinding.viewPager);
+        activityLocationBinding.setPlace(place);
+        activityLocationBinding.setShowButtons(false);
     }
 
     @Override

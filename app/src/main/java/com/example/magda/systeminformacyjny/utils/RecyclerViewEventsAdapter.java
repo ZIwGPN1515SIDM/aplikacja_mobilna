@@ -70,6 +70,7 @@ public class RecyclerViewEventsAdapter extends AbstractRecyclerViewEndlessAdapte
 
         public void bind(Event event) {
             binding.setEvent(event);
+            binding.executePendingBindings();
         }
     }
 }

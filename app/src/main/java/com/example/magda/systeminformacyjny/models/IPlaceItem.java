@@ -1,10 +1,12 @@
 package com.example.magda.systeminformacyjny.models;
 
+import java.io.Serializable;
+
 /**
  * Created by piotrek on 23.04.17.
  */
 
-public interface IPlaceItem {
+public interface IPlaceItem extends Serializable{
 
     String getDistance();
     String getDescription();
