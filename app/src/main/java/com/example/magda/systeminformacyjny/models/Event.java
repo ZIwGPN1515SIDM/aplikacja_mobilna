@@ -25,11 +25,16 @@ public class Event {
     @Expose
     private String eventEnd;
 
-    public Event(Long id, String name, String eventContent, String eventEnd) {
+    @SerializedName("EVENT_NAME")
+    @Expose
+    private String eventName;
+
+    public Event(Long id, String name, String eventContent, String eventEnd, String eventName) {
         this.id = id;
         this.name = name;
         this.eventContent = eventContent;
         this.eventEnd = eventEnd;
+        this.eventName = eventName;
     }
 
     public Event(Long id) {
@@ -87,4 +92,11 @@ public class Event {
     }
 
 
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
 }

@@ -8,14 +8,17 @@ import android.view.ViewGroup;
 
 import com.example.magda.systeminformacyjny.activities.LocationActivity;
 import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
+import com.example.magda.systeminformacyjny.activities.SubLocationActivity;
 import com.example.magda.systeminformacyjny.databinding.LocationViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.IPlaceItem;
 import com.example.magda.systeminformacyjny.models.MainPlace;
+import com.example.magda.systeminformacyjny.models.Place;
 
 import java.util.ArrayList;
 
 import static com.example.magda.systeminformacyjny.activities.LocationActivity.MAIN_PLACE_TAG;
 import static com.example.magda.systeminformacyjny.activities.MainPlacesActivity.LOCATION_ACTIVITY_CODE;
+import static com.example.magda.systeminformacyjny.activities.SubLocationActivity.PLACE_TAG;
 import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
@@ -75,7 +78,9 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
                 intent.putExtra(MAIN_PLACE_TAG, (MainPlace)place);
                 viewCallback.startActivityForResult(intent, LOCATION_ACTIVITY_CODE);
             }else { //place
-
+                intent = new Intent(viewCallback, SubLocationActivity.class);
+                intent.putExtra(PLACE_TAG, (Place)place);
+                viewCallback.startActivity(intent);
                 //TODO dorobic activity dla tego widoku i done :) albo moze sie ujednolici :)
             }
         });

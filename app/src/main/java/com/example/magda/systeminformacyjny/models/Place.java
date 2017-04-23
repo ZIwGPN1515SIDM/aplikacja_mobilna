@@ -10,7 +10,7 @@ import java.util.List;
  * Created by piotrek on 19.04.17.
  */
 
-public class Place implements Serializable, IPlaceItem {
+public class Place implements IPlaceItem {
 
     @SerializedName("ID")
     @Expose
@@ -56,7 +56,7 @@ public class Place implements Serializable, IPlaceItem {
     @Expose
     private Long namespaceId;
 
-    @SerializedName("PLACES_PHOTO")
+    @SerializedName("PLACES_PHOTOS")
     @Expose
     private List<Photo> photos;
 

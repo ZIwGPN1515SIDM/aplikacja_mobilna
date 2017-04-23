@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by piotrek on 10.04.17.
  */
 
-public class MainPlace implements Serializable, IPlaceItem {
+public class MainPlace implements IPlaceItem {
     @SerializedName("ID")
     @Expose
     private Long id;

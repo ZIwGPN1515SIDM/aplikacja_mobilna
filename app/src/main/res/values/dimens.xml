@@ -53,7 +53,7 @@
 
 
     <dimen name="fragment_rating_place_padding">16dp</dimen>
-    <dimen name="fragment_rating_place_small_margin">8dp</dimen>
+    <dimen name="fragment_rating_place_small_margin">4dp</dimen>
     <dimen name="fragment_rating_place_rate_text_size">24sp</dimen>
     <dimen name="fragment_rating_place_opinions_counter_text_size">12sp</dimen>
     <dimen name="fragment_rating_place_add_opinion_text_size">10sp</dimen>

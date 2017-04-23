@@ -73,6 +73,9 @@
         <activity
             android:name=".activities.LocationActivity"/>
 
+        <activity android:name=".activities.SubLocationActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

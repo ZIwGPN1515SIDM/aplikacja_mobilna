@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentInfoPlaceBinding;
+import com.example.magda.systeminformacyjny.models.IPlaceItem;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 
 /**
@@ -18,13 +19,13 @@ import com.example.magda.systeminformacyjny.models.MainPlace;
 
 public class InfoPlaceFragment extends Fragment {
 
-    private MainPlace mainPlace;
-    private static final String MAIN_PLACE_TAG = "mainPlace";
+    private IPlaceItem place;
+    private static final String MAIN_PLACE_TAG = "place";
 
-    public static InfoPlaceFragment getInstance(MainPlace mainPlace) {
+    public static InfoPlaceFragment getInstance(IPlaceItem place) {
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(MAIN_PLACE_TAG, mainPlace);
+        bundle.putSerializable(MAIN_PLACE_TAG, place);
         InfoPlaceFragment infoPlaceFragment = new InfoPlaceFragment();
         infoPlaceFragment.setArguments(bundle);
         return infoPlaceFragment;
@@ -33,14 +34,13 @@ public class InfoPlaceFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainPlace = (MainPlace) getArguments().getSerializable(MAIN_PLACE_TAG);
+        place = (IPlaceItem) getArguments().getSerializable(MAIN_PLACE_TAG);
     }
 
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentInfoPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_info_place, null, false);
-        binding.setPlace(mainPlace);
+        binding.setPlace(place);
         return binding.getRoot();
     }
-
 }
