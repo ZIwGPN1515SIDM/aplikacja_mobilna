@@ -6,12 +6,20 @@
         <variable
             name="mainLocation"
             type="com.example.magda.systeminformacyjny.models.MainPlace"/>
+
+        <variable
+            name="viewModel"
+            type="com.example.magda.systeminformacyjny.view_models.ActivityLocationViewModel"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
+        <include layout="@layout/toolbar_layout"
+            android:id="@+id/toolbarLayout"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -36,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:onClick="@{v->viewModel.openPlacesList(v, mainLocation.id)}"
                     android:src="@mipmap/sublocations_button"
                     android:layout_marginBottom="@dimen/activity_location_margin_between_buttons"/>
 

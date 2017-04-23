@@ -1,18 +1,15 @@
 package com.example.magda.systeminformacyjny.view_models;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.magda.systeminformacyjny.R;
-import com.example.magda.systeminformacyjny.activities.MainPlacesListActivity;
+import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.DataRequestManager;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
-import com.example.magda.systeminformacyjny.utils.Constants;
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,6 @@ import io.reactivex.disposables.Disposable;
 
 import static com.example.magda.systeminformacyjny.network.ErrorResponse.DOWNLOAD_ERROR;
 import static com.example.magda.systeminformacyjny.network.SuccessResponse.DOWNLOAD_SUCCESS;
-import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
 /**
@@ -34,7 +30,7 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
         AbstractRecyclerViewEndlessAdapter.IErrorViewModel{
 
     private ArrayList<MainPlace> mainPlaces;
-    private MainPlacesListActivity viewCallback;
+    private MainPlacesActivity viewCallback;
     private SuccessResponse successResponse;
     private ErrorResponse errorResponse;
     private CompositeDisposable compositeDisposable;
@@ -44,7 +40,7 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
 
     private static final String TYPE = "namespace";
 
-    public ActivityMainPlacesListViewModel(MainPlacesListActivity viewCallback) {
+    public ActivityMainPlacesListViewModel(MainPlacesActivity viewCallback) {
         this.viewCallback = viewCallback;
         this.compositeDisposable = new CompositeDisposable();
         this.dataRequestManagera = DataRequestManager.getInstance();
@@ -63,7 +59,7 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
 
     @Override
     public void onViewAttached(@NonNull Lifecycle.View viewCallback) {
-        this.viewCallback = (MainPlacesListActivity) viewCallback;
+        this.viewCallback = (MainPlacesActivity) viewCallback;
     }
 
     public void downloadMainPLaces() {

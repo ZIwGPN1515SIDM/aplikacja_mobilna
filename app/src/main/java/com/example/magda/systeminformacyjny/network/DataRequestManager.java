@@ -3,6 +3,7 @@ package com.example.magda.systeminformacyjny.network;
 import com.example.magda.systeminformacyjny.models.Category;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
+import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.items.ItemsApiService;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
@@ -61,6 +62,10 @@ public class DataRequestManager {
 
     public MaybeSource<ResponseBody> sendNewsletter(String apiKey, NewsletterRequest request) {
         return userApiService.sendNewsletter(apiKey, request);
+    }
+
+    public MaybeSource<List<Place>> downloadPlaces(String type, Long namespaceId, String apiKey) {
+        return itemsApiService.downloadPlaces(type, namespaceId, apiKey);
     }
 
 }

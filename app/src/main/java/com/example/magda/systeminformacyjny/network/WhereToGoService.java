@@ -3,6 +3,7 @@ package com.example.magda.systeminformacyjny.network;
 import com.example.magda.systeminformacyjny.network.items.EventResponse;
 import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
+import com.example.magda.systeminformacyjny.network.items.PlacesResponse;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
 import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
@@ -44,6 +45,8 @@ public interface WhereToGoService {
                                              @Query("namespace") String namespace,
                                              @Query("api_key") String apiKey);
 
-   // @GET("place/namespace")
-  //  Observable<>
+    @GET("place/namespace")
+    Observable<PlacesResponse> downloadPlaces(@Query("type") String type,
+                                              @Query("namespaceid") Long namespaceId,
+                                              @Query("api_key") String apiKey);
 }

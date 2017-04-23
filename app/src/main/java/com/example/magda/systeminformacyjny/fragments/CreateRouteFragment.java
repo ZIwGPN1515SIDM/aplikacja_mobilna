@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentCreateRouteBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
-import com.example.magda.systeminformacyjny.utils.RecyclerViewMainPlacesAdapter;
+import com.example.magda.systeminformacyjny.utils.RecyclerViewPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.FragmentCreateRouteViewModel;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class CreateRouteFragment extends Fragment{
     private static final String MAIN_PLACES_TAG = "mainPlaces";
     private FragmentCreateRouteViewModel viewModel;
     private RecyclerView recyclerView;
-    private RecyclerViewMainPlacesAdapter recyclerViewAdapter;
+    private RecyclerViewPlacesAdapter recyclerViewAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class CreateRouteFragment extends Fragment{
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewMainPlacesAdapter(recyclerView, mainPlaces,
+        recyclerViewAdapter = new RecyclerViewPlacesAdapter(recyclerView, mainPlaces,
                 true, viewModel, viewModel, null); //TODO interfejs
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);

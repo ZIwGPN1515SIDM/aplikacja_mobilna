@@ -3,6 +3,7 @@ package com.example.magda.systeminformacyjny.network.items;
 import com.example.magda.systeminformacyjny.models.Category;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
+import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
 
 import java.util.ArrayList;
@@ -59,6 +60,14 @@ public class ItemsApiService {
                     events.addAll(response.getPlaceEvents());
                     return events;
                 })
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<List<Place>> downloadPlaces(String type, Long namespaceId, String apiKey) {
+        return whereToGoService.downloadPlaces(type, namespaceId, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(response -> response.getPlaces())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

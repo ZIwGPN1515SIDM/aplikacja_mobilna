@@ -3,13 +3,14 @@ package com.example.magda.systeminformacyjny.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by piotrek on 19.04.17.
  */
 
-public class Place {
+public class Place implements Serializable, IPlaceItem {
 
     @SerializedName("ID")
     @Expose
@@ -76,6 +77,10 @@ public class Place {
         this.photos = photos;
     }
 
+    public Place(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -84,8 +89,18 @@ public class Place {
         this.id = id;
     }
 
+    @Override
+    public String getDistance() { //TODO
+        return null;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String getCategoryName() { //TODO
+        return null;
     }
 
     public void setDescription(String description) {
@@ -150,6 +165,17 @@ public class Place {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public float getRating() {
+        return commentCount != 0 ? sumScore / commentCount : 0;
+    }
+
+    @Override
+    public String getPhoto() {
+        return photos != null? photos.get(0).getURL(): "https://vignette3.wikia.nocookie.net/lego/images/a/ac/No-Image-Basic" +
+                ".png/revision/latest?cb=20130819001030"; //TODO NA SZTYWNO NA RAZIE
     }
 
     public void setName(String name) {
