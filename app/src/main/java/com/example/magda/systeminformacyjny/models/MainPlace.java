@@ -63,10 +63,20 @@ public class MainPlace implements Serializable, IPlaceItem {
     @Expose
     private ArrayList<Photo> photos;
 
+    @SerializedName("EVENT_NAME")
+    @Expose
+    private String eventName;
+
+    @SerializedName("EVENT_END")
+    @Expose
+    private String eventEnd;
+
     private String categoryName;
 
     public MainPlace(Long id, String description, Object advert, String eventContent, String addedOn,
-                     Float sumScore, Long commentsCount, String googlePlaceId, String namespace, Double latitude, Double longitude, String name, ArrayList<Photo> photos) {
+                     Float sumScore, Long commentsCount, String googlePlaceId, String namespace,
+                     Double latitude, Double longitude, String name, ArrayList<Photo> photos,
+                     String eventName, String eventEnd, String categoryName) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -80,6 +90,9 @@ public class MainPlace implements Serializable, IPlaceItem {
         this.longitude = longitude;
         this.name = name;
         this.photos = photos;
+        this.eventName = eventName;
+        this.eventEnd = eventEnd;
+        this.categoryName = categoryName;
     }
 
     public Double getLatitude() {
@@ -238,5 +251,21 @@ public class MainPlace implements Serializable, IPlaceItem {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventEnd() {
+        return eventEnd;
+    }
+
+    public void setEventEnd(String eventEnd) {
+        this.eventEnd = eventEnd;
     }
 }

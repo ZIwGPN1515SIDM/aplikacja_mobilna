@@ -4,14 +4,12 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.view.CollapsibleActionView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
-
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.base.BaseActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
@@ -19,7 +17,6 @@ import com.example.magda.systeminformacyjny.databinding.ItemsLayoutBinding;
 import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
-import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.RecyclerViewPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.ActivityPlacesViewModel;
 

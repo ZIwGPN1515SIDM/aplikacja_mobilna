@@ -39,7 +39,7 @@ public class InfoPlaceFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentInfoPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_info_place, null, false);
-        binding.setMainLocation(mainPlace);
+        binding.setPlace(mainPlace);
         return binding.getRoot();
     }
 

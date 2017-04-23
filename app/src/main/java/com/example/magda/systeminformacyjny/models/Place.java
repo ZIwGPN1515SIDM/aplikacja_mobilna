@@ -60,9 +60,17 @@ public class Place implements Serializable, IPlaceItem {
     @Expose
     private List<Photo> photos;
 
+    @SerializedName("EVENT_NAME")
+    @Expose
+    private String eventName;
+
+    @SerializedName("EVENT_END")
+    @Expose
+    private String eventEnd;
 
     public Place(Long id, String description, String advert, String eventContent, String addedOn,
-                 Float sumScore, Long commentCount, String googleId, String instance, String name, Long namespaceId, List<Photo> photos) {
+                 Float sumScore, Long commentCount, String googleId, String instance, String name,
+                 Long namespaceId, List<Photo> photos, String eventName, String eventEnd) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -75,6 +83,8 @@ public class Place implements Serializable, IPlaceItem {
         this.name = name;
         this.namespaceId = namespaceId;
         this.photos = photos;
+        this.eventName = eventName;
+        this.eventEnd = eventEnd;
     }
 
     public Place(Long id) {
@@ -215,4 +225,19 @@ public class Place implements Serializable, IPlaceItem {
         return result;
     }
 
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventEnd() {
+        return eventEnd;
+    }
+
+    public void setEventEnd(String eventEnd) {
+        this.eventEnd = eventEnd;
+    }
 }

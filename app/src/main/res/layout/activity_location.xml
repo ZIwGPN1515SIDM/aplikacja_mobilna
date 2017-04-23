@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginRight="@dimen/activity_location_buttons_margin_right"
+                android:layout_marginBottom="@dimen/activity_location_buttons_margin_bottom"
                 android:layout_gravity="bottom|right">
 
                 <ImageButton

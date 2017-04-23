@@ -67,7 +67,7 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
     public void onBindBasicItemView(RecyclerView.ViewHolder genericHolder, int position) {
         IPlaceItem place = getDataSet().get(position);
         BasicViewHolder basicViewHolder = (BasicViewHolder) genericHolder;
-        basicViewHolder.bind(place);
+        basicViewHolder.bind(place, place instanceof MainPlace);
         basicViewHolder.itemView.setOnClickListener(v -> {
             Intent intent;
             if(place instanceof MainPlace) { //mainplace
@@ -75,6 +75,7 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
                 intent.putExtra(MAIN_PLACE_TAG, (MainPlace)place);
                 viewCallback.startActivityForResult(intent, LOCATION_ACTIVITY_CODE);
             }else { //place
+
                 //TODO dorobic activity dla tego widoku i done :) albo moze sie ujednolici :)
             }
         });
@@ -86,8 +87,10 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(IPlaceItem mainPlace) {
+        public void bind(IPlaceItem mainPlace, boolean settingsVisible) {
             binding.setPlace(mainPlace);
+            binding.setSettingsVisible(settingsVisible);
+            binding.executePendingBindings();
         }
     }
 }

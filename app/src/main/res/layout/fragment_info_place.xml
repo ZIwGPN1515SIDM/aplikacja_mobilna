@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="mainLocation"
-            type="com.example.magda.systeminformacyjny.models.MainPlace"/>
+            name="place"
+            type="com.example.magda.systeminformacyjny.models.IPlaceItem"/>
 
     </data>
 
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fragment_info_place_margin_between_textViews"
-            android:text="@{mainLocation.name}"
+            android:text="@{place.name}"
             android:textSize="@dimen/fragment_info_place_title_text_size"
             android:textStyle="bold" />
 
@@ -35,14 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fragment_info_place_margin_between_textViews"
-            android:text="@{mainLocation.categoryName}"
+            android:text="@{place.categoryName}"
             android:textSize="@dimen/fragment_info_place_category_text_size"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{mainLocation.description}"
+            android:text="@{place.description}"
             android:textSize="@dimen/fragmnet_info_place_description_text_size"/>
 
     </LinearLayout>

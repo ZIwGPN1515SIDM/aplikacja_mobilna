@@ -86,6 +86,7 @@ public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAd
         public void bind(Category category, int colorType) {
             binding.setCategory(category);
             binding.setColorType(colorType);
+            binding.executePendingBindings();
         }
     }
 
