@@ -21,6 +21,7 @@
         android:layout_marginLeft="@dimen/fragment_location_opinion_RatingBar_offset"
         android:clickable="false"
         android:isIndicator="true"
+        android:focusable="false"
         android:numStars="5"
         android:progressBackgroundTint="@color/md_yellow_800"
         android:progressTint="@color/md_yellow_800"

@@ -10,8 +10,7 @@ import java.util.ArrayList;
  * Created by piotrek on 10.04.17.
  */
 
-public class MainPlace implements Serializable{
-
+public class MainPlace implements Serializable, IPlaceItem {
     @SerializedName("ID")
     @Expose
     private Long id;
@@ -120,6 +119,11 @@ public class MainPlace implements Serializable{
         this.id = id;
     }
 
+    @Override
+    public String getDistance() {
+        return null;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -204,6 +208,16 @@ public class MainPlace implements Serializable{
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public float getRating() {
+        return commentsCount != 0 ? sumScore / commentsCount : 0;
+    }
+
+    @Override
+    public String getPhoto() {
+        return photos.get(0).getURL();
     }
 
     public void setName(String name) {

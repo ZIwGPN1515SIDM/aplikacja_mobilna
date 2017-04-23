@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:onClick="@{viewModel::openPlacesList}"
+                    android:onClick="@{v->viewModel.openPlacesList(v, mainLocation.id)}"
                     android:src="@mipmap/sublocations_button"
                     android:layout_marginBottom="@dimen/activity_location_margin_between_buttons"/>
 

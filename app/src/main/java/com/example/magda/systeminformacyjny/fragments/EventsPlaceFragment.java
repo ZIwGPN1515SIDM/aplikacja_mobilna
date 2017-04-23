@@ -3,7 +3,6 @@ package com.example.magda.systeminformacyjny.fragments;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,9 +18,7 @@ import com.example.magda.systeminformacyjny.databinding.FragmentEventsPlaceBindi
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
-import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.RecyclerViewEventsAdapter;
-import com.example.magda.systeminformacyjny.utils.RecyclerViewMainPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.FragmentEventsPlaceViewModel;
 
 import java.util.ArrayList;

@@ -237,6 +237,7 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onError(Throwable e) {
                 e.printStackTrace();
                 LoginManager.getInstance().logOut();
+                progressDialog.dismiss();
                 Toast.makeText(LoginActivity.this, ERROR_INFO, Toast.LENGTH_SHORT).show();
             }
 

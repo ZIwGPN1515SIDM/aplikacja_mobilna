@@ -4,14 +4,17 @@
 
     <data>
         <variable
-            name="mainPlace"
-            type="com.example.magda.systeminformacyjny.models.MainPlace"/>
+            name="place"
+            type="com.example.magda.systeminformacyjny.models.IPlaceItem"/>
     </data>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/view_holder_layout_margin"
+        android:layout_marginLeft="@dimen/view_holder_layout_margin"
+        android:layout_marginRight="@dimen/view_holder_layout_margin"
         android:elevation="12dp">
 
         <RelativeLayout
@@ -25,7 +28,7 @@
                 android:layout_height="@dimen/view_holder_logo_size"
                 android:layout_marginRight="@dimen/view_holder_logo_margin_right"
                 android:scaleType="fitXY"
-                app:image="@{mainPlace.photos.get(0).URL}" />
+                app:image="@{place.photo}" />
 
             <TextView
                 android:id="@+id/locationName"
@@ -33,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/viewHolderIcon"
                 android:layout_toLeftOf="@+id/settingsButton"
-                android:text="@{mainPlace.name}"
+                android:text="@{place.name}"
                 android:textSize="@dimen/view_holder_location_name_size" />
 
             <ImageButton
@@ -50,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/locationName"
                 android:layout_toRightOf="@+id/viewHolderIcon"
-                android:text="@{mainPlace.categoryName}"
+                android:text="@{place.categoryName}"
                 android:textSize="@dimen/view_holder_description_shosr_size"
                 android:textStyle="italic" />
 
@@ -63,13 +66,13 @@
                 android:layout_toRightOf="@+id/viewHolderIcon"
                 android:clickable="false"
                 android:isIndicator="true"
+                android:focusable="false"
                 android:numStars="5"
                 android:progressBackgroundTint="@color/md_yellow_800"
                 android:progressTint="@color/md_yellow_800"
-                android:rating="@{mainPlace.sumScore}"
+                android:rating="@{place.rating}"
                 android:secondaryProgressTint="@color/md_yellow_800"
-                android:stepSize="0.1"
-                android:visibility="visible" />
+                android:stepSize="0.1"/>
 
             <TextView
                 android:id="@+id/locationDescriptionLong"
@@ -78,7 +81,7 @@
                 android:layout_below="@+id/locationRating"
                 android:layout_toRightOf="@+id/viewHolderIcon"
                 android:maxLength="280"
-                android:text="@{mainPlace.description}" />
+                android:text="@{place.description}" />
 
             <TextView
                 android:id="@+id/locationDistance"

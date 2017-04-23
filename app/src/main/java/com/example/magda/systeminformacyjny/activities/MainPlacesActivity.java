@@ -15,10 +15,11 @@ import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.base.BaseActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.databinding.ItemsLayoutBinding;
+import com.example.magda.systeminformacyjny.models.IPlaceItem;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
-import com.example.magda.systeminformacyjny.utils.RecyclerViewMainPlacesAdapter;
+import com.example.magda.systeminformacyjny.utils.RecyclerViewPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.ActivityMainPlacesListViewModel;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class MainPlacesActivity extends BaseActivity {
     private ActivityMainPlacesListViewModel viewModel;
     private RecyclerView recyclerView;
     private ArrayList<MainPlace> mainPlaces;
-    private RecyclerViewMainPlacesAdapter recyclerViewAdapter;
+    private RecyclerViewPlacesAdapter recyclerViewAdapter;
     private String title;
     private Long categoryId;
 
@@ -86,7 +87,7 @@ public class MainPlacesActivity extends BaseActivity {
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewMainPlacesAdapter(recyclerView, mainPlaces,
+        recyclerViewAdapter = new RecyclerViewPlacesAdapter(recyclerView, mainPlaces,
                 false, null, viewModel, this);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
