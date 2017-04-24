@@ -220,6 +220,8 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
     private void sendLogin(String email, String id, String name) {
         String apiKey = getString(R.string.server_api_key);
         LoginRequest request = new LoginRequest(email, id, name);
+        Gson gson = new Gson();
+        Log.d("JESTEM", gson.toJson(request));
         dataRequestManager.login(apiKey, request).subscribe(new MaybeObserver<LoginResponse.User>() {
             @Override
             public void onSubscribe(Disposable d) {

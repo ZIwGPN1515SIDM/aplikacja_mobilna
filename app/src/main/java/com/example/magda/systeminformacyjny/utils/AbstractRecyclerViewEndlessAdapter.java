@@ -46,6 +46,7 @@ public abstract class AbstractRecyclerViewEndlessAdapter<T> extends RecyclerView
     }
 
 
+
     protected abstract IErrorViewModel getViewModel();
 
     public void setOnScrollListener() {

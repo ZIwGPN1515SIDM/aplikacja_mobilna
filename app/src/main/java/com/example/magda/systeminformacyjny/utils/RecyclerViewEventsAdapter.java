@@ -1,6 +1,7 @@
 package com.example.magda.systeminformacyjny.utils;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class RecyclerViewEventsAdapter extends AbstractRecyclerViewEndlessAdapte
     @Override
     public void onBindBasicItemView(RecyclerView.ViewHolder genericHolder, int position) {
         BasicView basicView = (BasicView) genericHolder;
+        Log.d("JESTEM", "pozycja " + position + " wielkosc " + getDataSet().size());
         basicView.bind(getDataSet().get(position));
     }
 
