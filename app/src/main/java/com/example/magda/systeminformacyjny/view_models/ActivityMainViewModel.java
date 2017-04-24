@@ -45,7 +45,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
             viewCallback.setToolbarTitle(DrawerCreator.CREATE_ROUTE_TITLE);
             viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
-
+            viewCallback.setToolbarTitle(DrawerCreator.PLACES_BASE_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
             viewCallback.setToolbarTitle(DrawerCreator.NEAR_PLACES_TITLE);
             viewCallback.replaceFragment(createFragment(drawerId));
