@@ -12,7 +12,7 @@
     <string name="facebook_url">https://www.facebook.com/</string>
     <string name="download_info">Pobieranie treści...</string>
     <string name="empty_info">Jeszcze nic tu nie ma...</string>
-
+    <string name="add_location_menu">Dodaj do trasy</string>
 
     <!-- settings -->
     <string name="fragment_settings_colors_prompt">Kolor trasy</string>

@@ -54,7 +54,7 @@
                 android:src="@mipmap/report_delete_menu"
                 android:layout_alignParentRight="true"
                 android:visibility="@{settingsVisible?View.VISIBLE: View.GONE}"
-                android:background="@null"/>
+                android:background="@drawable/image_button_settings_selector"/>
 
             <TextView
                 android:id="@+id/locationDescriptionShort"
