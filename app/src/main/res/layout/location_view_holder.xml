@@ -34,6 +34,7 @@
                 android:layout_width="@dimen/view_holder_logo_size"
                 android:layout_height="@dimen/view_holder_logo_size"
                 android:layout_marginRight="@dimen/view_holder_logo_margin_right"
+                android:layout_centerVertical="true"
                 android:scaleType="fitXY"
                 app:image="@{place.photo}" />
 
@@ -88,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/locationRating"
                 android:layout_toRightOf="@+id/viewHolderIcon"
-                android:maxLength="280"
+                android:maxLength="140"
                 android:text="@{place.description}" />
 
             <TextView

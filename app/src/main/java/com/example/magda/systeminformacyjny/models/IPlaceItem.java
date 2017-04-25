@@ -15,4 +15,5 @@ public interface IPlaceItem extends Serializable{
     float getRating();
     String getPhoto();
     Long getId();
+    Long getCommentsCount();
 }

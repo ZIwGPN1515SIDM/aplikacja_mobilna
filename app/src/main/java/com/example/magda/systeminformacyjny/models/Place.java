@@ -3,7 +3,6 @@ package com.example.magda.systeminformacyjny.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -38,7 +37,7 @@ public class Place implements IPlaceItem {
 
     @SerializedName("COMMENTS_COUNT")
     @Expose
-    private Long commentCount;
+    private Long commentsCount;
 
     @SerializedName("GOOGLE_PLACE_ID")
     @Expose
@@ -69,7 +68,7 @@ public class Place implements IPlaceItem {
     private String eventEnd;
 
     public Place(Long id, String description, String advert, String eventContent, String addedOn,
-                 Float sumScore, Long commentCount, String googleId, String instance, String name,
+                 Float sumScore, Long commentsCount, String googleId, String instance, String name,
                  Long namespaceId, List<Photo> photos, String eventName, String eventEnd) {
         this.id = id;
         this.description = description;
@@ -77,7 +76,7 @@ public class Place implements IPlaceItem {
         this.eventContent = eventContent;
         this.addedOn = addedOn;
         this.sumScore = sumScore;
-        this.commentCount = commentCount;
+        this.commentsCount = commentsCount;
         this.googleId = googleId;
         this.instance = instance;
         this.name = name;
@@ -149,12 +148,12 @@ public class Place implements IPlaceItem {
         this.sumScore = sumScore;
     }
 
-    public Long getCommentCount() {
-        return commentCount;
+    public Long getCommentsCount() {
+        return commentsCount;
     }
 
-    public void setCommentCount(Long commentCount) {
-        this.commentCount = commentCount;
+    public void setCommentsCount(Long commentsCount) {
+        this.commentsCount = commentsCount;
     }
 
     public String getGoogleId() {
@@ -179,7 +178,7 @@ public class Place implements IPlaceItem {
 
     @Override
     public float getRating() {
-        return commentCount != 0 ? sumScore / commentCount : 0;
+        return commentsCount != 0 ? sumScore / commentsCount : 0;
     }
 
     @Override

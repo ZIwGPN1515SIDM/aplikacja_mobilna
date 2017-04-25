@@ -177,8 +177,8 @@ public class MainPlace implements IPlaceItem {
         this.sumScore = sumScore;
     }
 
-    public Long getCommentsCount() {
-        return commentsCount;
+    public Long getCommentsCount() { //TODO potem wywal to sprawdzenie null
+        return commentsCount != null ? commentsCount : 0L;
     }
 
     public void setCommentsCount(Long commentsCount) {
