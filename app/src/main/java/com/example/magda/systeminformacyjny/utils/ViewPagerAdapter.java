@@ -49,7 +49,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
                 fragment = InfoPlaceFragment.getInstance(mainPlace);
                 break;
             case  FRAGMENT_RATING_POSITION:
-                fragment = RatingPlaceFragment.getInstance();
+                fragment = RatingPlaceFragment.getInstance(mainPlace);
                 break;
             case FRAGMENT_EVENTS_POSITION:
                 fragment = EventsPlaceFragment.getInstance(namespace);

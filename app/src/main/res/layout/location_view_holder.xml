@@ -89,8 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/locationRating"
                 android:layout_toRightOf="@+id/viewHolderIcon"
-                android:maxLength="140"
-                android:text="@{place.description}" />
+                app:shortText="@{place.description}" />
 
             <TextView
                 android:id="@+id/locationDistance"
