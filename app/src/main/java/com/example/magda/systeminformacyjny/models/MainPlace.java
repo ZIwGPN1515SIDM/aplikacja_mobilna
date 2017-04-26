@@ -1,5 +1,7 @@
 package com.example.magda.systeminformacyjny.models;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -177,8 +179,8 @@ public class MainPlace implements IPlaceItem {
         this.sumScore = sumScore;
     }
 
-    public Long getCommentsCount() { //TODO potem wywal to sprawdzenie null
-        return commentsCount != null ? commentsCount : 0L;
+    public Long getCommentsCount() {
+        return commentsCount;
     }
 
     public void setCommentsCount(Long commentsCount) {

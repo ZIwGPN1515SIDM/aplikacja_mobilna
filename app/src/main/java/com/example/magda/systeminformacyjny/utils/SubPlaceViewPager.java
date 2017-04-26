@@ -53,7 +53,7 @@ public class SubPlaceViewPager extends FragmentPagerAdapter {
                 fragment = InfoPlaceFragment.getInstance(place);
                 break;
             case  FRAGMENT_RATING_POSITION:
-                fragment = RatingPlaceFragment.getInstance();
+                fragment = RatingPlaceFragment.getInstance(place);
                 break;
             case FRAGMENT_EVENTS_POSITION:
                 fragment = SubLocationEventFragment.getInstance(date, description, name);

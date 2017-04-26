@@ -2,10 +2,13 @@ package com.example.magda.systeminformacyjny.utils;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.activities.LocationActivity;
 import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
 import com.example.magda.systeminformacyjny.activities.SubLocationActivity;
@@ -71,15 +74,17 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
         IPlaceItem place = getDataSet().get(position);
         BasicViewHolder basicViewHolder = (BasicViewHolder) genericHolder;
         basicViewHolder.bind(place, place instanceof MainPlace);
+        basicViewHolder.setUpPopUpMenu();
         basicViewHolder.itemView.setOnClickListener(v -> {
             Intent intent;
             if(place instanceof MainPlace) { //mainplace
                 intent = new Intent(viewCallback, LocationActivity.class);
-                intent.putExtra(MAIN_PLACE_TAG, (MainPlace)place);
+                intent.putExtra(MAIN_PLACE_TAG, place);
+
                 viewCallback.startActivityForResult(intent, LOCATION_ACTIVITY_CODE);
             }else { //place
                 intent = new Intent(viewCallback, SubLocationActivity.class);
-                intent.putExtra(PLACE_TAG, (Place)place);
+                intent.putExtra(PLACE_TAG, place);
                 viewCallback.startActivity(intent);
                 //TODO dorobic activity dla tego widoku i done :) albo moze sie ujednolici :)
             }
@@ -88,6 +93,8 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
 
     public class BasicViewHolder extends RecyclerView.ViewHolder {
         private final LocationViewHolderBinding binding;
+        private PopupMenu popupMenu;
+
         public BasicViewHolder(LocationViewHolderBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
@@ -96,6 +103,13 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
             binding.setPlace(mainPlace);
             binding.setSettingsVisible(settingsVisible);
             binding.executePendingBindings();
+        }
+
+        public void setUpPopUpMenu() {
+            popupMenu = new PopupMenu(viewCallback, binding.settingsButton);
+            popupMenu.setGravity(Gravity.END);
+            popupMenu.inflate(R.menu.add_location_menu);
+            binding.settingsButton.setOnClickListener((v) -> popupMenu.show());
         }
     }
 }

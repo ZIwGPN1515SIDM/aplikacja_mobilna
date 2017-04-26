@@ -54,7 +54,7 @@
                 android:src="@mipmap/report_delete_menu"
                 android:layout_alignParentRight="true"
                 android:visibility="@{settingsVisible?View.VISIBLE: View.GONE}"
-                android:background="@null"/>
+                android:background="@drawable/image_button_settings_selector"/>
 
             <TextView
                 android:id="@+id/locationDescriptionShort"
@@ -89,8 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/locationRating"
                 android:layout_toRightOf="@+id/viewHolderIcon"
-                android:maxLength="140"
-                android:text="@{place.description}" />
+                app:shortText="@{place.description}" />
 
             <TextView
                 android:id="@+id/locationDistance"

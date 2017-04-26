@@ -28,6 +28,13 @@ public class BindingAdapters {
         }
     }
 
+    @BindingAdapter("app:shortText")
+    public static void setShortText(TextView textView, String text) {
+        int length = text.length();
+        String subString = length > 140? text.substring(0, 140): text;
+        textView.setText(subString + "...");
+    }
+
     @BindingAdapter("android:src")
     public static void setImageResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);

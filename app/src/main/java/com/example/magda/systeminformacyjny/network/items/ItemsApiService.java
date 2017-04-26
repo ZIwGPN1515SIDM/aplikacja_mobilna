@@ -1,5 +1,7 @@
 package com.example.magda.systeminformacyjny.network.items;
 
+import android.util.Log;
+
 import com.example.magda.systeminformacyjny.models.Category;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
@@ -40,9 +42,10 @@ public class ItemsApiService {
                                                                        String apiKey, final String categoryName) {
         return whereToGoService.downloadMainPlacesFromCategory(categoryId, type, apiKey)
                 .subscribeOn(Schedulers.io())
-                .map(respone -> {
-                    List<MainPlace> tmp = respone.getMainPlaces();
+                .map(response -> {
+                    List<MainPlace> tmp = response.getMainPlaces();
                     for (MainPlace m : tmp) {
+                        Log.d("JESTEM", "wielkosc " + m.getCommentsCount());
                         m.setCategoryName(categoryName);
                     }
                     return tmp;
