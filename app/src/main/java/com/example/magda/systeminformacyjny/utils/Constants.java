@@ -14,6 +14,8 @@ public class Constants {
     public static final int RED_COLOR = 0;
     public static final int GREEN_COLOR = 1;
     public static final int BLUE_COLOR = 2;
+    public static final double KILOMETERS2MILES = 0.621;
+    public static final double MILES2FEET = 5280;
 
 
     public static final long ERROR_INFO_VIEW_HOLDER = -1;
