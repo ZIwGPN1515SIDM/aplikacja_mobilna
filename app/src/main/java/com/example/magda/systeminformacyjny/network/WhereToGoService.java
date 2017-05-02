@@ -5,9 +5,7 @@ import com.example.magda.systeminformacyjny.network.items.EventResponse;
 import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.PlacesResponse;
-import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
-import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -55,4 +53,8 @@ public interface WhereToGoService {
     Observable<CommentResponse> downloadComments(@Query("type") String type,
                                                  @Query("id") Long id,
                                                  @Query("api_key") String apiKey);
+
+    @POST("comments/add")
+    Observable<ResponseBody> sendComment(@Query("api_key") String apiKey,
+                                         @Body DefaultResourceWrapper commentRequest);
 }

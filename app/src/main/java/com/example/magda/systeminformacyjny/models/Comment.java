@@ -37,7 +37,7 @@ public class Comment implements Serializable{
 
     @SerializedName("FB_USERS_ID")
     @Expose
-    private String fbUserId;
+    private Long fbUserId;
 
 
     public Comment(Long id){
@@ -45,7 +45,7 @@ public class Comment implements Serializable{
     }
 
     public Comment(Long id, String content, Float score, String type, Long namespaceId, Long placesId,
-                   String fbUserId) {
+                   Long fbUserId) {
         this.id = id;
         this.content = content;
         this.score = score;
@@ -103,11 +103,11 @@ public class Comment implements Serializable{
         this.placesId = placesId;
     }
 
-    public String getFbUserId() {
+    public Long getFbUserId() {
         return fbUserId;
     }
 
-    public void setFbUserId(String fbUserId) {
+    public void setFbUserId(Long fbUserId) {
         this.fbUserId = fbUserId;
     }
 
