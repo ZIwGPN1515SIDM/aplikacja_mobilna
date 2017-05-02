@@ -49,6 +49,7 @@ public class CategoriesActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ItemsLayoutBinding binding = DataBindingUtil.setContentView(this, R.layout.items_layout);
+        binding.setShowToolbar(true);
         if(savedInstanceState != null) {
             categories = (ArrayList<Category>) savedInstanceState.getSerializable(CATEGORIES_TAG);
         }else {

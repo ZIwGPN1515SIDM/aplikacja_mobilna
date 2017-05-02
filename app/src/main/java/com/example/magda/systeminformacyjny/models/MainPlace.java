@@ -1,11 +1,8 @@
 package com.example.magda.systeminformacyjny.models;
 
-import android.util.Log;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -203,24 +200,6 @@ public class MainPlace implements IPlaceItem {
         this.namespace = namespace;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!(obj instanceof MainPlace))
-            return false;
-        MainPlace other = (MainPlace) obj;
-        return (id == null || namespace == null) ? (other.id == null || other.namespace == null)
-                : (id.equals(other.id) || namespace.equals(other.namespace));
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 117;
-        result = 37 * result + id.hashCode() + namespace.hashCode();
-        return result;
-    }
-
     public String getName() {
         return name;
     }
@@ -269,5 +248,23 @@ public class MainPlace implements IPlaceItem {
 
     public void setEventEnd(String eventEnd) {
         this.eventEnd = eventEnd;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof MainPlace))
+            return false;
+        MainPlace other = (MainPlace) obj;
+        return (id == null || namespace == null) ? (other.id == null || other.namespace == null)
+                : (id.equals(other.id) || namespace.equals(other.namespace));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 117;
+        result = 37 * result + id.hashCode() + namespace.hashCode();
+        return result;
     }
 }

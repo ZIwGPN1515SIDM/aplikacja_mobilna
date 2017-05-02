@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:paddingTop="@dimen/fragment_rating_place_padding">
+    android:padding="@dimen/fragment_rating_place_padding">
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fragment_rating_place_add_opinion_text_size"
             android:textStyle="bold|italic"
+            android:background="@drawable/text_view_selector"
             android:text="@string/fragment_rating_place_add_opinion"/>
 
     </LinearLayout>
@@ -71,7 +72,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
 

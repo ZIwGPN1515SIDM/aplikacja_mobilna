@@ -46,7 +46,6 @@ public class PlacesBasePageFragment extends BaseFragment {
     private FragmentCategoriesViewModel viewModel;
 
     private static final String CATEGORIES_TAG = "categories";
-    private static final String TITLE = "Kategorie";
     private static final String ERROR_MESSAGE = "Bład pobierania danych";
 
     public static PlacesBasePageFragment getInstance() { return new PlacesBasePageFragment(); }
@@ -54,8 +53,8 @@ public class PlacesBasePageFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //PlacesBasePageFragment binding = DataBindingUtil.inflate(inflater, R.layout.empty_info, null, false);
         ItemsLayoutBinding binding = DataBindingUtil.inflate(inflater, R.layout.items_layout, null, false);
+        binding.setShowToolbar(false);
         if(savedInstanceState != null) {
             categories = (ArrayList<Category>) savedInstanceState.getSerializable(CATEGORIES_TAG);
         }else {

@@ -51,15 +51,14 @@
     <dimen name="activity_location_buttons_margin_right">16dp</dimen>
     <dimen name="activity_location_buttons_margin_bottom">16dp</dimen>
 
-
-    <dimen name="fragment_rating_place_padding">16dp</dimen>
+    <dimen name="fragment_rating_place_padding">8dp</dimen>
     <dimen name="fragment_rating_place_small_margin">4dp</dimen>
-    <dimen name="fragment_rating_place_rate_text_size">24sp</dimen>
+    <dimen name="fragment_rating_place_rate_text_size">14sp</dimen>
     <dimen name="fragment_rating_place_opinions_counter_text_size">12sp</dimen>
-    <dimen name="fragment_rating_place_add_opinion_text_size">10sp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_text_size">14sp</dimen>
     <dimen name="fragment_rating_place_add_opinion_between_margin">4dp</dimen>
-    <dimen name="fragment_rating_place_add_opinion_margin">16dp</dimen>
-    <dimen name="fragment_rating_place_opinions_counter_margin">24dp</dimen>
+    <dimen name="fragment_rating_place_add_opinion_margin">8dp</dimen>
+    <dimen name="fragment_rating_place_opinions_counter_margin">16dp</dimen>
 
     <dimen name="fragment_info_place_title_text_size">32sp</dimen>
     <dimen name="fragment_info_place_category_text_size">24sp</dimen>
@@ -71,7 +70,7 @@
 
     <!-- add opinion -->
     <dimen name="add_opinion_text_size">16sp</dimen>
-    <dimen name="add_opinion_padding">16dp</dimen>
+    <dimen name="add_opinion_padding">24dp</dimen>
     <dimen name="add_opinion_button_text_size">20sp</dimen>
     <dimen name="add_opinion_margin_bottom">8dp</dimen>
     <dimen name="add_opinion_margin_between_buttons">48dp</dimen>
@@ -111,7 +110,7 @@
     <dimen name="fragment_create_route_route_name_margin_bottom">8dp</dimen>
     <dimen name="fragment_create_route_route_name_text_size">14sp</dimen>
     <dimen name="location_settings_button_size">24dp</dimen>
-    <dimen name="fragment_location_opinion_margin">10dp</dimen>
+    <dimen name="fragmefragment_rating_place_rate_text_sizent_location_opinion_margin">10dp</dimen>
     <dimen name="fragment_location_opinion_name_size">20sp</dimen>
     <dimen name="fragment_location_opinion_RatingBar_offset">40dp</dimen>
     <dimen name="fragment_location_events_padding">10dp</dimen>
@@ -119,6 +118,5 @@
     <dimen name="fragment_location_events_name_size">20sp</dimen>
     <dimen name="fragment_location_events_place_size">17sp</dimen>
     <dimen name="fragment_location_events_description_size">15sp</dimen>
-
 
 </resources>

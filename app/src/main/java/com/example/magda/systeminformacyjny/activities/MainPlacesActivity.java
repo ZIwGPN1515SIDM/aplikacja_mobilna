@@ -50,6 +50,7 @@ public class MainPlacesActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ItemsLayoutBinding binding = DataBindingUtil.setContentView(this, R.layout.items_layout);
+        binding.setShowToolbar(true);
         viewModel = new ActivityMainPlacesListViewModel(this);
         this.title = getIntent().getStringExtra(TITLE);
         this.categoryId = getIntent().getLongExtra(CATEGORY_ID, -1L);

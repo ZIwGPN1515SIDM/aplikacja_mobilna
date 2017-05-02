@@ -1,5 +1,6 @@
 package com.example.magda.systeminformacyjny.network;
 
+import com.example.magda.systeminformacyjny.network.items.CommentResponse;
 import com.example.magda.systeminformacyjny.network.items.EventResponse;
 import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
@@ -49,4 +50,9 @@ public interface WhereToGoService {
     Observable<PlacesResponse> downloadPlaces(@Query("type") String type,
                                               @Query("namespaceid") Long namespaceId,
                                               @Query("api_key") String apiKey);
+
+    @GET("comments")
+    Observable<CommentResponse> downloadComments(@Query("type") String type,
+                                                 @Query("id") Long id,
+                                                 @Query("api_key") String apiKey);
 }
