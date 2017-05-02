@@ -21,6 +21,6 @@ public class Constants {
 
     public static final String NAMESPACE_TYPE_UPPER_TAG = "NAMESPACE";
     public static final String PLACE_TYPE_UPPER_TAG = "PLACE";
-    public static final String NAMSPACE_TYPE_TAG = "namespace";
+    public static final String NAMESPACE_TYPE_TAG = "namespace";
     public static final String PLACE_TYPE_TAG = "place";
 }

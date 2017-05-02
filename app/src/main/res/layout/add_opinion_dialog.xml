@@ -3,11 +3,9 @@
 <layout>
 
     <data>
-
         <variable
-            name="savedOpinion"
-            type="String" />
-
+            name="viewCallback"
+            type="com.example.magda.systeminformacyjny.fragments.AddOpinionDialogFragment"/>
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,7 +27,6 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/add_opinion_text_size" />
 
-
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
                 android:id="@+id/ratingBar"
                 style="@style/Widget.MaterialRatingBar.RatingBar"
@@ -50,9 +47,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorWhite"
                 android:hint="@string/add_opinion_hint"
-                android:textColorHint="@color/colorWhite"
-                app:errorResponse="@{@string/add_opinion_error_info}"
-                app:errorTextAppearance="@style/add_opinion_appearance">
+                android:textColorHint="@color/colorWhite">
 
                 <EditText
                     android:id="@+id/opinion"
@@ -63,7 +58,6 @@
                     android:inputType="textMultiLine|textCapSentences"
                     android:maxLines="5"
                     android:minEms="10"
-                    android:text="@{savedOpinion}"
                     android:textColor="@color/colorWhite"
                     android:textColorHint="@color/colorWhite"
                     android:textCursorDrawable="@null"

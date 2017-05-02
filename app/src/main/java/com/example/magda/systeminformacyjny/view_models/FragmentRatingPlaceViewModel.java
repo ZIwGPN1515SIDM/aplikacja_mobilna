@@ -14,7 +14,6 @@ import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
 import com.example.magda.systeminformacyjny.network.items.SendCommentRequest;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
-import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
@@ -32,7 +31,7 @@ import static com.example.magda.systeminformacyjny.network.ErrorResponse.SEND_OP
 import static com.example.magda.systeminformacyjny.network.SuccessResponse.DOWNLOAD_SUCCESS;
 import static com.example.magda.systeminformacyjny.network.SuccessResponse.SEND_OPINION_SUCCESS;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
-import static com.example.magda.systeminformacyjny.utils.Constants.NAMSPACE_TYPE_TAG;
+import static com.example.magda.systeminformacyjny.utils.Constants.NAMESPACE_TYPE_TAG;
 import static com.example.magda.systeminformacyjny.utils.Constants.PLACE_TYPE_TAG;
 
 /**
@@ -155,7 +154,7 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
         String apiKey = viewCallback.getString(R.string.server_api_key);
         Long userId = PreferencesManager.getOurId(viewCallback.getContext());
 
-        Long namespaceId = placeType.equals(NAMSPACE_TYPE_TAG) ? placeItem.getId() : null;
+        Long namespaceId = placeType.equals(NAMESPACE_TYPE_TAG) ? placeItem.getId() : null;
         Long placeId = placeType.equals(PLACE_TYPE_TAG) ? placeItem.getId() : null;
         SendCommentRequest sendCommentRequest = new SendCommentRequest(content, score, placeId,
                 namespaceId, placeType.toUpperCase(), userId);
