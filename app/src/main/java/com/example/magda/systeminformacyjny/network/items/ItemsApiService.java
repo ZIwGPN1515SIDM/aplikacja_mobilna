@@ -7,16 +7,19 @@ import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
+import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.MaybeSource;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 
 /**
@@ -79,6 +82,13 @@ public class ItemsApiService {
         return whereToGoService.downloadComments(type, id, apiKey)
                 .subscribeOn(Schedulers.io())
                 .map(CommentResponse::getComments)
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<ResponseBody> sendComment(String apiKey, DefaultResourceWrapper request) {
+        return whereToGoService.sendComment(apiKey, request)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

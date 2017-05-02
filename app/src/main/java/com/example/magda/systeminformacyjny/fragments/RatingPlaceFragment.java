@@ -1,6 +1,7 @@
 package com.example.magda.systeminformacyjny.fragments;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.generated.callback.OnClickListener;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.magda.systeminformacyjny.R;
@@ -47,6 +49,7 @@ public class RatingPlaceFragment extends BaseFragment {
     private ArrayList<Comment> comments;
     private FragmentRatingPlaceViewModel viewModel;
     private String placeType;
+    private TextView sendButton;
 
     private static final String PLACE_TAG = "place";
     private static final String PLACE_TYPE_TAG = "placeType";
@@ -75,18 +78,19 @@ public class RatingPlaceFragment extends BaseFragment {
                                   Bundle savedInstanceState) {
         FragmentRatingPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_rating_place, null, false);
         binding.setPlace(iPlaceItem);
-        binding.addOpinionButton.setOnClickListener(v ->  {
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            DialogFragment dialogFragment = AddOpinionDialogFragment.getInstance();
-            dialogFragment.show(fragmentTransaction, "dialog");
-        });
-        recyclerView = binding.recyclerView;
         this.comments = new ArrayList<>();
         comments.add(new Comment(FULL_SCREEN_PROGRESS_BAR));
         this.viewModel = new FragmentRatingPlaceViewModel(this);
         viewModel.setComments(comments);
         viewModel.setPlaceItem(iPlaceItem);
         viewModel.setPlaceType(placeType);
+        binding.addOpinionButton.setOnClickListener(v ->  {
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            AddOpinionDialogFragment dialogFragment = AddOpinionDialogFragment.getInstance();
+            dialogFragment.setViewModel(viewModel);
+            dialogFragment.show(fragmentTransaction, "dialog");
+        });
+        recyclerView = binding.recyclerView;
         setUpRecyclerView();
         viewModel.downloadComments();
         return binding.getRoot();
@@ -139,4 +143,5 @@ public class RatingPlaceFragment extends BaseFragment {
     public void recyclerViewNotify() {
         recyclerAdapter.notifyDataSetChanged();
     }
+
 }
