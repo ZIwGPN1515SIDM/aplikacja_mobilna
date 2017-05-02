@@ -11,6 +11,7 @@ import com.example.magda.systeminformacyjny.fragments.AboutUsFragment;
 import com.example.magda.systeminformacyjny.fragments.CreateRouteFragment;
 import com.example.magda.systeminformacyjny.fragments.MainPageFragment;
 import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
+import com.example.magda.systeminformacyjny.fragments.PlacesBasePageFragment;
 import com.example.magda.systeminformacyjny.fragments.SettingsPageFragment;
 import com.example.magda.systeminformacyjny.utils.DrawerCreator;
 import com.facebook.login.LoginManager;
@@ -45,7 +46,8 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
             viewCallback.setToolbarTitle(DrawerCreator.CREATE_ROUTE_TITLE);
             viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
-
+            viewCallback.setToolbarTitle(DrawerCreator.PLACES_BASE_TITLE);
+            viewCallback.replaceFragment(createFragment(drawerId));
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
             viewCallback.setToolbarTitle(DrawerCreator.NEAR_PLACES_TITLE);
             viewCallback.replaceFragment(createFragment(drawerId));
@@ -73,7 +75,7 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
         }else if(drawerId == DrawerCreator.CREATE_ROUTE_PAGE) {
             return CreateRouteFragment.getInstance();
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {
-
+            return PlacesBasePageFragment.getInstance();
         }else if(drawerId == DrawerCreator.NEAR_PLACES_PAGE) {
             return NearPlacesFragment.getInstance();
         }else if(drawerId == DrawerCreator.VISITED_PLACES_PAGE) {

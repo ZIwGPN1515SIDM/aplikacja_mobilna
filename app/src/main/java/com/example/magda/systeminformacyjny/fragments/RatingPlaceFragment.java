@@ -1,10 +1,13 @@
 package com.example.magda.systeminformacyjny.fragments;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.IpPrefix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +44,18 @@ public class RatingPlaceFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, @Nullable
             ViewGroup container, @Nullable
                                   Bundle savedInstanceState) {
-        FragmentRatingPlaceBinding binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_rating_place, null, false);
+
+        FragmentRatingPlaceBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_rating_place, null, false);
         binding.setPlace(iPlaceItem);
+        binding.addOpinionButton.setOnClickListener(v ->  {
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            DialogFragment dialogFragment = AddOpinionDialogFragment.getInstance();
+            dialogFragment.show(fragmentTransaction, "dialog");
+        });
+
         return binding.getRoot();
+
     }
+
 
 }
