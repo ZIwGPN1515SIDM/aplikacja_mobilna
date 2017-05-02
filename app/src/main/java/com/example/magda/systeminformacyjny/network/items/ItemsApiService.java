@@ -3,19 +3,23 @@ package com.example.magda.systeminformacyjny.network.items;
 import android.util.Log;
 
 import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
+import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.MaybeSource;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 
 /**
@@ -33,7 +37,7 @@ public class ItemsApiService {
     public MaybeSource<List<Category>> downloadCategories(String apiKey) {
         return whereToGoService.downloadCategories(apiKey)
                 .subscribeOn(Schedulers.io())
-                .map(response -> response.getCategories())
+                .map(CategoryResponse::getCategories)
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
@@ -45,7 +49,6 @@ public class ItemsApiService {
                 .map(response -> {
                     List<MainPlace> tmp = response.getMainPlaces();
                     for (MainPlace m : tmp) {
-                        Log.d("JESTEM", "wielkosc " + m.getCommentsCount());
                         m.setCategoryName(categoryName);
                     }
                     return tmp;
@@ -70,7 +73,22 @@ public class ItemsApiService {
     public MaybeSource<List<Place>> downloadPlaces(String type, Long namespaceId, String apiKey) {
         return whereToGoService.downloadPlaces(type, namespaceId, apiKey)
                 .subscribeOn(Schedulers.io())
-                .map(response -> response.getPlaces())
+                .map(PlacesResponse::getPlaces)
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<List<Comment>> downloadComments(String type, Long id, String apiKey) {
+        return whereToGoService.downloadComments(type, id, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(CommentResponse::getComments)
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<ResponseBody> sendComment(String apiKey, DefaultResourceWrapper request) {
+        return whereToGoService.sendComment(apiKey, request)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

@@ -48,6 +48,7 @@ public class PlacesActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ItemsLayoutBinding binding = DataBindingUtil.setContentView(this, R.layout.items_layout);
+        binding.setShowToolbar(true);
         this.namespaceId = getIntent().getLongExtra(NAMESPACE_ID_TAG, -1);
         places = new ArrayList<>();
         recyclerView = binding.recyclerView;

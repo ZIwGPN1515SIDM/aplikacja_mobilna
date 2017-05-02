@@ -15,7 +15,6 @@ import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.base.BaseActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.databinding.ItemsLayoutBinding;
-import com.example.magda.systeminformacyjny.models.IPlaceItem;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
@@ -51,6 +50,7 @@ public class MainPlacesActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ItemsLayoutBinding binding = DataBindingUtil.setContentView(this, R.layout.items_layout);
+        binding.setShowToolbar(true);
         viewModel = new ActivityMainPlacesListViewModel(this);
         this.title = getIntent().getStringExtra(TITLE);
         this.categoryId = getIntent().getLongExtra(CATEGORY_ID, -1L);

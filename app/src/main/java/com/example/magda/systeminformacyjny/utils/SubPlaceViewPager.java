@@ -33,6 +33,7 @@ public class SubPlaceViewPager extends FragmentPagerAdapter {
     public static final String FRAGMENT_RATING_TITLE = "Ocena";
     public static final String FRAGMENT_EVENTS_TITLE = "Wydarzenia";
     public static final String TOO_MUCH_FRAGMENTS_ERROR_MESSAGE = "Wydarzenia";
+    private static final String PLACE_TYPE = "place";
 
     public SubPlaceViewPager(FragmentManager fm, int numberOfPages,
                             Place place) {
@@ -53,7 +54,7 @@ public class SubPlaceViewPager extends FragmentPagerAdapter {
                 fragment = InfoPlaceFragment.getInstance(place);
                 break;
             case  FRAGMENT_RATING_POSITION:
-                fragment = RatingPlaceFragment.getInstance(place);
+                fragment = RatingPlaceFragment.getInstance(place, PLACE_TYPE);
                 break;
             case FRAGMENT_EVENTS_POSITION:
                 fragment = SubLocationEventFragment.getInstance(date, description, name);

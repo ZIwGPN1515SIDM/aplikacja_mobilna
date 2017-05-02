@@ -31,6 +31,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
     public static final String FRAGMENT_RATING_TITLE = "Ocena";
     public static final String FRAGMENT_EVENTS_TITLE = "Wydarzenia";
     public static final String TOO_MUCH_FRAGMENTS_ERROR_MESSAGE = "Wydarzenia";
+    private static final String PLACE_TYPE = "namespace";
 
     public ViewPagerAdapter(FragmentManager fm, int numberOfPages, String namespace,
                             MainPlace mainPlace) {
@@ -49,7 +50,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter{
                 fragment = InfoPlaceFragment.getInstance(mainPlace);
                 break;
             case  FRAGMENT_RATING_POSITION:
-                fragment = RatingPlaceFragment.getInstance(mainPlace);
+                fragment = RatingPlaceFragment.getInstance(mainPlace, PLACE_TYPE);
                 break;
             case FRAGMENT_EVENTS_POSITION:
                 fragment = EventsPlaceFragment.getInstance(namespace);

@@ -20,4 +20,9 @@ public class Constants {
 
     public static final long ERROR_INFO_VIEW_HOLDER = -1;
     public static final long FULL_SCREEN_PROGRESS_BAR = -2;
+
+    public static final String NAMESPACE_TYPE_UPPER_TAG = "NAMESPACE";
+    public static final String PLACE_TYPE_UPPER_TAG = "PLACE";
+    public static final String NAMESPACE_TYPE_TAG = "namespace";
+    public static final String PLACE_TYPE_TAG = "place";
 }

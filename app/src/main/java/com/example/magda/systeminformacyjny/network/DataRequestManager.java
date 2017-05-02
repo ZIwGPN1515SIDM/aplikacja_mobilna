@@ -1,6 +1,7 @@
 package com.example.magda.systeminformacyjny.network;
 
 import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
@@ -66,6 +67,14 @@ public class DataRequestManager {
 
     public MaybeSource<List<Place>> downloadPlaces(String type, Long namespaceId, String apiKey) {
         return itemsApiService.downloadPlaces(type, namespaceId, apiKey);
+    }
+
+    public MaybeSource<List<Comment>> downloadComments(String type, Long id, String apiKey) {
+        return itemsApiService.downloadComments(type, id, apiKey);
+    }
+
+    public MaybeSource<ResponseBody> sendComment(String apiKey, DefaultResourceWrapper request) {
+        return itemsApiService.sendComment(apiKey, request);
     }
 
 }

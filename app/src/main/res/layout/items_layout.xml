@@ -2,6 +2,15 @@
 
 <layout>
 
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="showToolbar"
+            type="Boolean"/>
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -9,8 +18,8 @@
         android:fitsSystemWindows="true">
 
         <include layout="@layout/toolbar_layout"
+            android:visibility="@{showToolbar? View.VISIBLE: View.GONE}"
             android:id="@+id/toolbarLayout"/>
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
