@@ -1,5 +1,6 @@
 package com.example.magda.systeminformacyjny.models;
 
+import com.example.magda.systeminformacyjny.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -72,10 +73,15 @@ public class MainPlace implements IPlaceItem {
 
     private String categoryName;
 
+    private double distance;
+
+    private boolean inMetersKilometers;
+
     public MainPlace(Long id, String description, Object advert, String eventContent, String addedOn,
                      Float sumScore, Long commentsCount, String googlePlaceId, String namespace,
                      Double latitude, Double longitude, String name, ArrayList<Photo> photos,
-                     String eventName, String eventEnd, String categoryName) {
+                     String eventName, String eventEnd, String categoryName, double distance,
+                     boolean inMetersKilometers) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -92,6 +98,8 @@ public class MainPlace implements IPlaceItem {
         this.eventName = eventName;
         this.eventEnd = eventEnd;
         this.categoryName = categoryName;
+        this.distance = distance;
+        this.inMetersKilometers = inMetersKilometers;
     }
 
     public Double getLatitude() {
@@ -133,7 +141,20 @@ public class MainPlace implements IPlaceItem {
 
     @Override
     public String getDistance() {
-        return null;
+
+        if (inMetersKilometers) {
+            if (distance < 1)
+                return Double.valueOf(distance * 1000).toString().concat(" m");
+            else
+                return Double.valueOf(distance).toString().concat(" km");
+        } else  {
+            distance *= Constants.KILOMETERS2MILES;
+            if (distance < 1)
+                return Double.valueOf(distance * Constants.MILES2FEET).toString().concat(" ft");
+            else
+                return Double.valueOf(distance).toString().concat(" mile");
+        }
+        
     }
 
     public String getDescription() {

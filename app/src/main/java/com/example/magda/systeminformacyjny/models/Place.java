@@ -68,18 +68,14 @@ public class Place implements IPlaceItem {
     @Expose
     private String eventEnd;
 
-    @SerializedName("DISTANCE")
-    @Expose
     private double distance;
 
-    @SerializedName("FORMAT")
-    @Expose
-    private int format;
+    private boolean inMetersKilometers;
 
     public Place(Long id, String description, String advert, String eventContent, String addedOn,
                  Float sumScore, Long commentsCount, String googleId, String instance, String name,
                  Long namespaceId, List<Photo> photos, String eventName, String eventEnd,
-                 double distance, int format) {
+                 double distance, boolean inMetersKilometers) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -95,7 +91,7 @@ public class Place implements IPlaceItem {
         this.eventName = eventName;
         this.eventEnd = eventEnd;
         this.distance = distance; // in kilometers
-        this.format = format;
+        this.inMetersKilometers = inMetersKilometers;
 
     }
 
@@ -114,7 +110,7 @@ public class Place implements IPlaceItem {
     @Override
     public String getDistance() {
 
-        if (format == Constants.METER_KILOMETER) {
+        if (inMetersKilometers) {
             if (distance < 1)
                 return Double.valueOf(distance * 1000).toString().concat(" m");
             else
