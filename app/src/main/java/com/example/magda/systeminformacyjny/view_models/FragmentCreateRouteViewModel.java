@@ -8,8 +8,13 @@ import com.example.magda.systeminformacyjny.activities.CategoriesActivity;
 import com.example.magda.systeminformacyjny.fragments.CreateRouteFragment;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
+import com.example.magda.systeminformacyjny.utils.Constants;
 
 import java.util.ArrayList;
+
+import static com.example.magda.systeminformacyjny.utils.Constants.CURRENT_ROAD;
+import static com.example.magda.systeminformacyjny.utils.Constants.CURRENT_ROAD_ACTIVITY_REQUEST_CODE;
+import static com.example.magda.systeminformacyjny.utils.Constants.SHOW_SETTINGS_MAIN_PLACE_ITEM;
 
 /**
  * Created by piotrek on 10.04.17.
@@ -20,7 +25,7 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
 
     private CreateRouteFragment viewCallback;
     private String EMPTY_TEXT_ERROR = "Pusta nazwa drogi!";
-    private ArrayList<MainPlace> mainPlaces;
+    private ArrayList<MainPlace> currentRoad;
 
 
     public FragmentCreateRouteViewModel(CreateRouteFragment viewCallback) {
@@ -29,7 +34,9 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
 
     public void addPlace(View v) {
         Intent intent = new Intent(viewCallback.getContext(), CategoriesActivity.class);
-        viewCallback.startActivity(intent);
+        intent.putExtra(SHOW_SETTINGS_MAIN_PLACE_ITEM, true);
+        intent.putExtra(CURRENT_ROAD, currentRoad);
+        viewCallback.startActivityForResult(intent, CURRENT_ROAD_ACTIVITY_REQUEST_CODE);
     }
 
     public void done(EditText editText) {
@@ -42,9 +49,8 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
 
     }
 
-
-    public void setMainPlaces(ArrayList<MainPlace> mainPlaces) {
-        this.mainPlaces = mainPlaces;
+    public void setCurrentRoad(ArrayList<MainPlace> currentRoad) {
+        this.currentRoad = currentRoad;
     }
 
     @Override

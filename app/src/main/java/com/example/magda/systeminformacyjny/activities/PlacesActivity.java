@@ -17,6 +17,7 @@ import com.example.magda.systeminformacyjny.databinding.ItemsLayoutBinding;
 import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
+import com.example.magda.systeminformacyjny.utils.RecyclerViewMainPlacesAdapter;
 import com.example.magda.systeminformacyjny.utils.RecyclerViewPlacesAdapter;
 import com.example.magda.systeminformacyjny.view_models.ActivityPlacesViewModel;
 

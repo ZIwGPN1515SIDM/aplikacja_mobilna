@@ -30,6 +30,7 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
         AbstractRecyclerViewEndlessAdapter.IErrorViewModel{
 
     private ArrayList<MainPlace> mainPlaces;
+    private ArrayList<MainPlace> currentRoad;
     private MainPlacesActivity viewCallback;
     private SuccessResponse successResponse;
     private ErrorResponse errorResponse;
@@ -141,5 +142,13 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public void setCurrentRoad(ArrayList<MainPlace> currentRoad) {
+        this.currentRoad = currentRoad;
+    }
+
+    public ArrayList<MainPlace> getCurrentRoad() {
+        return currentRoad;
     }
 }

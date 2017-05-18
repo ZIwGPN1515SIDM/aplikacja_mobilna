@@ -17,6 +17,7 @@ public class Constants {
     public static final double KILOMETERS2MILES = 0.621;
     public static final double MILES2FEET = 5280;
 
+    public static int CURRENT_ROAD_ACTIVITY_REQUEST_CODE = 123;
 
     public static final long ERROR_INFO_VIEW_HOLDER = -1;
     public static final long FULL_SCREEN_PROGRESS_BAR = -2;
@@ -25,4 +26,8 @@ public class Constants {
     public static final String PLACE_TYPE_UPPER_TAG = "PLACE";
     public static final String NAMESPACE_TYPE_TAG = "namespace";
     public static final String PLACE_TYPE_TAG = "place";
+
+    public static final String CURRENT_ROAD = "currentRoad";
+    public static final String SHOW_SETTINGS_MAIN_PLACE_ITEM = "mainPlaceSettingsButton";
+
 }
