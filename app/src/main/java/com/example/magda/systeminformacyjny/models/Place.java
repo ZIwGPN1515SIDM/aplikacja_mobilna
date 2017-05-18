@@ -1,5 +1,6 @@
 package com.example.magda.systeminformacyjny.models;
 
+import com.example.magda.systeminformacyjny.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -67,9 +68,14 @@ public class Place implements IPlaceItem {
     @Expose
     private String eventEnd;
 
+    private double distance;
+
+    private boolean inMetersKilometers;
+
     public Place(Long id, String description, String advert, String eventContent, String addedOn,
                  Float sumScore, Long commentsCount, String googleId, String instance, String name,
-                 Long namespaceId, List<Photo> photos, String eventName, String eventEnd) {
+                 Long namespaceId, List<Photo> photos, String eventName, String eventEnd,
+                 double distance, boolean inMetersKilometers) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -84,6 +90,9 @@ public class Place implements IPlaceItem {
         this.photos = photos;
         this.eventName = eventName;
         this.eventEnd = eventEnd;
+        this.distance = distance; // in kilometers
+        this.inMetersKilometers = inMetersKilometers;
+
     }
 
     public Place(Long id) {
@@ -99,8 +108,21 @@ public class Place implements IPlaceItem {
     }
 
     @Override
-    public String getDistance() { //TODO
-        return null;
+    public String getDistance() {
+
+        if (inMetersKilometers) {
+            if (distance < 1)
+                return Double.valueOf(distance * 1000).toString().concat(" m");
+            else
+                return Double.valueOf(distance).toString().concat(" km");
+        } else  {
+            distance *= Constants.KILOMETERS2MILES;
+            if (distance < 1)
+                return Double.valueOf(distance * Constants.MILES2FEET).toString().concat(" ft");
+            else
+                return Double.valueOf(distance).toString().concat(" mile");
+        }
+
     }
 
     public String getDescription() {
