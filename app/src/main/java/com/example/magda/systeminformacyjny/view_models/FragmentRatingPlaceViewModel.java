@@ -9,6 +9,7 @@ import com.example.magda.systeminformacyjny.fragments.RatingPlaceFragment;
 import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.IPlaceItem;
 import com.example.magda.systeminformacyjny.network.DataRequestManager;
+import com.example.magda.systeminformacyjny.network.DefaultIdWrapper;
 import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
@@ -91,6 +92,8 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
         }
     }
 
+
+
     @Override
     public void onSuccessResponse() {
         if (viewCallback != null) {
@@ -159,14 +162,15 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
         SendCommentRequest sendCommentRequest = new SendCommentRequest(content, score, placeId,
                 namespaceId, placeType.toUpperCase(), userId);
         dataRequestManager.sendComment(apiKey, new DefaultResourceWrapper(sendCommentRequest))
-                .subscribe(new MaybeObserver<ResponseBody>() {
+                .subscribe(new MaybeObserver<DefaultIdWrapper>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
                     }
 
                     @Override
-                    public void onSuccess(ResponseBody value) {
+                    public void onSuccess(DefaultIdWrapper value) {
+                        comments.add(new Comment(value.getId(), content, score));
                         successResponses.add(new SuccessResponse(SEND_OPINION_SUCCESS));
                         onSuccessResponse();
                     }
@@ -176,11 +180,6 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
                         e.printStackTrace();
                         errorResponses.add(new ErrorResponse(SEND_OPINION_ERROR));
                         onErrorResponse();
-                        try {
-                            Log.d("JESTEM", ((HttpException)e).response().errorBody().string());
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
                     }
 
                     @Override

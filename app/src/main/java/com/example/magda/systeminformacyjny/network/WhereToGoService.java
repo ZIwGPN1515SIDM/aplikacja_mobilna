@@ -55,6 +55,6 @@ public interface WhereToGoService {
                                                  @Query("api_key") String apiKey);
 
     @POST("comments/add")
-    Observable<ResponseBody> sendComment(@Query("api_key") String apiKey,
+    Observable<DefaultIdWrapper> sendComment(@Query("api_key") String apiKey,
                                          @Body DefaultResourceWrapper commentRequest);
 }
