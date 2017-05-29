@@ -73,7 +73,7 @@ public class DataRequestManager {
         return itemsApiService.downloadComments(type, id, apiKey);
     }
 
-    public MaybeSource<ResponseBody> sendComment(String apiKey, DefaultResourceWrapper request) {
+    public MaybeSource<DefaultIdWrapper> sendComment(String apiKey, DefaultResourceWrapper request) {
         return itemsApiService.sendComment(apiKey, request);
     }
 

@@ -55,6 +55,16 @@ public class Comment implements Serializable{
         this.fbUserId = fbUserId;
     }
 
+    public Comment(Long id, String content, Float score) {
+        this.id = id;
+        this.content = content;
+        this.score = score;
+        this.type = null;
+        this.namespaceId = null;
+        this.placesId = null;
+        this.fbUserId = null;
+    }
+
     public Long getId() {
         return id;
     }

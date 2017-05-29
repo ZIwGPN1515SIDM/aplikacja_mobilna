@@ -122,6 +122,8 @@ public class RatingPlaceFragment extends BaseFragment {
             recyclerAdapter.notifyDataSetChanged();
         }else if(successResponse.getSuccessType() == SEND_OPINION_SUCCESS) {
             showToast(ADD_INFORMATION);
+            recyclerAdapter.notifyDataSetChanged();
+            recyclerView.scrollToPosition(comments.size() - 1);
         }else {
             throw new IllegalArgumentException("Wrong success type " + successResponse.getSuccessType());
         }

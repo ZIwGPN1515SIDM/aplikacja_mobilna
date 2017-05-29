@@ -7,6 +7,7 @@ import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
+import com.example.magda.systeminformacyjny.network.DefaultIdWrapper;
 import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
 
@@ -86,7 +87,7 @@ public class ItemsApiService {
                 .singleElement();
     }
 
-    public MaybeSource<ResponseBody> sendComment(String apiKey, DefaultResourceWrapper request) {
+    public MaybeSource<DefaultIdWrapper> sendComment(String apiKey, DefaultResourceWrapper request) {
         return whereToGoService.sendComment(apiKey, request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
