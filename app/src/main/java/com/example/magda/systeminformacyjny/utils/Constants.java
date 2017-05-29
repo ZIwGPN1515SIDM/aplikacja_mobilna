@@ -30,4 +30,6 @@ public class Constants {
     public static final String CURRENT_ROAD = "currentRoad";
     public static final String SHOW_SETTINGS_MAIN_PLACE_ITEM = "mainPlaceSettingsButton";
 
+    public static final int MY_PERMISSIONS_REQUEST_BLUETOOTH = 1;
+
 }
