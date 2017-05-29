@@ -59,9 +59,9 @@ public class MainPlacesActivity extends BaseActivity {
         this.title = getIntent().getStringExtra(TITLE);
         this.baseOfPlaces = getIntent().getBooleanExtra(SHOW_SETTINGS_MAIN_PLACE_ITEM, true);
         this.categoryId = getIntent().getLongExtra(CATEGORY_ID, -1L);
+        this.currentRoute = (ArrayList<MainPlace>) getIntent().getSerializableExtra(CURRENT_ROAD);
         recyclerView = binding.recyclerView;
         mainPlaces = new ArrayList<>();
-        currentRoute = new ArrayList<>();
         Toolbar toolbar = binding.toolbarLayout.toolbar;
         toolbar.setTitle(title);
         toolbar.setTitleTextColor(Color.WHITE);
@@ -105,8 +105,8 @@ public class MainPlacesActivity extends BaseActivity {
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewMainPlacesAdapter(recyclerView, mainPlaces,
-                false, null, viewModel, this, baseOfPlaces);
+        recyclerViewAdapter = new RecyclerViewMainPlacesAdapter(mainPlaces, viewModel, viewModel, this,
+                baseOfPlaces);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);

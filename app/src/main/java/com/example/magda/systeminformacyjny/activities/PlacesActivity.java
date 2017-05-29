@@ -69,8 +69,7 @@ public class PlacesActivity extends BaseActivity{
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewPlacesAdapter(recyclerView, places,
-                false, null, viewModel, this);
+        recyclerViewAdapter = new RecyclerViewPlacesAdapter(places, viewModel, this);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);

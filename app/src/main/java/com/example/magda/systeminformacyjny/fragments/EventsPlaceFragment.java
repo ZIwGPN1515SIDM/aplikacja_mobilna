@@ -80,8 +80,7 @@ public class EventsPlaceFragment extends BaseFragment {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewEventsAdapter(recyclerView, events,
-                false, null, viewModel);
+        recyclerViewAdapter = new RecyclerViewEventsAdapter(events,viewModel);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);

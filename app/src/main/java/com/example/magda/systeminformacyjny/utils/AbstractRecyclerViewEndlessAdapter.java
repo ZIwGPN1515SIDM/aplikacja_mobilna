@@ -17,14 +17,8 @@ import java.util.List;
 public abstract class AbstractRecyclerViewEndlessAdapter<T> extends RecyclerView.Adapter
         <RecyclerView.ViewHolder> {
 
-    private final int VISIBLE_THRESHOLD = 5;
     private ArrayList<T> dataSet;
-    private int firstVisibleItem, visibleItemCount, totalItemCount, previousTotal = 0;
-    private boolean loading = true;
-    private RecyclerView recyclerView;
-    private OnLoadMoreListener onLoadMore;
     private RecyclerView.OnScrollListener onScrollListener;
-    //protected IErrorViewModel viewModel;
 
     protected static final int FULL_SCREEN_EMPTY_VIEW_HOLDER = 0;
     protected static final int NORMAL_VIEW_HOLDER = 1;
@@ -35,91 +29,12 @@ public abstract class AbstractRecyclerViewEndlessAdapter<T> extends RecyclerView
 
     //private static final String EMPTY_INFO = "Jeszcze nic tu nie ma...";
 
-    public AbstractRecyclerViewEndlessAdapter(RecyclerView recyclerView, ArrayList<T> dataSet,
-                                              boolean scrollListener, final OnLoadMoreListener onLoadMoreListener) {
+    public AbstractRecyclerViewEndlessAdapter(ArrayList<T> dataSet) {
         //przypisanie listy z danymi
         this.dataSet = dataSet;
-        this.recyclerView = recyclerView;
-        this.onLoadMore = onLoadMoreListener;
-        if (scrollListener)
-            setOnScrollListener();
     }
-
-
 
     protected abstract IErrorViewModel getViewModel();
-
-    public void setOnScrollListener() {
-        //jeśli recyclerView ma ustawiony linearManager to dodaj listener dla endless scrolling
-        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            onScrollListener = new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    //widoczne + niewidoczne elementy
-                    totalItemCount = linearLayoutManager.getItemCount();
-                    //widoczne elementy
-                    visibleItemCount = linearLayoutManager.getChildCount();
-                    //pierwszy widoczny element
-                    firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-                    //jeśli zmieniła się długość listy to znów przygotuj listenera do odkrycia
-                    if (loading) {
-                        if (totalItemCount > previousTotal + 1) {
-                            loading = false;
-                            previousTotal = totalItemCount;
-                        }
-                    }
-                    // jeśli odkryto koniec listy
-                    if (!loading && (totalItemCount - visibleItemCount)
-                            <= (firstVisibleItem + VISIBLE_THRESHOLD)) {
-                        // jeśli dotarliśmy do końca
-                        addItem(null);
-                        if (onLoadMore != null) {
-                            onLoadMore.onLoadMore();
-                        }
-                        loading = true;
-                    }
-                }
-            };
-        }
-        recyclerView.addOnScrollListener(onScrollListener);
-    }
-
-    public void addItem(T item) {
-        if (!dataSet.contains(item)) {
-            dataSet.add(item);
-            notifyItemInserted(dataSet.size() - 1);
-        }
-    }
-
-    public void removeItem(T item) {
-        int index = dataSet.indexOf(item);
-        if (index != -1) {
-            dataSet.remove(index);
-            notifyItemRemoved(index);
-        }
-    }
-
-    public void resetItems() {
-        loading = true;
-        firstVisibleItem = 0;
-        visibleItemCount = 0;
-        totalItemCount = 0;
-        previousTotal = VISIBLE_THRESHOLD;
-    }
-
-    public void clearItems() {
-        resetItems();
-        dataSet.clear();
-    }
-
-
-    public void addEmptyItem() {
-        if (!dataSet.contains(null)) {
-            dataSet.add(null);
-            notifyItemInserted(dataSet.indexOf(null));
-        }
-    }
 
     public List<T> getDataSet() {
         return dataSet;

@@ -74,8 +74,8 @@ public class PlacesBasePageFragment extends BaseFragment {
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewCategoriesAdapter(recyclerView, categories,
-                false, null, viewModel, (AppCompatActivity) getActivity());
+        recyclerViewAdapter = new RecyclerViewCategoriesAdapter(categories, viewModel,
+                (AppCompatActivity) getActivity());
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);

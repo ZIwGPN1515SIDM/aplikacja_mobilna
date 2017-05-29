@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
+import com.example.magda.systeminformacyjny.base.IMainPLaceViewModel;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.DataRequestManager;
@@ -27,7 +28,7 @@ import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_P
  */
 
 public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
-        AbstractRecyclerViewEndlessAdapter.IErrorViewModel{
+        AbstractRecyclerViewEndlessAdapter.IErrorViewModel, IMainPLaceViewModel{
 
     private ArrayList<MainPlace> mainPlaces;
     private ArrayList<MainPlace> currentRoad;
@@ -150,5 +151,20 @@ public class ActivityMainPlacesListViewModel implements Lifecycle.ViewModel,
 
     public ArrayList<MainPlace> getCurrentRoad() {
         return currentRoad;
+    }
+
+    @Override
+    public void removeMainPlace(MainPlace mainPlace) {
+        getCurrentRoad().remove(mainPlace);
+    }
+
+    @Override
+    public void addMainPlace(MainPlace mainPlace) {
+        getCurrentRoad().add(mainPlace);
+    }
+
+    @Override
+    public boolean containsMainPlace(MainPlace mainPlace) {
+        return getCurrentRoad().contains(mainPlace);
     }
 }

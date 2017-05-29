@@ -5,16 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
 import com.example.magda.systeminformacyjny.activities.CategoriesActivity;
 import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
 import com.example.magda.systeminformacyjny.databinding.CategoryViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.Category;
+
 import java.util.ArrayList;
 
 import static com.example.magda.systeminformacyjny.activities.MainPlacesActivity.CATEGORY_ID;
 import static com.example.magda.systeminformacyjny.activities.MainPlacesActivity.TITLE;
 import static com.example.magda.systeminformacyjny.models.Category.COLOR_LIGHT_PRIMARY_TYPE;
 import static com.example.magda.systeminformacyjny.models.Category.COLOR_PRIMARY_TYPE;
+import static com.example.magda.systeminformacyjny.utils.Constants.CURRENT_ROAD;
 import static com.example.magda.systeminformacyjny.utils.Constants.CURRENT_ROAD_ACTIVITY_REQUEST_CODE;
 import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VIEW_HOLDER;
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
@@ -28,10 +31,9 @@ public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAd
     private IErrorViewModel viewModel;
     private AppCompatActivity viewCallback;
 
-    public RecyclerViewCategoriesAdapter(RecyclerView recyclerView, ArrayList<Category> dataSet,
-                                         boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
+    public RecyclerViewCategoriesAdapter(ArrayList<Category> dataSet,
                                          IErrorViewModel viewModel, AppCompatActivity viewCallback) {
-        super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
+        super(dataSet);
         this.viewModel = viewModel;
         this.viewCallback = viewCallback;
     }
@@ -72,9 +74,11 @@ public class RecyclerViewCategoriesAdapter extends AbstractRecyclerViewEndlessAd
             Intent intent = new Intent(viewCallback, MainPlacesActivity.class);
             intent.putExtra(TITLE, category.getName());
             intent.putExtra(CATEGORY_ID, category.getId());
+            intent.putExtra(CURRENT_ROAD, viewCallback instanceof CategoriesActivity ?
+                    ((CategoriesActivity) viewCallback).getCurrentRoad() : null);
             intent.putExtra(Constants.SHOW_SETTINGS_MAIN_PLACE_ITEM, viewCallback instanceof CategoriesActivity ?
                     ((CategoriesActivity) viewCallback).isSettingsMainPlaceButton() : false);
-            viewCallback.startActivityForResult(intent, CURRENT_ROAD_ACTIVITY_REQUEST_CODE); //TODO potem zmiana na startActivityForResult
+            viewCallback.startActivityForResult(intent, CURRENT_ROAD_ACTIVITY_REQUEST_CODE);
         });
     }
 

@@ -85,8 +85,7 @@ public class CategoriesActivity extends BaseActivity {
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewCategoriesAdapter(recyclerView, categories,
-                false, null, viewModel, this);
+        recyclerViewAdapter = new RecyclerViewCategoriesAdapter(categories, viewModel, this);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);
@@ -158,6 +157,10 @@ public class CategoriesActivity extends BaseActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public ArrayList<MainPlace> getCurrentRoad() {
+        return currentRoad;
     }
 
     @Override
