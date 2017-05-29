@@ -99,8 +99,7 @@ public class RatingPlaceFragment extends BaseFragment {
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new RecyclerViewCommentsAdapter(recyclerView, comments,
-                false, null, viewModel);
+        recyclerAdapter = new RecyclerViewCommentsAdapter(comments, viewModel);
         SlideInRightAnimator itemAnimation = new SlideInRightAnimator(new AccelerateInterpolator());
         recyclerView.setItemAnimator(itemAnimation);
         layoutManager.scrollToPosition(0);

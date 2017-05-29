@@ -28,10 +28,9 @@ public class RecyclerViewPlacesAdapter<T extends IPlaceItem> extends AbstractRec
     private ActivityPlacesViewModel viewModel;
     private AppCompatActivity viewCallback;
 
-    public RecyclerViewPlacesAdapter(RecyclerView recyclerView, ArrayList<T> dataSet,
-                                     boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
-                                     ActivityPlacesViewModel viewModel, AppCompatActivity viewCallback) {
-        super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
+    public RecyclerViewPlacesAdapter(ArrayList<T> dataSet, ActivityPlacesViewModel viewModel,
+                                     AppCompatActivity viewCallback) {
+        super(dataSet);
         this.viewModel = viewModel;
         this.viewCallback = viewCallback;
     }

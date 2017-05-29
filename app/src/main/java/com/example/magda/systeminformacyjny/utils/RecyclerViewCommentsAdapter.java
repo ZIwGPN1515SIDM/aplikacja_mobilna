@@ -21,10 +21,8 @@ public class RecyclerViewCommentsAdapter extends AbstractRecyclerViewEndlessAdap
 
     private IErrorViewModel viewModel;
 
-    public RecyclerViewCommentsAdapter(RecyclerView recyclerView, ArrayList<Comment> dataSet,
-                                       boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
-                                        IErrorViewModel viewModel) {
-        super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
+    public RecyclerViewCommentsAdapter(ArrayList<Comment> dataSet, IErrorViewModel viewModel) {
+        super(dataSet);
         this.viewModel = viewModel;
     }
 

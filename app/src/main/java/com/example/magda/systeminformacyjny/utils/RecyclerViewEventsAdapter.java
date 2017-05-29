@@ -20,10 +20,8 @@ public class RecyclerViewEventsAdapter extends AbstractRecyclerViewEndlessAdapte
 
     IErrorViewModel viewModel;
 
-    public RecyclerViewEventsAdapter(RecyclerView recyclerView, ArrayList<Event> dataSet,
-                                     boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
-                                     IErrorViewModel viewModel) {
-        super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
+    public RecyclerViewEventsAdapter(ArrayList<Event> dataSet, IErrorViewModel viewModel) {
+        super(dataSet);
         this.viewModel = viewModel;
 
     }

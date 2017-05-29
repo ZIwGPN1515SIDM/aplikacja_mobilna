@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.magda.systeminformacyjny.activities.CategoriesActivity;
+import com.example.magda.systeminformacyjny.base.IMainPLaceViewModel;
 import com.example.magda.systeminformacyjny.fragments.CreateRouteFragment;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
@@ -21,7 +22,7 @@ import static com.example.magda.systeminformacyjny.utils.Constants.SHOW_SETTINGS
  */
 
 public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndlessAdapter.IErrorViewModel,
-        AbstractRecyclerViewEndlessAdapter.OnLoadMoreListener{
+        IMainPLaceViewModel{
 
     private CreateRouteFragment viewCallback;
     private String EMPTY_TEXT_ERROR = "Pusta nazwa drogi!";
@@ -55,11 +56,23 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
 
     @Override
     public void refreshAfterDownloadError() {
-
+        //leave empty
     }
 
     @Override
-    public void onLoadMore() {
+    public void removeMainPlace(MainPlace mainPlace) {
+        int index = currentRoad.indexOf(mainPlace);
+        currentRoad.remove(index);
+        viewCallback.removeItem(index);
+    }
 
+    @Override
+    public void addMainPlace(MainPlace mainPlace) {
+        //leave empty
+    }
+
+    @Override
+    public boolean containsMainPlace(MainPlace mainPlace) {
+        return currentRoad.contains(mainPlace);
     }
 }

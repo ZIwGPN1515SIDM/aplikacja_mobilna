@@ -1,23 +1,21 @@
 package com.example.magda.systeminformacyjny.utils;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.activities.LocationActivity;
-import com.example.magda.systeminformacyjny.activities.MainPlacesActivity;
-import com.example.magda.systeminformacyjny.activities.SubLocationActivity;
+import com.example.magda.systeminformacyjny.base.IMainPLaceViewModel;
 import com.example.magda.systeminformacyjny.databinding.LocationViewHolderBinding;
 import com.example.magda.systeminformacyjny.models.IPlaceItem;
 import com.example.magda.systeminformacyjny.models.MainPlace;
-import com.example.magda.systeminformacyjny.view_models.ActivityMainPlacesListViewModel;
 
 import java.util.ArrayList;
 
@@ -31,26 +29,27 @@ import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_P
 
 public class RecyclerViewMainPlacesAdapter<T extends IPlaceItem> extends AbstractRecyclerViewEndlessAdapter<T> {
 
-    private ActivityMainPlacesListViewModel viewModel;
-    private AppCompatActivity viewCallback;
+    private IMainPLaceViewModel viewModel;
     private boolean settingsFlag;
+    private Context context;
+    private IErrorViewModel errorViewModel;
 
-    private static final String ADD_THIS_PLACE_TO_ROUTE_ERROR_INFO = "Dodałeś już do trasy to miejsce!";
-    private static final String ADD_THIS_PLACE_TO_ROUTE_INFO = "Dodałeś miejsce do trasy!";
+    private static final String ADD_THIS_PLACE_TO_ROUTE_ERROR_INFO = "Dodałeś już do trasy to miejsce !";
+    private static final String ADD_THIS_PLACE_TO_ROUTE_INFO = "Dodałeś miejsce do trasy !";
+    private static final String REMOVE_THIS_PLACE_TO_ROUTE_INFO = "Usunałeś miejsce z trasy !";
 
-    public RecyclerViewMainPlacesAdapter(RecyclerView recyclerView, ArrayList<T> dataSet,
-                                         boolean scrollListener, OnLoadMoreListener onLoadMoreListener,
-                                         ActivityMainPlacesListViewModel viewModel, AppCompatActivity viewCallback,
-                                         boolean settingsFlag) {
-        super(recyclerView, dataSet, scrollListener, onLoadMoreListener);
+    public RecyclerViewMainPlacesAdapter(ArrayList<T> dataSet, IMainPLaceViewModel viewModel, IErrorViewModel errorViewModel,
+                                         Context context, boolean settingsFlag) {
+        super(dataSet);
         this.viewModel = viewModel;
-        this.viewCallback = viewCallback;
-        this.settingsFlag =settingsFlag;
+        this.settingsFlag = settingsFlag;
+        this.context = context;
+        this.errorViewModel = errorViewModel;
     }
 
     @Override
     protected IErrorViewModel getViewModel() {
-        return viewModel;
+        return errorViewModel;
     }
 
     @Override
@@ -82,26 +81,38 @@ public class RecyclerViewMainPlacesAdapter<T extends IPlaceItem> extends Abstrac
         basicViewHolder.bind(place, settingsFlag);
         basicViewHolder.itemView.setOnClickListener(v -> {
             Intent intent;
-            intent = new Intent(viewCallback, LocationActivity.class);
+            intent = new Intent(context, LocationActivity.class);
             intent.putExtra(MAIN_PLACE_TAG, place);
-            viewCallback.startActivity(intent);
+            context.startActivity(intent);
         });
-        if(settingsFlag) {
-            basicViewHolder.setUpPopUpMenu();
-            basicViewHolder.popupMenu.setOnMenuItemClickListener(item -> {
-                //dodanie do trays miejsca
-                if (!viewModel.getCurrentRoad().contains(getDataSet().get(position))) {
-                    viewModel.getCurrentRoad().add((MainPlace) getDataSet().get(position));
-                    Toast.makeText(viewCallback, ADD_THIS_PLACE_TO_ROUTE_INFO, Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    Toast.makeText(viewCallback, ADD_THIS_PLACE_TO_ROUTE_ERROR_INFO, Toast.LENGTH_SHORT)
-                            .show();
-                }
 
-                return false;
-            });
+        if (settingsFlag) {
+            basicViewHolder.setUpPopUpMenu(viewModel.containsMainPlace((MainPlace) getDataSet().get(position)));
+            setUpPopMenuListener(basicViewHolder.popupMenu, position, basicViewHolder);
         }
+    }
+
+
+    private void setUpPopMenuListener(PopupMenu popupMenu, int position, BasicViewHolder basicViewHolder) {
+        popupMenu.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.location_menu_add:
+                    viewModel.addMainPlace((MainPlace) getDataSet().get(position));
+                    Toast.makeText(context, ADD_THIS_PLACE_TO_ROUTE_INFO, Toast.LENGTH_SHORT)
+                            .show();
+                    basicViewHolder.setUpPopUpMenu(viewModel.containsMainPlace((MainPlace) getDataSet().get(position)));
+                    setUpPopMenuListener(basicViewHolder.popupMenu, position, basicViewHolder);
+                    break;
+                case R.id.location_menu_remove:
+                    viewModel.removeMainPlace((MainPlace) getDataSet().get(position));
+                    Toast.makeText(context, REMOVE_THIS_PLACE_TO_ROUTE_INFO, Toast.LENGTH_SHORT)
+                            .show();
+                    basicViewHolder.setUpPopUpMenu(viewModel.containsMainPlace((MainPlace) getDataSet().get(position)));
+                    setUpPopMenuListener(basicViewHolder.popupMenu, position, basicViewHolder);
+                    break;
+            }
+            return false;
+        });
     }
 
     public class BasicViewHolder extends RecyclerView.ViewHolder {
@@ -119,10 +130,10 @@ public class RecyclerViewMainPlacesAdapter<T extends IPlaceItem> extends Abstrac
             binding.executePendingBindings();
         }
 
-        public void setUpPopUpMenu() {
-            popupMenu = new PopupMenu(viewCallback, binding.settingsButton);
+        public void setUpPopUpMenu(boolean flag) {
+            popupMenu = new PopupMenu(context, binding.settingsButton);
             popupMenu.setGravity(Gravity.END);
-            popupMenu.inflate(R.menu.add_location_menu);
+            popupMenu.inflate(flag ? R.menu.remove_location_menu : R.menu.add_location_menu);
             binding.settingsButton.setOnClickListener((v) -> popupMenu.show());
         }
     }
