@@ -105,6 +105,8 @@ public class LoginActivity extends AppCompatActivity implements OnMapReadyCallba
                 progressDialog.setTitle(PROGRESS_DIALOG_TITLE);
                 progressDialog.setMessage(PROGRESS_DIALOG_MESSAGE);
                 progressDialog.setIndeterminate(true);
+                progressDialog.setCancelable(false);
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.setIndeterminateDrawable(ContextCompat.getDrawable(LoginActivity.this,
                         R.drawable.progress_bar_circle));
                 progressDialog.show();
