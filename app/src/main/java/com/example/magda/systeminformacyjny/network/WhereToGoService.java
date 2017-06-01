@@ -4,6 +4,8 @@ import com.example.magda.systeminformacyjny.network.items.CommentResponse;
 import com.example.magda.systeminformacyjny.network.items.EventResponse;
 import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
+import com.example.magda.systeminformacyjny.network.items.PathResponse;
+import com.example.magda.systeminformacyjny.network.items.CurrentPath;
 import com.example.magda.systeminformacyjny.network.items.PlacesResponse;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
 
@@ -33,7 +35,7 @@ public interface WhereToGoService {
 
     @POST("sidmapp/user")
     Observable<LoginResponse> login(@Query("api_key") String apiKey,
-                                   @Body DefaultResourceWrapper loginRequest);
+                                    @Body DefaultResourceWrapper loginRequest);
 
     @PATCH("sidmapp/user/modify")
     Observable<ResponseBody> sendNewsletter(@Query("api_key") String apiKey,
@@ -56,5 +58,21 @@ public interface WhereToGoService {
 
     @POST("comments/add")
     Observable<DefaultIdWrapper> sendComment(@Query("api_key") String apiKey,
-                                         @Body DefaultResourceWrapper commentRequest);
+                                             @Body DefaultResourceWrapper commentRequest);
+
+
+    @POST("sidm/_table/USER_PATHS")
+    Observable<ResponseBody> sendPath(@Query("api_key") String apiKey,
+                                      @Body DefaultResourceWrapper<CurrentPath> pathSendRequest);
+
+    @GET("sidm/_table/USER_PATHS")
+    Observable<DefaultResourceWrapper<PathResponse>> downloadRoutes(@Query(value = "fields", encoded = true) String fields,
+                                                                    @Query(value = "filter", encoded = true) String filter,
+                                                                    @Query("api_key") String apiKey);
+
+    @GET("sidm/_table/USER_PATHS")
+    Observable<DefaultResourceWrapper<CurrentPath>> downloadCurrentPath(@Query(value = "filter", encoded = true) String filter,
+                                                                        @Query("api_key") String apiKey);
+
+
 }

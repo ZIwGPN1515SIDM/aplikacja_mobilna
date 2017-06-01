@@ -70,4 +70,9 @@
     <string name="fragment_location_events_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore</string>
     <string name="fragment_location_events_date">Termin: 01.02.2017r.</string>
 
+
+    <string name="send_route_dialog_title">Wysyłanie trasy</string>
+    <string name="send_route_dialog_info">Wysyłanie trasy proszę czekaj...</string>
+    <string name="send_route_dialog_error">Nie można dodać trasy !</string>
+
 </resources>

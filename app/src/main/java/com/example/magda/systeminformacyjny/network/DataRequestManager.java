@@ -5,7 +5,9 @@ import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
+import com.example.magda.systeminformacyjny.network.items.CurrentPath;
 import com.example.magda.systeminformacyjny.network.items.ItemsApiService;
+import com.example.magda.systeminformacyjny.network.items.PathResponse;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
 import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
@@ -77,4 +79,15 @@ public class DataRequestManager {
         return itemsApiService.sendComment(apiKey, request);
     }
 
+    public MaybeSource<ResponseBody> sendPath(String apiKey, DefaultResourceWrapper<CurrentPath> currentPath) {
+        return itemsApiService.sendPath(apiKey, currentPath);
+    }
+
+    public MaybeSource<List<PathResponse>> downloadPaths(String fields, String filter, String apiKey) {
+        return itemsApiService.downloadPaths(fields, filter, apiKey);
+    }
+
+    public MaybeSource<List<CurrentPath>> downloadCurrentPath(String filter, String apiKey) {
+        return itemsApiService.downloadCurrentPath(filter, apiKey);
+    }
 }

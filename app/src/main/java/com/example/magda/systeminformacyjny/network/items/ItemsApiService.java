@@ -1,7 +1,5 @@
 package com.example.magda.systeminformacyjny.network.items;
 
-import android.util.Log;
-
 import com.example.magda.systeminformacyjny.models.Category;
 import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
@@ -14,11 +12,8 @@ import com.example.magda.systeminformacyjny.network.WhereToGoService;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Maybe;
 import io.reactivex.MaybeSource;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
@@ -93,4 +88,28 @@ public class ItemsApiService {
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
+
+    public MaybeSource<List<PathResponse>> downloadPaths(String fields, String filter, String apiKey) {
+        return whereToGoService.downloadRoutes(fields, filter, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(response -> response.getResource())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<ResponseBody> sendPath(String apiKey, DefaultResourceWrapper<CurrentPath> currentPath) {
+        return whereToGoService.sendPath(apiKey, currentPath)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<List<CurrentPath>> downloadCurrentPath(String filter, String apiKey) {
+        return whereToGoService.downloadCurrentPath(filter, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(response -> response.getResource())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
 }

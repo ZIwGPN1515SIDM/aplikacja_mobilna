@@ -9,6 +9,7 @@ public class ErrorResponse {
     public static final int DOWNLOAD_ERROR = 0;
     public static final int SEND_NEWSLETTER_ERROR = 1;
     public static final int SEND_OPINION_ERROR = 2;
+    public static final int SEND_PATH_ERROR = 3;
 
 
     private int errorType;
