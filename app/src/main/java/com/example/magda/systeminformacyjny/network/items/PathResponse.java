@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class PathResponse {
 
-    @SerializedName("ID")
+    @SerializedName(value = "ID", alternate = "id")
     private Long id;
 
-    @SerializedName("NAME")
+    @SerializedName(value = "NAME", alternate = "name")
     private String name;
 
     @SerializedName("CREATED_ON")
@@ -21,6 +21,10 @@ public class PathResponse {
         this.id = id;
         this.name = name;
         this.createdOn = createdOn;
+    }
+
+    public PathResponse(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -45,5 +49,23 @@ public class PathResponse {
 
     public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof PathResponse))
+            return false;
+        PathResponse other = (PathResponse) obj;
+        return id == null ? other.id == null : id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 117;
+        result = 37 * result + id.hashCode();
+        return result;
     }
 }

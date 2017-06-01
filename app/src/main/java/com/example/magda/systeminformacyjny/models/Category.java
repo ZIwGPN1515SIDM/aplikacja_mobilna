@@ -20,9 +20,6 @@ public class Category implements Serializable{
     @Expose
     private String name;
 
-    public static final int COLOR_LIGHT_PRIMARY_TYPE = 1;
-    public static final int COLOR_PRIMARY_TYPE = 0;
-
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
