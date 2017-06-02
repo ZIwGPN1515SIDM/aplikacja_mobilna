@@ -3,33 +3,26 @@ package com.example.magda.systeminformacyjny.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.magda.systeminformacyjny.R;
-import com.example.magda.systeminformacyjny.activities.LocationActivity;
-import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.LocationProvider;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.google.android.gms.maps.CameraUpdate;
@@ -38,11 +31,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.PolyUtil;
@@ -70,7 +60,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     private boolean shouldRepeatPermission;
     private static final int REQUEST_LOCATION_PERMISSION_CODE = 123;
     private boolean isFirstLocationUpdate;
-    private ArrayList<LatLng> locations = new ArrayList();
+    private ArrayList<MainPlace> locations = new ArrayList();
     private Polyline polyLine = null;
     private RequestQueue requestQueue;
     private MapView gMapView;
@@ -88,9 +78,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         FragmentMainPageBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_page, null, false);
         gMapView = binding.map;
         locationProvider = new LocationProvider(getContext(), this);
-        locations.add(new LatLng(51.1097, 17.0328));
-        locations.add(new LatLng(51.1097, 17.0418));
-        locations.add(new LatLng(51.1055, 17.0313));
+        setUpLocations();
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
@@ -104,6 +92,15 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         return binding.getRoot();
     }
 
+    private void setUpLocations() {
+        MainPlace place1 = new MainPlace(1L, "Pl1", 51.1097, 17.0328);
+        locations.add(place1);
+        MainPlace place2 = new MainPlace(2L, "Pl2", 51.1097, 17.0418);
+        locations.add(place2);
+        MainPlace place3 = new MainPlace(3L, "Pl3", 51.1055, 17.0313);
+        locations.add(place3);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +112,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             gMapView.onResume();
-                 locationProvider.connect();
+            locationProvider.connect();
         }
     }
 
@@ -123,7 +120,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     public void onPause() {
         super.onPause();
         gMapView.onPause();
-            locationProvider.disconnect();
+        locationProvider.disconnect();
     }
 
     @Override
@@ -183,13 +180,13 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         switch (PreferencesManager.mapMode(getContext())) {
             case STANDARD_MAP:
                 mapMode=  R.raw.sandard_map;
-            break;
+                break;
             case RETRO_MAP:
                 mapMode =  R.raw.retro_map;
-            break;
+                break;
             case DARK_MAP:
                 mapMode =  R.raw.dark_map;
-            break;
+                break;
             default:
                 mapMode =  R.raw.sandard_map;
         }
@@ -235,23 +232,19 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     @Override
     public void handleNewLocation(Location location) {
 
-            double currentLatitude = location.getLatitude();
-            double currentLongitude = location.getLongitude();
-            LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-            CameraUpdate camUpdate;
-            if (isFirstLocationUpdate) {
-                camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
-                googleMap.animateCamera(camUpdate);
-                isFirstLocationUpdate = false;}
-//            } else if (enableFocusOnUserLocation.get()) {
-//                camUpdate = CameraUpdateFactory.newLatLng(latLng);
-//                googleMap.animateCamera(camUpdate);
-
-            //calculateDistanceToLocationAndShowDialogInfo(latLng, mapLocations);
-            downloadNewPath(latLng, locations);
+        double currentLatitude = location.getLatitude();
+        double currentLongitude = location.getLongitude();
+        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+        CameraUpdate camUpdate;
+        if (isFirstLocationUpdate) {
+            camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
+            googleMap.animateCamera(camUpdate);
+            isFirstLocationUpdate = false;
+        }
+        downloadNewPath(latLng, locations);
     }
 
-    private void downloadNewPath(LatLng myLocation, ArrayList<LatLng> locations) {
+    private void downloadNewPath(LatLng myLocation, ArrayList<MainPlace> locations) {
         String url = createURLForPath(myLocation, locations, getContext());
         JsonObjectRequest jsonObjectReq = new JsonObjectRequest(url, null,
                 response -> {
@@ -276,21 +269,20 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
             if (tmpPolyline != null) {
                 tmpPolyline.remove();
             }
-
         }
     }
 
-    private String createURLForPath(LatLng myLocation, List<LatLng> locations, Context context) {
+    private String createURLForPath(LatLng myLocation, List<MainPlace> locations, Context context) {
         String url = "https://maps.googleapis.com/maps/api/directions/json?";
         // walking&
         String mode = "mode=walking"
                 + "&";
         String origin = "origin=" + myLocation.latitude + "," + myLocation.longitude + "&";
-        String destination = "destination=" + locations.get(locations.size() - 1).latitude +
-                "," + locations.get(locations.size() - 1).longitude + "&";
+        String destination = "destination=" + locations.get(locations.size() - 1).getLatitude() +
+                "," + locations.get(locations.size() - 1).getLongitude() + "&";
         String waypoints = "waypoints=";
         for (int i = 0; i < locations.size() - 1; i++) {
-            waypoints += locations.get(i).latitude + "," + locations.get(i).longitude;
+            waypoints += locations.get(i).getLatitude() + "," + locations.get(i).getLongitude();
             if (i != locations.size() - 2)
                 waypoints += "|";
         }
@@ -309,19 +301,6 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         String tmp = opObj.getString("points");
         latLngs = PolyUtil.decode(tmp);
         return latLngs;
-    }
-
-    public boolean startGoogleMaps() {
-        if (gMapView != null) {
-            if (googleMap == null) {
-                gMapView.getMapAsync(this);
-            } else {
-                gMapView.onResume();
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }
