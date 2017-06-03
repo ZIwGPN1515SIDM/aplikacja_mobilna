@@ -3,6 +3,7 @@ package com.example.magda.systeminformacyjny.utils;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import com.example.magda.systeminformacyjny.fragments.EventsPlaceFragment;
@@ -17,7 +18,7 @@ import java.util.HashMap;
  * Created by piotrek on 09.04.17.
  */
 
-public class ViewPagerAdapter extends FragmentPagerAdapter{
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int numberOfPages;
     private HashMap<Integer, Fragment> fragments;

@@ -18,7 +18,7 @@ import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_P
 
 public class RecyclerViewEventsAdapter extends AbstractRecyclerViewEndlessAdapter<Event>{
 
-    IErrorViewModel viewModel;
+    private IErrorViewModel viewModel;
 
     public RecyclerViewEventsAdapter(ArrayList<Event> dataSet, IErrorViewModel viewModel) {
         super(dataSet);

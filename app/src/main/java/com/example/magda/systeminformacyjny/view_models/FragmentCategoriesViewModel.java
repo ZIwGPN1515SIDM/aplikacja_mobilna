@@ -52,9 +52,7 @@ public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessA
 
         if(successResponse != null) {
             onSuccessResponse();
-        }
-
-        if(errorResponse != null) {
+        }else if(errorResponse != null) {
             onErrorResponse();
         }
 
@@ -93,7 +91,7 @@ public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessA
 
     @Override
     public void refreshAfterDownloadError() {
-
+        download();
     }
 
     public void download() {

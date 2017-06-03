@@ -74,7 +74,6 @@ public class FragmentNearPlacesViewModel {
         return new EddystoneListener() {
             @Override
             public void onEddystoneDiscovered(IEddystoneDevice eddystone, IEddystoneNamespace namespace) {
-                //TO DO wykrycie beacona
                 Log.d("JESTEM", "namspace " + eddystone.getNamespace() + "instance " + eddystone.getInstanceId());
             }
 
