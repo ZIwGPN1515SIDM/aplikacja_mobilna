@@ -7,6 +7,7 @@ import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.items.CurrentPath;
 import com.example.magda.systeminformacyjny.network.items.ItemsApiService;
+import com.example.magda.systeminformacyjny.network.items.PathName;
 import com.example.magda.systeminformacyjny.network.items.PathResponse;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
@@ -87,7 +88,7 @@ public class DataRequestManager {
         return itemsApiService.downloadPaths(fields, filter, apiKey);
     }
 
-    public MaybeSource<List<CurrentPath>> downloadCurrentPath(String filter, String apiKey) {
+    public MaybeSource<List<PathName>> downloadCurrentPath(String filter, String apiKey) {
         return itemsApiService.downloadCurrentPath(filter, apiKey);
     }
 }

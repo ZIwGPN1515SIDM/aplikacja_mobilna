@@ -1,5 +1,6 @@
 package com.example.magda.systeminformacyjny.network.items;
 
+import com.example.magda.systeminformacyjny.models.Event;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -20,6 +21,10 @@ public class PathName {
         this.name = name;
     }
 
+    public PathName(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -34,5 +39,23 @@ public class PathName {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof PathName))
+            return false;
+        PathName other = (PathName) obj;
+        return id == null ? other.id == null : id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 117;
+        result = 37 * result + id.hashCode();
+        return result;
     }
 }
