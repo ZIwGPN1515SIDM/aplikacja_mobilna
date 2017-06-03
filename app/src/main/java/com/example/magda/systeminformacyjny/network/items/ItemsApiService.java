@@ -8,7 +8,10 @@ import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.DefaultIdWrapper;
 import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
 import com.example.magda.systeminformacyjny.network.WhereToGoService;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,10 +107,16 @@ public class ItemsApiService {
                 .singleElement();
     }
 
-    public MaybeSource<List<CurrentPath>> downloadCurrentPath(String filter, String apiKey) {
+    public MaybeSource<List<PathName>> downloadCurrentPath(String filter, String apiKey) {
         return whereToGoService.downloadCurrentPath(filter, apiKey)
                 .subscribeOn(Schedulers.io())
-                .map(response -> response.getResource())
+                .map(response -> {
+                    Gson gson = new Gson();
+                    String jsonPath = response.getResource().get(0).getPathNames();
+                    Type listType = new TypeToken<List<PathName>>() {}.getType();
+                    List<PathName> pathNames = gson.fromJson(jsonPath, listType);
+                    return pathNames;
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

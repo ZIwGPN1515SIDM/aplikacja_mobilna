@@ -69,6 +69,8 @@
         <activity android:name=".activities.SubLocationActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".activities.MyPathsActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name="com.kontakt.sdk.android.ble.service.ProximityService"

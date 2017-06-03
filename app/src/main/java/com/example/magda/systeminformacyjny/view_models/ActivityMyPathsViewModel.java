@@ -1,17 +1,16 @@
 package com.example.magda.systeminformacyjny.view_models;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
-
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.activities.MyPathsActivity;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
-import com.example.magda.systeminformacyjny.fragments.MyPathsFragment;
 import com.example.magda.systeminformacyjny.network.DataRequestManager;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
-import com.example.magda.systeminformacyjny.network.items.PathResponse;
+import com.example.magda.systeminformacyjny.network.items.PathName;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
-import com.example.magda.systeminformacyjny.utils.PreferencesManager;
+import com.example.magda.systeminformacyjny.utils.RecyclerViewCurrentPathAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 import io.reactivex.MaybeObserver;
@@ -24,50 +23,55 @@ import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VI
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
 /**
- * Created by piotrek on 01.06.17.
+ * Created by piotrek on 03.06.17.
  */
 
-public class FragmentMyPathsViewModel implements AbstractRecyclerViewEndlessAdapter.IErrorViewModel,
-        Lifecycle.ViewModel{
+public class ActivityMyPathsViewModel implements AbstractRecyclerViewEndlessAdapter.IErrorViewModel,
+        Lifecycle.ViewModel {
 
-    private MyPathsFragment viewCallback;
+    public MyPathsActivity viewCallback;
     private CompositeDisposable compositeDisposable;
-    private DataRequestManager dataRequestManager;
     private ErrorResponse errorResponse;
     private SuccessResponse successResponse;
-    private ArrayList<PathResponse> pathNames;
+    private ArrayList<PathName> pathNames;
+    private long pathId;
+    private DataRequestManager dataRequestManager;
 
-    public FragmentMyPathsViewModel(MyPathsFragment viewCallback) {
+    public ActivityMyPathsViewModel(MyPathsActivity viewCallback) {
         this.viewCallback = viewCallback;
-        this.dataRequestManager = DataRequestManager.getInstance();
         this.compositeDisposable = new CompositeDisposable();
+        this.dataRequestManager = DataRequestManager.getInstance();
     }
 
     @Override
     public void onViewResumed() {
-        if(successResponse != null) {
+        if (successResponse != null) {
             onSuccessResponse();
-        }else if(errorResponse != null) {
+        } else if (errorResponse != null) {
             onErrorResponse();
         }
     }
 
+    public void download() {
+        pathNames.clear();
+        pathNames.add(new PathName(FULL_SCREEN_PROGRESS_BAR));
+        downloadRequest();
+    }
 
-    public void downloadPathListRequest() {
+    public void downloadRequest() {
+        String filter = "ID%3D" + pathId;
         String apiKey = viewCallback.getString(R.string.server_api_key);
-        String fields = "ID%20%2CCREATED_ON%20%2CNAME";
-        String filter = "FB_USER_ID%3D" + PreferencesManager.getOurId(viewCallback.getContext());
-        dataRequestManager.downloadPaths(fields, filter, apiKey).subscribe(new MaybeObserver<List<PathResponse>>() {
+        dataRequestManager.downloadCurrentPath(filter, apiKey).subscribe(new MaybeObserver<List<PathName>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 compositeDisposable.add(d);
             }
 
             @Override
-            public void onSuccess(List<PathResponse> value) {
+            public void onSuccess(List<PathName> value) {
                 pathNames.clear();
                 pathNames.addAll(value);
-                if(value.size() == 0)
+                if (value.size() == 0)
                     pathNames.add(null);
                 successResponse = new SuccessResponse(DOWNLOAD_SUCCESS);
                 onSuccessResponse();
@@ -77,7 +81,7 @@ public class FragmentMyPathsViewModel implements AbstractRecyclerViewEndlessAdap
             public void onError(Throwable e) {
                 e.printStackTrace();
                 pathNames.clear();
-                pathNames.add(new PathResponse(ERROR_INFO_VIEW_HOLDER));
+                pathNames.add(new PathName(ERROR_INFO_VIEW_HOLDER));
                 errorResponse = new ErrorResponse(DOWNLOAD_ERROR);
                 onErrorResponse();
             }
@@ -89,20 +93,14 @@ public class FragmentMyPathsViewModel implements AbstractRecyclerViewEndlessAdap
         });
     }
 
-    public void download() {
-        pathNames.clear();
-        pathNames.add(new PathResponse(FULL_SCREEN_PROGRESS_BAR));
-        downloadPathListRequest();
-    }
-
     @Override
     public void onViewAttached(@NonNull Lifecycle.View viewCallback) {
-        this.viewCallback = (MyPathsFragment) viewCallback;
+        this.viewCallback = (MyPathsActivity) viewCallback;
     }
 
     @Override
     public void onViewDetached() {
-        this.viewCallback = null;
+        viewCallback = null;
     }
 
     @Override
@@ -112,7 +110,7 @@ public class FragmentMyPathsViewModel implements AbstractRecyclerViewEndlessAdap
 
     @Override
     public void onErrorResponse() {
-        if(viewCallback != null) {
+        if (viewCallback != null) {
             viewCallback.onError(errorResponse);
             errorResponse = null;
         }
@@ -120,7 +118,7 @@ public class FragmentMyPathsViewModel implements AbstractRecyclerViewEndlessAdap
 
     @Override
     public void onSuccessResponse() {
-        if(viewCallback!= null) {
+        if (viewCallback != null) {
             viewCallback.onSuccess(successResponse);
             successResponse = null;
         }
@@ -128,10 +126,14 @@ public class FragmentMyPathsViewModel implements AbstractRecyclerViewEndlessAdap
 
     @Override
     public void refreshAfterDownloadError() {
-       download();
+        download();
     }
 
-    public void setPathNames(ArrayList<PathResponse> pathNames) {
+    public void setPathNames(ArrayList<PathName> pathNames) {
         this.pathNames = pathNames;
+    }
+
+    public void setPathId(long pathId) {
+        this.pathId = pathId;
     }
 }

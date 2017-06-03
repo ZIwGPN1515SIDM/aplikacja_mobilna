@@ -1,13 +1,12 @@
 package com.example.magda.systeminformacyjny.utils;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.magda.systeminformacyjny.activities.MyPathsActivity;
 import com.example.magda.systeminformacyjny.databinding.InformationViewHolderBinding;
-import com.example.magda.systeminformacyjny.network.items.PathResponse;
+import com.example.magda.systeminformacyjny.network.items.PathName;
+
 import java.util.ArrayList;
 
 import static com.example.magda.systeminformacyjny.utils.Constants.COLOR_LIGHT_PRIMARY_TYPE;
@@ -16,14 +15,14 @@ import static com.example.magda.systeminformacyjny.utils.Constants.ERROR_INFO_VI
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
 /**
- * Created by piotrek on 01.06.17.
+ * Created by piotrek on 03.06.17.
  */
 
-public class RecyclerViewPathNamesAdapter extends AbstractRecyclerViewEndlessAdapter<PathResponse>{
+public class RecyclerViewCurrentPathAdapter extends AbstractRecyclerViewEndlessAdapter<PathName>{
 
     private IErrorViewModel viewModel;
 
-    public RecyclerViewPathNamesAdapter(ArrayList<PathResponse> dataSet, IErrorViewModel viewModel) {
+    public RecyclerViewCurrentPathAdapter(ArrayList<PathName> dataSet, IErrorViewModel viewModel) {
         super(dataSet);
         this.viewModel = viewModel;
     }
@@ -57,15 +56,9 @@ public class RecyclerViewPathNamesAdapter extends AbstractRecyclerViewEndlessAda
 
     @Override
     public void onBindBasicItemView(RecyclerView.ViewHolder genericHolder, int position) {
-        RecyclerViewPathNamesAdapter.BasicView basicView = (RecyclerViewPathNamesAdapter.BasicView) genericHolder;
-        PathResponse pathResponse = getDataSet().get(position);
-        basicView.bind(pathResponse.getName(), position % 2 == 0 ? COLOR_PRIMARY_TYPE : COLOR_LIGHT_PRIMARY_TYPE);
-        basicView.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(genericHolder.itemView.getContext(), MyPathsActivity.class);
-            intent.putExtra(MyPathsActivity.PATH_ID_TAG, pathResponse.getId());
-            intent.putExtra(MyPathsActivity.TOOLBAR_TITLE, pathResponse.getName());
-            genericHolder.itemView.getContext().startActivity(intent);
-        });
+        BasicView basicView = (BasicView) genericHolder;
+        PathName pathName = getDataSet().get(position);
+        basicView.bind(pathName.getName(), position % 2 == 0 ? COLOR_PRIMARY_TYPE : COLOR_LIGHT_PRIMARY_TYPE);
     }
 
     public class BasicView extends RecyclerView.ViewHolder {
