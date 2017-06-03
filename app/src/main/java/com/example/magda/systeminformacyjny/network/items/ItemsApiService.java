@@ -113,10 +113,41 @@ public class ItemsApiService {
                 .map(response -> {
                     Gson gson = new Gson();
                     String jsonPath = response.getResource().get(0).getPathNames();
-                    Type listType = new TypeToken<List<PathName>>() {}.getType();
+                    Type listType = new TypeToken<List<PathName>>() {
+                    }.getType();
                     List<PathName> pathNames = gson.fromJson(jsonPath, listType);
                     return pathNames;
                 })
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(String apiKey,
+                                                                                     SendEnteredEvent sendEnteredEvent) {
+        return whereToGoService.sendEnteredInstance(apiKey, sendEnteredEvent)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnetredNamespace(String apiKey,
+                                                                                     SendEnteredEvent sendEnteredEvent) {
+        return whereToGoService.sendEnteredNamespace(apiKey, sendEnteredEvent)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<ResponseBody> sendLeaveInstance(String apiKey, SendLeaveEvent sendLeaveEvent) {
+        return whereToGoService.sendLeaveInstance(apiKey, sendLeaveEvent)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<ResponseBody> sendLeaveNamespace(String apiKey, SendLeaveEvent sendLeaveEvent) {
+        return whereToGoService.sendLeaveNamespace(apiKey, sendLeaveEvent)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

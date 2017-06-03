@@ -1,9 +1,11 @@
 package com.example.magda.systeminformacyjny.view_models;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.magda.systeminformacyjny.R;
@@ -66,6 +68,7 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
     }
 
     public void done(EditText editText) {
+        hideKeyboard(editText);
         String routeName = editText.getText().toString();
         if(routeName.trim().length() > 0) {
             sendRoute(routeName);
@@ -73,6 +76,12 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
             viewCallback.showToast(EMPTY_TEXT_ERROR);
         }
 
+    }
+
+    private void hideKeyboard(View v) {
+        InputMethodManager imm = (InputMethodManager) viewCallback.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
     private void sendRoute(String name) {

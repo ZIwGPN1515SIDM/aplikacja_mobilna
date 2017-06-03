@@ -7,6 +7,8 @@ import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.PathResponse;
 import com.example.magda.systeminformacyjny.network.items.CurrentPath;
 import com.example.magda.systeminformacyjny.network.items.PlacesResponse;
+import com.example.magda.systeminformacyjny.network.items.SendEnteredEvent;
+import com.example.magda.systeminformacyjny.network.items.SendLeaveEvent;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
 
 import io.reactivex.Observable;
@@ -74,5 +76,21 @@ public interface WhereToGoService {
     Observable<DefaultResourceWrapper<CurrentPath>> downloadCurrentPath(@Query(value = "filter", encoded = true) String filter,
                                                                         @Query("api_key") String apiKey);
 
+
+    @POST("sidm/_table/ NAMESPACES_EVENTS")
+    Observable<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredNamespace(@Query("api_key") String apiKey,
+                                                  @Body SendEnteredEvent sendEnteredEvent);
+
+    @POST("sidm/_table/ PLACES_EVENTS")
+    Observable<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(@Query("api_key") String apiKey,
+                                                 @Body SendEnteredEvent sendEnteredEvent);
+
+    @PATCH("sidm/_table/ NAMDefaultResourceWrapper<DefaultIdWrapper>ESPACES_EVENTS")
+    Observable<ResponseBody> sendLeaveNamespace(@Query("api_key") String apiKey,
+                                                @Body SendLeaveEvent sendLeaveEvent);
+
+    @PATCH("sidm/_table/ PLACES_EVENTS")
+    Observable<ResponseBody> sendLeaveInstance(@Query("api_key") String apiKey,
+                                               @Body SendLeaveEvent sendLeaveEvent);
 
 }

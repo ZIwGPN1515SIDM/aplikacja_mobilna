@@ -1,7 +1,11 @@
 package com.example.magda.systeminformacyjny.view_models;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.fragments.NearPlacesFragment;
+import com.example.magda.systeminformacyjny.network.DataRequestManager;
 import com.kontakt.sdk.android.ble.configuration.ActivityCheckConfiguration;
 import com.kontakt.sdk.android.ble.configuration.ForceScanConfiguration;
 import com.kontakt.sdk.android.ble.configuration.ScanMode;
@@ -18,17 +22,23 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * Created by piotrek on 09.04.17.
  */
 
-public class FragmentNearPlacesViewModel {
+public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel{
 
     private NearPlacesFragment viewCallback;
     private ProximityManager proximityManager;
+    private DataRequestManager dataRequestManager;
+    private CompositeDisposable compositeDisposable;
 
     public FragmentNearPlacesViewModel(NearPlacesFragment viewCallback) {
         this.viewCallback = viewCallback;
+        this.dataRequestManager = DataRequestManager.getInstance();
+        this.compositeDisposable = new CompositeDisposable();
         setUpProximityManager();
     }
 
@@ -50,9 +60,35 @@ public class FragmentNearPlacesViewModel {
         proximityManager.setSpaceListener(createEddystoneSpaceListener());
     }
 
+    @Override
+    public void onViewResumed() {
+
+    }
+
+    @Override
+    public void onViewAttached(@NonNull Lifecycle.View viewCallback) {
+        this.viewCallback = (NearPlacesFragment) viewCallback;
+    }
+
+    @Override
+    public void onViewDetached() {
+        this.viewCallback = null;
+    }
+
     public void onDestroy() {
         proximityManager.disconnect();
         proximityManager = null;
+        this.compositeDisposable.clear();
+    }
+
+    @Override
+    public void onErrorResponse() {
+
+    }
+
+    @Override
+    public void onSuccessResponse() {
+
     }
 
     public void onStop() {
@@ -101,6 +137,26 @@ public class FragmentNearPlacesViewModel {
                 //TO DO wyjscie z danej strefy danego miejsca
             }
         };
+    }
+
+    public void sendNamespaceEntred() {
+
+    }
+
+    public void sendNamespaceLeave() {
+
+    }
+
+    public void sendInstanceEntred() {
+
+    }
+
+    public void sendInstanceLeave() {
+
+    }
+
+    public void downloadInstancePlace() {
+
     }
 
 }
