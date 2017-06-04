@@ -75,4 +75,7 @@
     <string name="send_route_dialog_info">Wysyłanie trasy proszę czekaj...</string>
     <string name="send_route_dialog_error">Nie można dodać trasy !</string>
 
+    <string name="downloading_place_info">Nieznane miejsce w pobliżu. Informacje na temat tego miejsca
+    są pobierane. Proszę poczekaj....</string>
+
 </resources>

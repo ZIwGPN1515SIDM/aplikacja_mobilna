@@ -72,6 +72,8 @@ public class Place implements IPlaceItem {
 
     private boolean inMetersKilometers;
 
+    private String namespace;
+
     public Place(Long id, String description, String advert, String eventContent, String addedOn,
                  Float sumScore, Long commentsCount, String googleId, String instance, String name,
                  Long namespaceId, List<Photo> photos, String eventName, String eventEnd,
@@ -260,5 +262,13 @@ public class Place implements IPlaceItem {
 
     public void setEventEnd(String eventEnd) {
         this.eventEnd = eventEnd;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
     }
 }

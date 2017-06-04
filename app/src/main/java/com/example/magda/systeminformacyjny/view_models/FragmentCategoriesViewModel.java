@@ -55,7 +55,6 @@ public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessA
         }else if(errorResponse != null) {
             onErrorResponse();
         }
-
     }
 
     @Override
