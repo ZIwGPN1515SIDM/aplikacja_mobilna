@@ -124,7 +124,7 @@ public class ItemsApiService {
 
     public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(String apiKey,
                                                                                      SendEnteredEvent sendEnteredEvent) {
-        return whereToGoService.sendEnteredInstance(apiKey, sendEnteredEvent)
+        return whereToGoService.sendEnteredInstance(apiKey, new DefaultResourceWrapper<>(sendEnteredEvent))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
@@ -132,22 +132,30 @@ public class ItemsApiService {
 
     public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnetredNamespace(String apiKey,
                                                                                      SendEnteredEvent sendEnteredEvent) {
-        return whereToGoService.sendEnteredNamespace(apiKey, sendEnteredEvent)
+        return whereToGoService.sendEnteredNamespace(apiKey, new DefaultResourceWrapper<>(sendEnteredEvent))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
 
     public MaybeSource<ResponseBody> sendLeaveInstance(String apiKey, SendLeaveEvent sendLeaveEvent) {
-        return whereToGoService.sendLeaveInstance(apiKey, sendLeaveEvent)
+        return whereToGoService.sendLeaveInstance(apiKey, new DefaultResourceWrapper<>(sendLeaveEvent))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
 
     public MaybeSource<ResponseBody> sendLeaveNamespace(String apiKey, SendLeaveEvent sendLeaveEvent) {
-        return whereToGoService.sendLeaveNamespace(apiKey, sendLeaveEvent)
+        return whereToGoService.sendLeaveNamespace(apiKey, new DefaultResourceWrapper<>(sendLeaveEvent))
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<Place> downloadPlace(String type, String namespace, String instance, String apiKey) {
+        return whereToGoService.downloadPlace(apiKey, type, namespace, instance)
+                .subscribeOn(Schedulers.io())
+                .map(InstanceResponse::getPlace)
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

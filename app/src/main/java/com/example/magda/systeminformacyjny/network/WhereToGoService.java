@@ -2,6 +2,7 @@ package com.example.magda.systeminformacyjny.network;
 
 import com.example.magda.systeminformacyjny.network.items.CommentResponse;
 import com.example.magda.systeminformacyjny.network.items.EventResponse;
+import com.example.magda.systeminformacyjny.network.items.InstanceResponse;
 import com.example.magda.systeminformacyjny.network.items.MainPlacesFromCategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.CategoryResponse;
 import com.example.magda.systeminformacyjny.network.items.PathResponse;
@@ -34,6 +35,12 @@ public interface WhereToGoService {
     Observable<MainPlacesFromCategoryResponse> downloadMainPlacesFromCategory(@Query("category") Long categoryId,
                                                                               @Query("type") String type,
                                                                               @Query("api_key") String apiKey);
+
+    @GET("place")
+    Observable<InstanceResponse> downloadPlace(@Query("api_key") String apiKey,
+                                               @Query("type") String type,
+                                               @Query("namespace") String namespace,
+                                               @Query("place") String instance);
 
     @POST("sidmapp/user")
     Observable<LoginResponse> login(@Query("api_key") String apiKey,
@@ -77,20 +84,20 @@ public interface WhereToGoService {
                                                                         @Query("api_key") String apiKey);
 
 
-    @POST("sidm/_table/ NAMESPACES_EVENTS")
+    @POST("sidm/_table/NAMESPACES_EVENTS")
     Observable<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredNamespace(@Query("api_key") String apiKey,
-                                                  @Body SendEnteredEvent sendEnteredEvent);
+                                                  @Body DefaultResourceWrapper<SendEnteredEvent> sendEnteredEvent);
 
-    @POST("sidm/_table/ PLACES_EVENTS")
+    @POST("sidm/_table/PLACES_EVENTS")
     Observable<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(@Query("api_key") String apiKey,
-                                                 @Body SendEnteredEvent sendEnteredEvent);
+                                                 @Body DefaultResourceWrapper<SendEnteredEvent> sendEnteredEvent);
 
-    @PATCH("sidm/_table/ NAMDefaultResourceWrapper<DefaultIdWrapper>ESPACES_EVENTS")
+    @PATCH("sidm/_table/NAMESPACES_EVENTS")
     Observable<ResponseBody> sendLeaveNamespace(@Query("api_key") String apiKey,
-                                                @Body SendLeaveEvent sendLeaveEvent);
+                                                @Body DefaultResourceWrapper<SendLeaveEvent> sendLeaveEvent);
 
-    @PATCH("sidm/_table/ PLACES_EVENTS")
+    @PATCH("sidm/_table/PLACES_EVENTS")
     Observable<ResponseBody> sendLeaveInstance(@Query("api_key") String apiKey,
-                                               @Body SendLeaveEvent sendLeaveEvent);
+                                               @Body DefaultResourceWrapper<SendLeaveEvent> sendLeaveEvent);
 
 }
