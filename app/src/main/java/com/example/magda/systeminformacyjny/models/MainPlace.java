@@ -71,11 +71,16 @@ public class MainPlace implements IPlaceItem {
     @Expose
     private String eventEnd;
 
+    @SerializedName("CATEGORY_NAME")
+    @Expose
     private String categoryName;
 
     private double distance;
 
     private boolean inMetersKilometers;
+
+    @SerializedName("PHOTO")
+    private String mainPhoto;
 
     public MainPlace(Long id, String description, Object advert, String eventContent, String addedOn,
                      Float sumScore, Long commentsCount, String googlePlaceId, String namespace,
@@ -269,6 +274,14 @@ public class MainPlace implements IPlaceItem {
 
     public void setEventEnd(String eventEnd) {
         this.eventEnd = eventEnd;
+    }
+
+    public void setMainPhoto(String mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
+    public String getMainPhoto() {
+        return mainPhoto;
     }
 
     @Override

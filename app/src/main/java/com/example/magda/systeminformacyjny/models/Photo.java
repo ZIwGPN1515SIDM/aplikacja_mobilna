@@ -29,6 +29,12 @@ public class Photo implements Serializable{
         this.placeId = placeId;
     }
 
+    public Photo(String URL, Long placeId) {
+        this.id = -1L;
+        this.URL = URL;
+        this.placeId = placeId;
+    }
+
     public Long getId() {
         return id;
     }
