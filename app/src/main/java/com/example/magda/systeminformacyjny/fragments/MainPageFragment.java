@@ -12,9 +12,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -22,7 +24,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
+import com.example.magda.systeminformacyjny.databinding.FragmentSettingsBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
+import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.LocationProvider;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.google.android.gms.maps.CameraUpdate;
@@ -45,7 +49,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.example.magda.systeminformacyjny.utils.Constants.BLUE_COLOR;
 import static com.example.magda.systeminformacyjny.utils.Constants.DARK_MAP;
+import static com.example.magda.systeminformacyjny.utils.Constants.GREEN_COLOR;
+import static com.example.magda.systeminformacyjny.utils.Constants.RED_COLOR;
 import static com.example.magda.systeminformacyjny.utils.Constants.RETRO_MAP;
 import static com.example.magda.systeminformacyjny.utils.Constants.STANDARD_MAP;
 
@@ -66,6 +73,8 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     private MapView gMapView;
     private LocationProvider locationProvider;
     private AtomicBoolean enableFocusOnUserLocation;
+    Spinner colorSpinner;
+    FragmentSettingsBinding binding;
 
 
     public static MainPageFragment getInstance() {
@@ -262,7 +271,17 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         PolylineOptions lineOptions = new PolylineOptions();
         lineOptions.addAll(latLngs);
         lineOptions.width(10);
-        lineOptions.color(Color.RED);
+        switch (PreferencesManager.routeColor(getContext())){
+            case Constants.RED_COLOR:
+                lineOptions.color(Color.RED);
+                break;
+            case Constants.GREEN_COLOR:
+                lineOptions.color(Color.GREEN);
+                break;
+            case Constants.BLUE_COLOR:
+                lineOptions.color(Color.BLUE);
+                break;
+        }
         if (latLngs != null && latLngs.size() != 0) {
             Polyline tmpPolyline = polyLine;
             polyLine = googleMap.addPolyline(lineOptions);

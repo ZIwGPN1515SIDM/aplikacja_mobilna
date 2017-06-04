@@ -21,6 +21,7 @@ import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.databinding.FragmentSettingsBinding;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
+import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.example.magda.systeminformacyjny.view_models.FragmentSettingsViewModel;
 
@@ -86,16 +87,20 @@ public class SettingsPageFragment extends BaseFragment{
         int tmpPosition;
         switch (PreferencesManager.routeColor(getContext())) {
             case Color.RED:
-                tmpPosition = RED_COLOR;
+                PreferencesManager.setRouteColor(getContext(), Constants.RED_COLOR);
+                tmpPosition = Constants.RED_COLOR;
                 break;
             case Color.GREEN:
-                tmpPosition = GREEN_COLOR;
+                PreferencesManager.setRouteColor(getContext(), Constants.GREEN_COLOR);
+                tmpPosition = Constants.GREEN_COLOR;
                 break;
             case Color.BLUE:
-                tmpPosition = BLUE_COLOR;
+                PreferencesManager.setRouteColor(getContext(), Constants.BLUE_COLOR);
+                tmpPosition = Constants.BLUE_COLOR;
                 break;
             default:
-                tmpPosition = RED_COLOR;
+                PreferencesManager.setRouteColor(getContext(), Constants.RED_COLOR);
+                tmpPosition = Constants.RED_COLOR;
         }
         return tmpPosition;
     }

@@ -16,6 +16,7 @@ import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
+import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 
 import io.reactivex.MaybeObserver;
@@ -119,13 +120,13 @@ public class FragmentSettingsViewModel  implements Lifecycle.ViewModel{
 
         switch (position) {
             case RED_COLOR:
-                PreferencesManager.setRouteColor(viewCallback.getContext(), Color.RED);
+                PreferencesManager.setRouteColor(viewCallback.getContext(), Constants.RED_COLOR);
                 break;
             case GREEN_COLOR:
-                PreferencesManager.setRouteColor(viewCallback.getContext(), Color.GREEN);
+                PreferencesManager.setRouteColor(viewCallback.getContext(), Constants.GREEN_COLOR);
                 break;
             case BLUE_COLOR:
-                PreferencesManager.setRouteColor(viewCallback.getContext(), Color.BLUE);
+                PreferencesManager.setRouteColor(viewCallback.getContext(), Constants.BLUE_COLOR);
                 break;
         }
     }
