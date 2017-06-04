@@ -74,7 +74,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     private LocationProvider locationProvider;
     private AtomicBoolean enableFocusOnUserLocation;
     Spinner colorSpinner;
-    FragmentSettingsBinding binding;
+    FragmentMainPageBinding binding;
 
 
     public static MainPageFragment getInstance() {
@@ -84,7 +84,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentMainPageBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_page, null, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_page, null, false);
         gMapView = binding.map;
         locationProvider = new LocationProvider(getContext(), this);
         setUpLocations();
@@ -240,17 +240,18 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
 
     @Override
     public void handleNewLocation(Location location) {
-
-        double currentLatitude = location.getLatitude();
-        double currentLongitude = location.getLongitude();
-        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-        CameraUpdate camUpdate;
-        if (isFirstLocationUpdate) {
-            camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
-            googleMap.animateCamera(camUpdate);
-            isFirstLocationUpdate = false;
-        }
-        downloadNewPath(latLng, locations);
+        binding.floatingButton.setOnClickListener(v -> {
+            double currentLatitude = location.getLatitude();
+            double currentLongitude = location.getLongitude();
+            LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+            CameraUpdate camUpdate;
+            if (isFirstLocationUpdate) {
+                camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
+                googleMap.animateCamera(camUpdate);
+                isFirstLocationUpdate = false;
+            }
+            downloadNewPath(latLng, locations);
+        });
     }
 
     private void downloadNewPath(LatLng myLocation, ArrayList<MainPlace> locations) {
