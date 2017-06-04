@@ -102,7 +102,7 @@ public class DataRequestManager {
     }
 
     public MaybeSource<ResponseBody> sendLeaveInstance(String apiKey, SendLeaveEvent sendLeaveEvent) {
-        return sendLeaveInstance(apiKey, sendLeaveEvent);
+        return itemsApiService.sendLeaveInstance(apiKey, sendLeaveEvent);
     }
 
     public MaybeSource<ResponseBody> sendLeaveNamespace(String apiKey, SendLeaveEvent sendLeaveEvent) {
@@ -111,6 +111,15 @@ public class DataRequestManager {
 
     public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(String apiKey,
                                                                                      SendEnteredEvent sendEnteredEvent) {
-        return sendEnteredInstance(apiKey, sendEnteredEvent);
+        return itemsApiService.sendEnteredInstance(apiKey, sendEnteredEvent);
     }
+
+    public MaybeSource<Place> downloadPlace(String apiKey, String type, String instance, String namespace) {
+        return itemsApiService.downloadPlace(type, namespace, instance, apiKey);
+    }
+
+    public MaybeSource<List<MainPlace>>downloadVisitedPlaces(String filter, String order, String apiKey) {
+        return itemsApiService.downloadVisitedPlaces(filter, order, apiKey);
+    }
+
 }

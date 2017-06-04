@@ -4,6 +4,7 @@ import com.example.magda.systeminformacyjny.models.Category;
 import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
+import com.example.magda.systeminformacyjny.models.Photo;
 import com.example.magda.systeminformacyjny.models.Place;
 import com.example.magda.systeminformacyjny.network.DefaultIdWrapper;
 import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
@@ -124,30 +125,54 @@ public class ItemsApiService {
 
     public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(String apiKey,
                                                                                      SendEnteredEvent sendEnteredEvent) {
-        return whereToGoService.sendEnteredInstance(apiKey, sendEnteredEvent)
+        return whereToGoService.sendEnteredInstance(apiKey, new DefaultResourceWrapper<>(sendEnteredEvent))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
 
     public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnetredNamespace(String apiKey,
-                                                                                     SendEnteredEvent sendEnteredEvent) {
-        return whereToGoService.sendEnteredNamespace(apiKey, sendEnteredEvent)
+                                                                                      SendEnteredEvent sendEnteredEvent) {
+        return whereToGoService.sendEnteredNamespace(apiKey, new DefaultResourceWrapper<>(sendEnteredEvent))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
 
     public MaybeSource<ResponseBody> sendLeaveInstance(String apiKey, SendLeaveEvent sendLeaveEvent) {
-        return whereToGoService.sendLeaveInstance(apiKey, sendLeaveEvent)
+        return whereToGoService.sendLeaveInstance(apiKey, new DefaultResourceWrapper<>(sendLeaveEvent))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }
 
     public MaybeSource<ResponseBody> sendLeaveNamespace(String apiKey, SendLeaveEvent sendLeaveEvent) {
-        return whereToGoService.sendLeaveNamespace(apiKey, sendLeaveEvent)
+        return whereToGoService.sendLeaveNamespace(apiKey, new DefaultResourceWrapper<>(sendLeaveEvent))
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<Place> downloadPlace(String type, String namespace, String instance, String apiKey) {
+        return whereToGoService.downloadPlace(apiKey, type, namespace, instance)
+                .subscribeOn(Schedulers.io())
+                .map(InstanceResponse::getPlace)
+                .observeOn(AndroidSchedulers.mainThread())
+                .singleElement();
+    }
+
+    public MaybeSource<List<MainPlace>> downloadVisitedPlaces(String filter, String order, String apiKey) {
+        return whereToGoService.downloadVisitedPlaces(filter, order, apiKey)
+                .subscribeOn(Schedulers.io())
+                .map(response -> {
+                    ArrayList<Photo> photos;
+                    for (MainPlace m : response.getResource()) {
+                        photos = new ArrayList<>();
+                        photos.add(new Photo(m.getMainPhoto(), m.getId()));
+                        m.setPhotos(photos);
+                    }
+                    return response.getResource();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

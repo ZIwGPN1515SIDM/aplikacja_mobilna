@@ -4,12 +4,14 @@ import android.support.annotation.NonNull;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
-import com.example.magda.systeminformacyjny.fragments.PlacesBasePageFragment;
-import com.example.magda.systeminformacyjny.models.Category;
+import com.example.magda.systeminformacyjny.fragments.VisitedPlacesPageFragment;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.network.DataRequestManager;
 import com.example.magda.systeminformacyjny.network.ErrorResponse;
 import com.example.magda.systeminformacyjny.network.SuccessResponse;
 import com.example.magda.systeminformacyjny.utils.AbstractRecyclerViewEndlessAdapter;
+import com.example.magda.systeminformacyjny.utils.Constants;
+import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,33 +25,28 @@ import static com.example.magda.systeminformacyjny.network.SuccessResponse.DOWNL
 import static com.example.magda.systeminformacyjny.utils.Constants.FULL_SCREEN_PROGRESS_BAR;
 
 /**
- * Created by JB on 2017-04-25.
+ * Created by piotrek on 04.06.17.
  */
 
-public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessAdapter.IErrorViewModel,
-        Lifecycle.ViewModel {
+public class FragmentVisitedPlacesViewModel implements Lifecycle.ViewModel, AbstractRecyclerViewEndlessAdapter.IErrorViewModel{
 
-    private ArrayList<Category> categories;
-    private PlacesBasePageFragment viewCallback;
+    private VisitedPlacesPageFragment viewCallback;
     private CompositeDisposable compositeDisposable;
     private DataRequestManager dataRequestManager;
-
     private ErrorResponse errorResponse;
     private SuccessResponse successResponse;
+    private ArrayList<MainPlace> mainPlaces;
 
-    public FragmentCategoriesViewModel(PlacesBasePageFragment viewCallback) {
+
+    public FragmentVisitedPlacesViewModel(VisitedPlacesPageFragment viewCallback) {
         this.viewCallback = viewCallback;
+        this.dataRequestManager = DataRequestManager.getInstance();
         this.compositeDisposable = new CompositeDisposable();
-        dataRequestManager = DataRequestManager.getInstance();
     }
 
-    public void setCategories(ArrayList<Category> categories) {
-        this.categories = categories;
-    }
 
     @Override
     public void onViewResumed() {
-
         if(successResponse != null) {
             onSuccessResponse();
         }else if(errorResponse != null) {
@@ -59,7 +56,7 @@ public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessA
 
     @Override
     public void onViewAttached(@NonNull Lifecycle.View viewCallback) {
-        this.viewCallback = (PlacesBasePageFragment) viewCallback;
+        this.viewCallback = (VisitedPlacesPageFragment) viewCallback;
     }
 
     @Override
@@ -88,31 +85,29 @@ public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessA
         }
     }
 
-    @Override
-    public void refreshAfterDownloadError() {
-        download();
-    }
-
     public void download() {
-        String apiKey = viewCallback.getString(R.string.server_api_key);
-        categories.clear();
-        categories.add(new Category(FULL_SCREEN_PROGRESS_BAR));
-        viewCallback.recyclerViewNotify();
-
-        sendDownloadRequest(apiKey);
+        mainPlaces.clear();
+        mainPlaces.add(new MainPlace(FULL_SCREEN_PROGRESS_BAR));
+        viewCallback.notifyRecyclerView();
+        downloadRequest();
     }
 
-    private void sendDownloadRequest(String apiKey) {
-        dataRequestManager.downloadCategories(apiKey).subscribe(new MaybeObserver<List<Category>>() {
+    public void downloadRequest() {
+        String filter = "FB_USER_ID%3D" + PreferencesManager.getOurId(viewCallback.getContext());
+        String order = "NAME%20ASC";
+        String apiKey = viewCallback.getString(R.string.server_api_key);
+        dataRequestManager.downloadVisitedPlaces(filter,order,apiKey).subscribe(new MaybeObserver<List<MainPlace>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 compositeDisposable.add(d);
             }
 
             @Override
-            public void onSuccess(List<Category> value) {
-                categories.clear();
-                categories.addAll(value);
+            public void onSuccess(List<MainPlace> value) {
+                mainPlaces.clear();
+                mainPlaces.addAll(value);
+                if(mainPlaces.size() == 0)
+                    mainPlaces.add(null);
                 successResponse = new SuccessResponse(DOWNLOAD_SUCCESS);
                 onSuccessResponse();
             }
@@ -131,4 +126,12 @@ public class FragmentCategoriesViewModel implements AbstractRecyclerViewEndlessA
         });
     }
 
+    public void setMainPlaces(ArrayList<MainPlace> mainPlaces) {
+        this.mainPlaces = mainPlaces;
+    }
+
+    @Override
+    public void refreshAfterDownloadError() {
+        download();
+    }
 }
