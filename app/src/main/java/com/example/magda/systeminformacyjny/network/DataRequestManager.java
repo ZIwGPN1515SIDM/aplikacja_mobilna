@@ -117,4 +117,9 @@ public class DataRequestManager {
     public MaybeSource<Place> downloadPlace(String apiKey, String type, String instance, String namespace) {
         return itemsApiService.downloadPlace(type, namespace, instance, apiKey);
     }
+
+    public MaybeSource<List<MainPlace>>downloadVisitedPlaces(String filter, String order, String apiKey) {
+        return itemsApiService.downloadVisitedPlaces(filter, order, apiKey);
+    }
+
 }
