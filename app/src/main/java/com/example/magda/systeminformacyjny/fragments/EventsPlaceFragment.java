@@ -68,8 +68,8 @@ public class EventsPlaceFragment extends BaseFragment {
         recyclerView = binding.recyclerView;
         events = new ArrayList<>();
         events.add(new Event(FULL_SCREEN_PROGRESS_BAR));
-        setUpRecyclerView();
         viewModel = new FragmentEventsPlaceViewModel(this);
+        setUpRecyclerView();
         viewModel.setEvents(events);
         viewModel.setNamespace(mainNamespace);
         viewModel.downloadEvents();

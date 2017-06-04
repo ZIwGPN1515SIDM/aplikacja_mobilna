@@ -5,7 +5,12 @@ import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.Event;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.Place;
+import com.example.magda.systeminformacyjny.network.items.CurrentPath;
 import com.example.magda.systeminformacyjny.network.items.ItemsApiService;
+import com.example.magda.systeminformacyjny.network.items.PathName;
+import com.example.magda.systeminformacyjny.network.items.PathResponse;
+import com.example.magda.systeminformacyjny.network.items.SendEnteredEvent;
+import com.example.magda.systeminformacyjny.network.items.SendLeaveEvent;
 import com.example.magda.systeminformacyjny.network.user.LoginRequest;
 import com.example.magda.systeminformacyjny.network.user.LoginResponse;
 import com.example.magda.systeminformacyjny.network.user.NewsletterRequest;
@@ -15,6 +20,8 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.MaybeSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 
@@ -77,4 +84,33 @@ public class DataRequestManager {
         return itemsApiService.sendComment(apiKey, request);
     }
 
+    public MaybeSource<ResponseBody> sendPath(String apiKey, DefaultResourceWrapper<CurrentPath> currentPath) {
+        return itemsApiService.sendPath(apiKey, currentPath);
+    }
+
+    public MaybeSource<List<PathResponse>> downloadPaths(String fields, String filter, String apiKey) {
+        return itemsApiService.downloadPaths(fields, filter, apiKey);
+    }
+
+    public MaybeSource<List<PathName>> downloadCurrentPath(String filter, String apiKey) {
+        return itemsApiService.downloadCurrentPath(filter, apiKey);
+    }
+
+    public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredNamespace(String apiKey,
+                                                                                     SendEnteredEvent sendEnteredEvent) {
+      return itemsApiService.sendEnetredNamespace(apiKey, sendEnteredEvent);
+    }
+
+    public MaybeSource<ResponseBody> sendLeaveInstance(String apiKey, SendLeaveEvent sendLeaveEvent) {
+        return sendLeaveInstance(apiKey, sendLeaveEvent);
+    }
+
+    public MaybeSource<ResponseBody> sendLeaveNamespace(String apiKey, SendLeaveEvent sendLeaveEvent) {
+        return itemsApiService.sendLeaveNamespace(apiKey, sendLeaveEvent);
+    }
+
+    public MaybeSource<DefaultResourceWrapper<DefaultIdWrapper>> sendEnteredInstance(String apiKey,
+                                                                                     SendEnteredEvent sendEnteredEvent) {
+        return sendEnteredInstance(apiKey, sendEnteredEvent);
+    }
 }

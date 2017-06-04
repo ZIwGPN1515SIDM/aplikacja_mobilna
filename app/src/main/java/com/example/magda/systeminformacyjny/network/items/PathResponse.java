@@ -1,34 +1,31 @@
-package com.example.magda.systeminformacyjny.models;
+package com.example.magda.systeminformacyjny.network.items;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
- * Created by piotrek on 10.04.17.
+ * Created by piotrek on 01.06.17.
  */
 
-public class Category implements Serializable{
+public class PathResponse {
 
-    @SerializedName("ID")
-    @Expose
+    @SerializedName(value = "ID", alternate = "id")
     private Long id;
 
-
-    @SerializedName("NAME")
-    @Expose
+    @SerializedName(value = "NAME", alternate = "name")
     private String name;
 
-    public Category(Long id, String name) {
+    @SerializedName("CREATED_ON")
+    private String createdOn;
+
+    public PathResponse(Long id, String name, String createdOn) {
         this.id = id;
         this.name = name;
+        this.createdOn = createdOn;
     }
 
-    public Category(long id) {
+    public PathResponse(Long id) {
         this.id = id;
     }
-
 
     public Long getId() {
         return id;
@@ -46,14 +43,22 @@ public class Category implements Serializable{
         this.name = name;
     }
 
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Category))
+        if (!(obj instanceof PathResponse))
             return false;
-        Category other = (Category) obj;
+        PathResponse other = (PathResponse) obj;
         return id == null ? other.id == null : id.equals(other.id);
     }
 

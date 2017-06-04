@@ -4,12 +4,14 @@
     
     <data>
         <variable
-            name="category"
-            type="com.example.magda.systeminformacyjny.models.Category"/>
+            name="name"
+            type="String"/>
 
         <variable
             name="colorType"
             type="Integer"/>
+
+        <import type="com.example.magda.systeminformacyjny.utils.Constants"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,14 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/category_view_holder_margin_top"
         android:padding="@dimen/category_view_holder_padding"
-        android:background="@{colorType == category.COLOR_PRIMARY_TYPE ? @color/colorPrimary:@color/textColorPrimary}"
+        android:background="@{colorType == Constants.COLOR_PRIMARY_TYPE ? @color/colorPrimary:@color/textColorPrimary}"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:text="@{category.name}"
+            android:text="@{name}"
             android:textSize="@dimen/category_view_holder_text_size" />
 
     </LinearLayout>
