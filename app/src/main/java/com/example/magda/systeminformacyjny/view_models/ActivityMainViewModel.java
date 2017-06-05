@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.example.magda.systeminformacyjny.activities.LocationActivity;
 import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.fragments.AboutUsFragment;
@@ -75,7 +74,7 @@ public class ActivityMainViewModel implements Drawer.OnDrawerItemClickListener{
 
     public Fragment createFragment(long drawerId) {
         if(drawerId == DrawerCreator.HOME_PAGE) {
-            return MainPageFragment.getInstance();
+            return MainPageFragment.getInstance(viewCallback.getMainPlaces());
         }else if(drawerId == DrawerCreator.CREATE_ROUTE_PAGE) {
             return CreateRouteFragment.getInstance();
         }else if(drawerId == DrawerCreator.PLACES_BASE_PAGE) {

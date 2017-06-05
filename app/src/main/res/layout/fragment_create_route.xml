@@ -36,6 +36,7 @@
                 android:layout_weight="1" />
 
             <Button
+                android:id="@+id/createRouteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/fragment_create_route_button_height"
                 android:background="@drawable/button_selector"

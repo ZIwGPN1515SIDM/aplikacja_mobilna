@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.activities.CategoriesActivity;
+import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.base.IMainPLaceViewModel;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.fragments.CreateRouteFragment;
@@ -71,6 +72,8 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
         hideKeyboard(editText);
         String routeName = editText.getText().toString();
         if(routeName.trim().length() > 0) {
+            MainActivity mainActivity = (MainActivity) viewCallback.getActivity();
+            mainActivity.setMainPlaces(currentRoad);
             sendRoute(routeName);
         } else {
             viewCallback.showToast(EMPTY_TEXT_ERROR);
@@ -89,7 +92,6 @@ public class FragmentCreateRouteViewModel implements AbstractRecyclerViewEndless
         String apiKey = viewCallback.getString(R.string.server_api_key);
         CurrentPath currentPath = new CurrentPath(PreferencesManager.getOurId(viewCallback.getContext()),
                 name, gson.toJson(createPathNames()));
-        Log.d("JESTEM", gson.toJson(new DefaultResourceWrapper<>(currentPath), DefaultResourceWrapper.class));
         viewCallback.showProgressDialog();
         dataRequestManager.sendPath(apiKey, new DefaultResourceWrapper<>(currentPath))
                 .subscribe(new MaybeObserver<ResponseBody>() {

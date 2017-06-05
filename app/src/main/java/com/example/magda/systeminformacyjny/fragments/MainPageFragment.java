@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
 import com.example.magda.systeminformacyjny.databinding.FragmentSettingsBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
@@ -73,12 +74,16 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     private MapView gMapView;
     private LocationProvider locationProvider;
     private AtomicBoolean enableFocusOnUserLocation;
-    Spinner colorSpinner;
-    FragmentMainPageBinding binding;
+    private FragmentMainPageBinding binding;
 
+    public static final String MAIN_PLACES_TAG = "mainPlaces";
 
-    public static MainPageFragment getInstance() {
-        return new MainPageFragment();
+    public static MainPageFragment getInstance(ArrayList<MainPlace> mainPlaces) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MAIN_PLACES_TAG, mainPlaces);
+        MainPageFragment mainPageFragment = new MainPageFragment();
+        mainPageFragment.setArguments(bundle);
+        return mainPageFragment;
     }
 
     @Nullable
@@ -87,7 +92,6 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_page, null, false);
         gMapView = binding.map;
         locationProvider = new LocationProvider(getContext(), this);
-        setUpLocations();
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
@@ -101,18 +105,10 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         return binding.getRoot();
     }
 
-    private void setUpLocations() {
-        MainPlace place1 = new MainPlace(1L, "Pl1", 51.1097, 17.0328);
-        locations.add(place1);
-        MainPlace place2 = new MainPlace(2L, "Pl2", 51.1097, 17.0418);
-        locations.add(place2);
-        MainPlace place3 = new MainPlace(3L, "Pl3", 51.1055, 17.0313);
-        locations.add(place3);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.locations = (ArrayList<MainPlace>) getArguments().getSerializable(MAIN_PLACES_TAG);
     }
 
     @Override
