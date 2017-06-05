@@ -170,6 +170,7 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
 
                     @Override
                     public void onSuccess(DefaultIdWrapper value) {
+                        comments.remove(null);
                         comments.add(new Comment(value.getId(), content, score));
                         successResponses.add(new SuccessResponse(SEND_OPINION_SUCCESS));
                         onSuccessResponse();
