@@ -15,12 +15,12 @@
     android:gravity="center_horizontal"
     android:padding="@dimen/fragment_rating_place_padding">
 
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/fragment_rating_place_rate_text_size"
         android:text="@{String.valueOf(place.rating)}"
-        android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"/>
+        android:layout_marginBottom="@dimen/fragment_rating_place_small_margin"/> -->
 
     <me.zhanghai.android.materialratingbar.MaterialRatingBar
         android:id="@+id/ratingBar"
