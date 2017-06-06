@@ -16,16 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.magda.systeminformacyjny.R;
-import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.databinding.FragmentMainPageBinding;
-import com.example.magda.systeminformacyjny.databinding.FragmentSettingsBinding;
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.Constants;
 import com.example.magda.systeminformacyjny.utils.LocationProvider;
@@ -38,6 +35,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.PolyUtil;
@@ -75,6 +73,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     private LocationProvider locationProvider;
     private AtomicBoolean enableFocusOnUserLocation;
     private FragmentMainPageBinding binding;
+    private AtomicBoolean startLocation;
 
     public static final String MAIN_PLACES_TAG = "mainPlaces";
 
@@ -102,6 +101,13 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         isFirstLocationUpdate = true;
         setRequestQueue();
         enableFocusOnUserLocation = new AtomicBoolean(true);
+        startLocation = new AtomicBoolean(false);
+        binding.floatingButton.setOnClickListener(v -> {
+            if(locations.size() != 0)
+                startLocation.set(true);
+            else
+                Toast.makeText(getContext(), getString(R.string.empty_route_error_info), Toast.LENGTH_SHORT).show();
+        });
         return binding.getRoot();
     }
 
@@ -149,14 +155,26 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         } else {
             requestForPermissions();
         }
-        googleMap.setMyLocationEnabled(true);
+        // googleMap.setMyLocationEnabled(true);
+        moveToWroclawCamera();
         googleMap.setOnMyLocationButtonClickListener(() -> {
             enableFocusOnUserLocation.set(true);
             return false;
         });
+        setUpMarkers();
     }
 
+    private void setUpMarkers() {
+        for(MainPlace m: locations) {
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(m.getLatitude(), m.getLongitude()))
+            .title(m.getName()));
+        }
+    }
 
+    private void moveToWroclawCamera() {
+        CameraUpdate point = CameraUpdateFactory.newLatLngZoom(new LatLng(51.1, 17.03), 10);
+        googleMap.animateCamera(point);
+    }
 
     private void setRequestQueue() {
         if (requestQueue == null)
@@ -184,16 +202,16 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         int mapMode;
         switch (PreferencesManager.mapMode(getContext())) {
             case STANDARD_MAP:
-                mapMode=  R.raw.sandard_map;
+                mapMode = R.raw.sandard_map;
                 break;
             case RETRO_MAP:
-                mapMode =  R.raw.retro_map;
+                mapMode = R.raw.retro_map;
                 break;
             case DARK_MAP:
-                mapMode =  R.raw.dark_map;
+                mapMode = R.raw.dark_map;
                 break;
             default:
-                mapMode =  R.raw.sandard_map;
+                mapMode = R.raw.sandard_map;
         }
         return mapMode;
     }
@@ -236,18 +254,18 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
 
     @Override
     public void handleNewLocation(Location location) {
-        binding.floatingButton.setOnClickListener(v -> {
+        if (startLocation.get()) {
             double currentLatitude = location.getLatitude();
             double currentLongitude = location.getLongitude();
             LatLng latLng = new LatLng(currentLatitude, currentLongitude);
             CameraUpdate camUpdate;
-            if (isFirstLocationUpdate) {
+           // if (isFirstLocationUpdate) {
                 camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
                 googleMap.animateCamera(camUpdate);
                 isFirstLocationUpdate = false;
-            }
+           // }
             downloadNewPath(latLng, locations);
-        });
+        }
     }
 
     private void downloadNewPath(LatLng myLocation, ArrayList<MainPlace> locations) {
@@ -268,17 +286,19 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         PolylineOptions lineOptions = new PolylineOptions();
         lineOptions.addAll(latLngs);
         lineOptions.width(10);
-        switch (PreferencesManager.routeColor(getContext())){
-            case Constants.RED_COLOR:
-                lineOptions.color(Color.RED);
-                break;
-            case Constants.GREEN_COLOR:
+        switch (PreferencesManager.routeColor(getContext())) {
+            case GREEN_COLOR:
                 lineOptions.color(Color.GREEN);
                 break;
-            case Constants.BLUE_COLOR:
+            case BLUE_COLOR:
                 lineOptions.color(Color.BLUE);
                 break;
+            case RED_COLOR:
+            default:
+                lineOptions.color(Color.RED);
+                break;
         }
+        Log.d("JESTEM", "rysuje trase");
         if (latLngs != null && latLngs.size() != 0) {
             Polyline tmpPolyline = polyLine;
             polyLine = googleMap.addPolyline(lineOptions);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.activities.MainActivity;
 import com.example.magda.systeminformacyjny.base.BaseFragment;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.databinding.FragmentCreateRouteBinding;
@@ -106,6 +106,7 @@ public class CreateRouteFragment extends BaseFragment {
     @Override
     public void onSuccess(SuccessResponse successResponse) {
         hideProgressDialog();
+        ((MainActivity)getActivity()).goToMainPagefragment();
     }
 
     @Override

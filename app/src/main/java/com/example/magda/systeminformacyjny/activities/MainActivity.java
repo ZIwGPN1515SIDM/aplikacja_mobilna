@@ -19,6 +19,8 @@ import com.mikepenz.materialdrawer.Drawer;
 
 import java.util.ArrayList;
 
+import static com.example.magda.systeminformacyjny.utils.DrawerCreator.HOME_PAGE;
+
 /**
  * Created by piotrek on 05.04.17.
  */
@@ -30,13 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainViewModel viewModel;
     private Fragment currentFragment;
     public String title;
-    private ArrayList<MainPlace> mainPlaces = new ArrayList<>();;
+    private ArrayList<MainPlace> mainPlaces = new ArrayList<>();
 
     private static final String FRAGMENT_TAG = "mainFragment";
     private static final String SELECTED_DRAWER_ID = "selectedDrawerId";
     private static final String TOOLBAR_TITLE = "toolbarTitle";
     private static final String HOME_TITLE = "Strona główna";
-    private static final String MAIN_PLACES = "MP";
 
 
     @Override
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             viewModel.setSelectedDrawerId(savedInstanceState.getLong(SELECTED_DRAWER_ID));
             title = savedInstanceState.getString(TOOLBAR_TITLE);
         } else {
-            viewModel.setSelectedDrawerId(DrawerCreator.HOME_PAGE);
+            viewModel.setSelectedDrawerId(HOME_PAGE);
             title = HOME_TITLE;
         }
 
@@ -85,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
     public void setToolbarTitle(String title) {
         this.title = title;
         toolbar.setTitle(title);
+    }
+
+    public void goToMainPagefragment() {
+        drawer.setSelection(HOME_PAGE);
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.fragments.RatingPlaceFragment;
 import com.example.magda.systeminformacyjny.models.Comment;
 import com.example.magda.systeminformacyjny.models.IPlaceItem;
+import com.example.magda.systeminformacyjny.models.UserInfo;
 import com.example.magda.systeminformacyjny.network.DataRequestManager;
 import com.example.magda.systeminformacyjny.network.DefaultIdWrapper;
 import com.example.magda.systeminformacyjny.network.DefaultResourceWrapper;
@@ -156,7 +157,7 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
     public void sendComment(String content, Float score) {
         String apiKey = viewCallback.getString(R.string.server_api_key);
         Long userId = PreferencesManager.getOurId(viewCallback.getContext());
-
+        String myName = PreferencesManager.getName(viewCallback.getContext());
         Long namespaceId = placeType.equals(NAMESPACE_TYPE_TAG) ? placeItem.getId() : null;
         Long placeId = placeType.equals(PLACE_TYPE_TAG) ? placeItem.getId() : null;
         SendCommentRequest sendCommentRequest = new SendCommentRequest(content, score, placeId,
@@ -171,7 +172,8 @@ public class FragmentRatingPlaceViewModel implements Lifecycle.ViewModel,
                     @Override
                     public void onSuccess(DefaultIdWrapper value) {
                         comments.remove(null);
-                        comments.add(new Comment(value.getId(), content, score));
+                        comments.add(new Comment(value.getId(), content, score, new UserInfo(userId,
+                                myName)));
                         successResponses.add(new SuccessResponse(SEND_OPINION_SUCCESS));
                         onSuccessResponse();
                     }

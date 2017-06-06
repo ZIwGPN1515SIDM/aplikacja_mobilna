@@ -78,4 +78,6 @@
     <string name="downloading_place_info">Nieznane miejsce w pobliżu. Informacje na temat tego miejsca
     są pobierane. Proszę poczekaj....</string>
 
+    <string name="empty_route_error_info">Nie wybrano trasy!</string>
+
 </resources>

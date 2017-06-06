@@ -70,7 +70,7 @@ public class RecyclerViewCommentsAdapter extends AbstractRecyclerViewEndlessAdap
         }
 
         public void bind(Comment comment) {
-            binding.setCommnet(comment);
+            binding.setComment(comment);
             binding.executePendingBindings();
         }
     }
