@@ -51,4 +51,5 @@ public class BindingAdapters {
         textInputLayout.setErrorEnabled(error != null);
         textInputLayout.setError(error);
     }
+
 }

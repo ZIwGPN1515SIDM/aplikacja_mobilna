@@ -12,9 +12,12 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.magda.systeminformacyjny.R;
 import com.example.magda.systeminformacyjny.databinding.ActivityMainBinding;
+import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.utils.DrawerCreator;
 import com.example.magda.systeminformacyjny.view_models.ActivityMainViewModel;
 import com.mikepenz.materialdrawer.Drawer;
+
+import java.util.ArrayList;
 
 /**
  * Created by piotrek on 05.04.17.
@@ -27,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainViewModel viewModel;
     private Fragment currentFragment;
     public String title;
+    private ArrayList<MainPlace> mainPlaces = new ArrayList<>();;
 
     private static final String FRAGMENT_TAG = "mainFragment";
     private static final String SELECTED_DRAWER_ID = "selectedDrawerId";
     private static final String TOOLBAR_TITLE = "toolbarTitle";
     private static final String HOME_TITLE = "Strona główna";
+    private static final String MAIN_PLACES = "MP";
 
 
     @Override
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             viewModel.setSelectedDrawerId(DrawerCreator.HOME_PAGE);
             title = HOME_TITLE;
         }
+
         toolbar = binding.toolbarLayout.toolbar;
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle(title);
@@ -86,4 +92,11 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void setMainPlaces(ArrayList<MainPlace> mainPlaces) {
+        this.mainPlaces = mainPlaces;
+    }
+
+    public ArrayList<MainPlace> getMainPlaces() {
+        return mainPlaces;
+    }
 }

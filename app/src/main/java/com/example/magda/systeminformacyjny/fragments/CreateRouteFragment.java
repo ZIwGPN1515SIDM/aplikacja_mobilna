@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 import com.example.magda.systeminformacyjny.R;
-import com.example.magda.systeminformacyjny.activities.LoginActivity;
 import com.example.magda.systeminformacyjny.base.BaseFragment;
 import com.example.magda.systeminformacyjny.base.Lifecycle;
 import com.example.magda.systeminformacyjny.databinding.FragmentCreateRouteBinding;

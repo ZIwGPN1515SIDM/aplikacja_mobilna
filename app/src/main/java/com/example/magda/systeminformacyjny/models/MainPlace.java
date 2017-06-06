@@ -107,6 +107,13 @@ public class MainPlace implements IPlaceItem {
         this.inMetersKilometers = inMetersKilometers;
     }
 
+    public MainPlace(Long id, String description, Double latitude, Double longitude) {
+        this.id = id;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Double getLatitude() {
         return latitude;
     }
