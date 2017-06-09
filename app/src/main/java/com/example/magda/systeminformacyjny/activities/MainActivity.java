@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Drawer drawer;
     private ActivityMainViewModel viewModel;
-    private Fragment currentFragment;
     public String title;
     private ArrayList<MainPlace> mainPlaces = new ArrayList<>();
 
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String SELECTED_DRAWER_ID = "selectedDrawerId";
     private static final String TOOLBAR_TITLE = "toolbarTitle";
     private static final String HOME_TITLE = "Strona główna";
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void replaceFragment(Fragment fragment) {
-        this.currentFragment = fragment;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragmentContainer, fragment, FRAGMENT_TAG);
         ft.commit();
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(title);
     }
 
-    public void goToMainPagefragment() {
+    public void goToMainPageFragment() {
         drawer.setSelection(HOME_PAGE);
     }
 

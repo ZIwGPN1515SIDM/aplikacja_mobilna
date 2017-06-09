@@ -35,8 +35,12 @@ public class PreferencesManager {
     }
 
     public static int routeColor(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        return preferences.getInt(ROUTE_COLOR_PREF, Color.RED);
+        if(context != null) {
+            SharedPreferences preferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+            return preferences.getInt(ROUTE_COLOR_PREF, Color.RED);
+        }else {
+            return Color.RED;
+        }
     }
 
     public static int measureType(Context context) {

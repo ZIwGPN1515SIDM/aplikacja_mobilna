@@ -106,7 +106,7 @@ public class CreateRouteFragment extends BaseFragment {
     @Override
     public void onSuccess(SuccessResponse successResponse) {
         hideProgressDialog();
-        ((MainActivity)getActivity()).goToMainPagefragment();
+        ((MainActivity)getActivity()).goToMainPageFragment();
     }
 
     @Override

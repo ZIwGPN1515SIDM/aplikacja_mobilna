@@ -1,5 +1,6 @@
 package com.example.magda.systeminformacyjny.binding;
 
+import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.media.Image;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.magda.systeminformacyjny.R;
+import com.example.magda.systeminformacyjny.utils.Constants;
+import com.example.magda.systeminformacyjny.utils.PreferencesManager;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -31,7 +34,7 @@ public class BindingAdapters {
     @BindingAdapter("app:shortText")
     public static void setShortText(TextView textView, String text) {
         int length = text.length();
-        String subString = length > 140? text.substring(0, 140): text;
+        String subString = length > 140 ? text.substring(0, 140) : text;
         textView.setText(subString + "...");
     }
 
@@ -50,6 +53,27 @@ public class BindingAdapters {
     public static void setError(TextInputLayout textInputLayout, String error) {
         textInputLayout.setErrorEnabled(error != null);
         textInputLayout.setError(error);
+    }
+
+    @BindingAdapter("app:distance")
+    public static void setDistance(TextView textView, Float distance) {
+        Context context = textView.getContext();
+        int measureType = PreferencesManager.measureType(context);
+        float calculatedFloat;
+        if (distance != null) {
+            if(measureType == Constants.METER_KILOMETER) {
+                calculatedFloat = distance / (float) 1000;
+                textView.setText(calculatedFloat >= 1.0f ? String.format("%.1f", calculatedFloat) + " km"
+                        : String.format("%.2f", distance) + " m");
+            }else {
+                float feets = distance * Constants.METER_2_FEET;
+                calculatedFloat = feets / Constants.FEET_2_MILE;
+                textView.setText(calculatedFloat >= 1.0f ? String.format("%.1f", calculatedFloat) + " mile"
+                        : String.format("%.2f", feets) + " ft");
+            }
+        } else {
+            textView.setText("");
+        }
     }
 
 }

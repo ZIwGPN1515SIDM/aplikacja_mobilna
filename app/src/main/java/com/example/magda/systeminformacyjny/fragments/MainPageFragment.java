@@ -35,6 +35,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -60,7 +61,8 @@ import static com.example.magda.systeminformacyjny.utils.Constants.STANDARD_MAP;
  * Created by piotrek on 05.04.17.
  */
 
-public class MainPageFragment extends Fragment implements OnMapReadyCallback, LocationProvider.LocationCallback {
+public class MainPageFragment extends Fragment implements OnMapReadyCallback, LocationProvider.LocationCallback,
+        GoogleMap.OnMarkerClickListener {
 
     private GoogleMap googleMap;
     private boolean shouldRepeatPermission;
@@ -74,6 +76,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     private AtomicBoolean enableFocusOnUserLocation;
     private FragmentMainPageBinding binding;
     private AtomicBoolean startLocation;
+
 
     public static final String MAIN_PLACES_TAG = "mainPlaces";
 
@@ -103,7 +106,7 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         enableFocusOnUserLocation = new AtomicBoolean(true);
         startLocation = new AtomicBoolean(false);
         binding.floatingButton.setOnClickListener(v -> {
-            if(locations.size() != 0)
+            if (locations.size() != 0)
                 startLocation.set(true);
             else
                 Toast.makeText(getContext(), getString(R.string.empty_route_error_info), Toast.LENGTH_SHORT).show();
@@ -130,8 +133,9 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
     @Override
     public void onPause() {
         super.onPause();
-        gMapView.onPause();
         locationProvider.disconnect();
+        gMapView.onPause();
+
     }
 
     @Override
@@ -161,13 +165,16 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
             enableFocusOnUserLocation.set(true);
             return false;
         });
+        googleMap.setOnMarkerClickListener(this);
         setUpMarkers();
     }
 
     private void setUpMarkers() {
-        for(MainPlace m: locations) {
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(m.getLatitude(), m.getLongitude()))
-            .title(m.getName()));
+        Marker marker;
+        for (MainPlace m : locations) {
+            marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(m.getLatitude(), m.getLongitude()))
+                    .title(m.getName()));
+            m.setMarker(marker);
         }
     }
 
@@ -259,12 +266,23 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
             double currentLongitude = location.getLongitude();
             LatLng latLng = new LatLng(currentLatitude, currentLongitude);
             CameraUpdate camUpdate;
-           // if (isFirstLocationUpdate) {
-                camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
-                googleMap.animateCamera(camUpdate);
-                isFirstLocationUpdate = false;
-           // }
+            // if (isFirstLocationUpdate) {
+            camUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
+            googleMap.animateCamera(camUpdate);
+            isFirstLocationUpdate = false;
+            // }
             downloadNewPath(latLng, locations);
+            updateDistances(location);
+        }
+    }
+
+    private void updateDistances(Location location) {
+        Location tmpLocation;
+        for(MainPlace m: locations) {
+            tmpLocation = new Location(m.getName());
+            tmpLocation.setLatitude(m.getLatitude());
+            tmpLocation.setLongitude(m.getLongitude());
+            m.setDistance(location.distanceTo(tmpLocation));
         }
     }
 
@@ -339,4 +357,28 @@ public class MainPageFragment extends Fragment implements OnMapReadyCallback, Lo
         return latLngs;
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        for (MainPlace m : locations) {
+            if (m.getMarker().equals(marker)) {
+                Toast.makeText(getContext(), "Odległość " + getDistance(m.getDistance()), Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+        return false;
+    }
+    private String getDistance(float distance) {
+        int measureType = PreferencesManager.measureType(getContext());
+        float calculatedFloat;
+        if (measureType == Constants.METER_KILOMETER) {
+            calculatedFloat = distance / (float) 1000;
+            return calculatedFloat >= 1.0f ? String.format("%.1f", calculatedFloat) + " km"
+                    : String.format("%.2f", distance) + " m";
+        } else {
+            float feets = distance * Constants.METER_2_FEET;
+            calculatedFloat = feets / Constants.FEET_2_MILE;
+            return calculatedFloat >= 1.0f ? String.format("%.1f", calculatedFloat) + " mile"
+                    : String.format("%.2f", feets) + " ft";
+        }
+    }
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public interface IPlaceItem extends Serializable{
 
-    String getDistance();
+    Float getDistance();
     String getDescription();
     String getCategoryName();
     String getName();

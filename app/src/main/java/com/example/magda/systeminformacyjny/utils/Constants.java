@@ -15,7 +15,9 @@ public class Constants {
     public static final int GREEN_COLOR = 1;
     public static final int BLUE_COLOR = 2;
     public static final double KILOMETERS2MILES = 0.621;
-    public static final double MILES2FEET = 5280;
+    public static final float FEET_2_MILE = 5280f;
+
+    public static final float METER_2_FEET = 3.28f;
 
     public static int CURRENT_ROAD_ACTIVITY_REQUEST_CODE = 123;
 

@@ -1,6 +1,11 @@
 package com.example.magda.systeminformacyjny.models;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.example.magda.systeminformacyjny.BR;
 import com.example.magda.systeminformacyjny.utils.Constants;
+import com.google.android.gms.maps.model.Marker;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +15,7 @@ import java.util.ArrayList;
  * Created by piotrek on 10.04.17.
  */
 
-public class MainPlace implements IPlaceItem {
+public class MainPlace extends BaseObservable implements IPlaceItem {
     @SerializedName("ID")
     @Expose
     private Long id;
@@ -75,18 +80,17 @@ public class MainPlace implements IPlaceItem {
     @Expose
     private String categoryName;
 
-    private double distance;
-
-    private boolean inMetersKilometers;
+    private Float distance;
 
     @SerializedName("PHOTO")
     private String mainPhoto;
 
+    private transient Marker marker;
+
     public MainPlace(Long id, String description, Object advert, String eventContent, String addedOn,
                      Float sumScore, Long commentsCount, String googlePlaceId, String namespace,
                      Double latitude, Double longitude, String name, ArrayList<Photo> photos,
-                     String eventName, String eventEnd, String categoryName, double distance,
-                     boolean inMetersKilometers) {
+                     String eventName, String eventEnd, String categoryName) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -103,8 +107,6 @@ public class MainPlace implements IPlaceItem {
         this.eventName = eventName;
         this.eventEnd = eventEnd;
         this.categoryName = categoryName;
-        this.distance = distance;
-        this.inMetersKilometers = inMetersKilometers;
     }
 
     public MainPlace(Long id, String description, Double latitude, Double longitude) {
@@ -151,22 +153,10 @@ public class MainPlace implements IPlaceItem {
         this.id = id;
     }
 
+    @Bindable
     @Override
-    public String getDistance() {
-
-        if (inMetersKilometers) {
-            if (distance < 1)
-                return Double.valueOf(distance * 1000).toString().concat(" m");
-            else
-                return Double.valueOf(distance).toString().concat(" km");
-        } else  {
-            distance *= Constants.KILOMETERS2MILES;
-            if (distance < 1)
-                return Double.valueOf(distance * Constants.MILES2FEET).toString().concat(" ft");
-            else
-                return Double.valueOf(distance).toString().concat(" mile");
-        }
-        
+    public Float getDistance() {
+        return distance;
     }
 
     public String getDescription() {
@@ -307,5 +297,18 @@ public class MainPlace implements IPlaceItem {
         int result = 117;
         result = 37 * result + id.hashCode() + namespace.hashCode();
         return result;
+    }
+
+    public void setDistance(Float distance) {
+        this.distance = distance;
+        notifyPropertyChanged(BR.distance);
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
     }
 }

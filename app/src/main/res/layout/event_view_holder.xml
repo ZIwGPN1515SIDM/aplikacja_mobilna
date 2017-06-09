@@ -55,6 +55,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:text='@{"Termin: " + event.eventEnd}'
+            android:textSize="10sp"
             android:textStyle="bold" />
     </RelativeLayout>
 

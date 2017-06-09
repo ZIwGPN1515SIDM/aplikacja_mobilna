@@ -38,7 +38,7 @@ public class RecyclerViewNearPlacesAdapter extends AbstractRecyclerViewEndlessAd
 
     @Override
     public int getItemViewType(int position) {
-        if (getDataSet().size() == 1 && getDataSet().get(position) == null) {
+        if (getDataSet().get(position) == null) {
             return FULL_SCREEN_EMPTY_VIEW_HOLDER;
         } else if (getDataSet().size() == 1 && getDataSet().get(position).getId() == FULL_SCREEN_PROGRESS_BAR) {
             return FULL_SCREEN_PROGRESS_BAR_VIEW_HOLDER;

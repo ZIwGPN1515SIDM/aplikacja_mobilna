@@ -98,7 +98,8 @@
                 android:layout_below="@+id/locationDescriptionLong"
                 android:layout_marginTop="@dimen/view_holder_location_distance_margin_top"
                 android:layout_toRightOf="@+id/viewHolderIcon"
-                android:text="Odległość: 2,0km"
+                app:distance="@{place.distance}"
+                android:visibility="@{place.distance != null ? View.VISIBLE : View.GONE}"
                 android:textStyle="bold" />
         </RelativeLayout>
 

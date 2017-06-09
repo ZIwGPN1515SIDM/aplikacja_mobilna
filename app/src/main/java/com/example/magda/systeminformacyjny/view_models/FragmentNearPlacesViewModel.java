@@ -39,6 +39,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -180,19 +182,16 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
         return new EddystoneListener() {
             @Override
             public void onEddystoneDiscovered(IEddystoneDevice eddystone, IEddystoneNamespace namespace) {
-                if (viewCallback != null) {
-                    viewCallback.getActivity().runOnUiThread(() -> sendInstanceEntered(eddystone.getInstanceId(), eddystone.getNamespace()));
+                if (viewCallback != null && (getIndexOfPlaces(eddystone.getNamespace(), eddystone.getInstanceId()) == -1)) {
+                    viewCallback.getActivity().runOnUiThread(() -> sendInstanceEntered(eddystone.getInstanceId(), eddystone.getNamespace(),
+                            (float) eddystone.getDistance()));
 
                 }
             }
 
             @Override
             public void onEddystonesUpdated(List<IEddystoneDevice> eddystones, IEddystoneNamespace namespace) {
-                //   for(IEddystoneDevice e: eddystones) {
-                //       if(getIndexOfPlaces(e.getNamespace(), e.getInstanceId()) == -1) {
-                //         sendInstanceEntered(e.getInstanceId(), e.getNamespace());
-                //     }
-                //  }
+                updateDistance(eddystones);
             }
 
             @Override
@@ -229,12 +228,9 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
 
             @Override
             public void onNamespaceEntered(IEddystoneNamespace namespace) {
-                Log.d("JESTEM", "namespace visit " + namespace.getNamespace() + "instance " + namespace.getInstanceId());
                 if (viewCallback != null) {
                     viewCallback.getActivity().runOnUiThread(() -> sendNamespaceEntered(namespace.getNamespace()));
                 }
-
-
             }
 
             @Override
@@ -272,11 +268,6 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
                 @Override
                 public void onError(Throwable e) {
                     e.printStackTrace();
-                    // try {
-                    //      Log.d("JESTEM", ((HttpException)e).response().errorBody().string().toString());
-                    //  } catch (IOException e1) {
-                    //      e1.printStackTrace();
-                    //  }
                 }
 
                 @Override
@@ -314,7 +305,7 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
         }
     }
 
-    public void sendInstanceEntered(String instance, String namespace) {
+    public void sendInstanceEntered(String instance, String namespace, Float distance) {
         if (viewCallback != null) {
             String apiKey = viewCallback.getString(R.string.server_api_key);
             Long userId = PreferencesManager.getOurId(viewCallback.getContext());
@@ -327,9 +318,8 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
 
                 @Override
                 public void onSuccess(DefaultResourceWrapper<DefaultIdWrapper> value) {
-
                     nearPlaces.add(new NearPlace(value.getResource().get(0).getId()));
-                    downloadInstancePlace(value.getResource().get(0).getId(), namespace, instance);
+                    downloadInstancePlace(value.getResource().get(0).getId(), namespace, instance, distance);
                 }
 
                 @Override
@@ -373,7 +363,7 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
         }
     }
 
-    public void downloadInstancePlace(Long id, String namespace, String instance) {
+    public void downloadInstancePlace(Long id, String namespace, String instance, Float distance) {
         if (viewCallback != null) {
             String apiKey = viewCallback.getString(R.string.server_api_key);
             String type = "place";
@@ -389,6 +379,7 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
                     if (index != -1) {
                         nearPlaces.get(index).setPlace(value);
                         nearPlaces.get(index).getPlace().setNamespace(namespace);
+                        nearPlaces.get(index).getPlace().setDistance(distance);
                         nearPlaces.remove(null);
                         successResponse = new SuccessResponse(DOWNLOAD_SUCCESS);
                         onSuccessResponse();
@@ -432,5 +423,20 @@ public class FragmentNearPlacesViewModel implements Lifecycle.ViewModel {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return df.format(c.getTime());
+    }
+
+    private void updateDistance(List<IEddystoneDevice> eddystoneDevices) {
+        int index;
+        NearPlace nearPlace;
+        for (IEddystoneDevice d : eddystoneDevices) {
+            if ((index = getIndexOfPlaces(d.getNamespace(), d.getInstanceId())) != -1) {
+                nearPlace = nearPlaces.get(index);
+                if (nearPlace.getPlace() != null) {
+                    nearPlace.getPlace().setDistance((float) d.getDistance());
+                }
+            }
+        }
+        if (viewCallback != null)
+            viewCallback.notifyRecyclerView();
     }
 }

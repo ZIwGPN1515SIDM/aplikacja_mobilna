@@ -1,5 +1,9 @@
 package com.example.magda.systeminformacyjny.models;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.example.magda.systeminformacyjny.BR;
 import com.example.magda.systeminformacyjny.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,7 +14,7 @@ import java.util.List;
  * Created by piotrek on 19.04.17.
  */
 
-public class Place implements IPlaceItem {
+public class Place extends BaseObservable implements IPlaceItem {
 
     @SerializedName("ID")
     @Expose
@@ -68,16 +72,13 @@ public class Place implements IPlaceItem {
     @Expose
     private String eventEnd;
 
-    private double distance;
-
-    private boolean inMetersKilometers;
+    private Float distance;
 
     private String namespace;
 
     public Place(Long id, String description, String advert, String eventContent, String addedOn,
                  Float sumScore, Long commentsCount, String googleId, String instance, String name,
-                 Long namespaceId, List<Photo> photos, String eventName, String eventEnd,
-                 double distance, boolean inMetersKilometers) {
+                 Long namespaceId, List<Photo> photos, String eventName, String eventEnd) {
         this.id = id;
         this.description = description;
         this.advert = advert;
@@ -92,8 +93,6 @@ public class Place implements IPlaceItem {
         this.photos = photos;
         this.eventName = eventName;
         this.eventEnd = eventEnd;
-        this.distance = distance; // in kilometers
-        this.inMetersKilometers = inMetersKilometers;
 
     }
 
@@ -109,22 +108,11 @@ public class Place implements IPlaceItem {
         this.id = id;
     }
 
+
+    @Bindable
     @Override
-    public String getDistance() {
-
-        if (inMetersKilometers) {
-            if (distance < 1)
-                return Double.valueOf(distance * 1000).toString().concat(" m");
-            else
-                return Double.valueOf(distance).toString().concat(" km");
-        } else  {
-            distance *= Constants.KILOMETERS2MILES;
-            if (distance < 1)
-                return Double.valueOf(distance * Constants.MILES2FEET).toString().concat(" ft");
-            else
-                return Double.valueOf(distance).toString().concat(" mile");
-        }
-
+    public Float getDistance() {
+        return distance;
     }
 
     public String getDescription() {
@@ -207,8 +195,8 @@ public class Place implements IPlaceItem {
 
     @Override
     public String getPhoto() {
-        return photos != null? photos.get(0).getURL(): "https://vignette3.wikia.nocookie.net/lego/images/a/ac/No-Image-Basic" +
-                ".png/revision/latest?cb=20130819001030"; //TODO NA SZTYWNO NA RAZIE
+        return photos != null ? photos.get(0).getURL() : "https://vignette3.wikia.nocookie.net/lego/images/a/ac/No-Image-Basic" +
+                ".png/revision/latest?cb=20130819001030";
     }
 
     public void setName(String name) {
@@ -270,5 +258,10 @@ public class Place implements IPlaceItem {
 
     public void setNamespace(String namespace) {
         this.namespace = namespace;
+    }
+
+    public void setDistance(Float distance) {
+        this.distance = distance;
+        notifyPropertyChanged(BR.distance);
     }
 }
