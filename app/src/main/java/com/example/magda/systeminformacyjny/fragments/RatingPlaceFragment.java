@@ -49,7 +49,6 @@ public class RatingPlaceFragment extends BaseFragment {
     private ArrayList<Comment> comments;
     private FragmentRatingPlaceViewModel viewModel;
     private String placeType;
-    private TextView sendButton;
 
     private static final String PLACE_TAG = "place";
     private static final String PLACE_TYPE_TAG = "placeType";

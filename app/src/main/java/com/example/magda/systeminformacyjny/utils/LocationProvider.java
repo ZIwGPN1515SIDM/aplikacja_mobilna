@@ -48,8 +48,8 @@ public class LocationProvider implements
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(2 * 1000)        // 2 seconds, in milliseconds
-                .setFastestInterval(1 * 500)
-                .setSmallestDisplacement(0); // 0.5 second, in milliseconds
+                .setFastestInterval(1 * 500) // 0.5 second, in milliseconds
+                .setSmallestDisplacement(0);
 
         mContext = context;
     }

@@ -89,6 +89,7 @@ public class ItemsApiService {
     public MaybeSource<DefaultIdWrapper> sendComment(String apiKey, DefaultResourceWrapper request) {
         return whereToGoService.sendComment(apiKey, request)
                 .subscribeOn(Schedulers.io())
+                .map(response -> response.getId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .singleElement();
     }

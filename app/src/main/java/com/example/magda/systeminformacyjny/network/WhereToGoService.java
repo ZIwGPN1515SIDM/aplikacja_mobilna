@@ -2,6 +2,7 @@ package com.example.magda.systeminformacyjny.network;
 
 import com.example.magda.systeminformacyjny.models.MainPlace;
 import com.example.magda.systeminformacyjny.models.VisitedNamespace;
+import com.example.magda.systeminformacyjny.network.items.CommentIdResponse;
 import com.example.magda.systeminformacyjny.network.items.CommentResponse;
 import com.example.magda.systeminformacyjny.network.items.EventResponse;
 import com.example.magda.systeminformacyjny.network.items.InstanceResponse;
@@ -68,8 +69,8 @@ public interface WhereToGoService {
                                                  @Query("api_key") String apiKey);
 
     @POST("comments/add")
-    Observable<DefaultIdWrapper> sendComment(@Query("api_key") String apiKey,
-                                             @Body DefaultResourceWrapper commentRequest);
+    Observable<CommentIdResponse> sendComment(@Query("api_key") String apiKey,
+                                              @Body DefaultResourceWrapper commentRequest);
 
 
     @POST("sidm/_table/USER_PATHS")

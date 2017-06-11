@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Comment implements Serializable{
 
-    @SerializedName("ID")
+    @SerializedName(value = "ID", alternate = "id")
     @Expose
     private Long id;
 
